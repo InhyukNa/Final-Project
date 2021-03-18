@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:th="http://www.thymeleaf.org" th:lang="${session.lang}"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorator="layout/layout.html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>주문 페이지</title>
+</head>
+
+<body layout:fragment="content">
+   <form id="orderinsertform" name="formname">
+      <div class="ui grid main">
+         <div class="ui grid sixteen wide column">
+            <p style="text-align:center;font-size:20px;font-family:'돋움';font-weight:bold" >재료 목록
+         </div>
+         
+         
+         <div class = "ui grid two wide column"></div>
+         
+         <div class = "ui grid thirteen wide column memin" align="center">
+         	<input type="hidden" name="ordernum" id="ordernum" th:value="${ordernum}">
+			<div th:each="product: ${products}" style="float:left">
+				<div>
+					<div style="float:left">
+						<img th:src="${product.image}" style="width:80px;height:80px;">
+					</div>
+					<div style="float:left">
+						<input  th:id="|procode${product.code}|" type="hidden" th:value="${product.code}">
+						<span th:value="${product.code}" th:text="${product.name}"></span><br>
+						<span th:text="|${product.calorie} kcal|"></span><br>
+						<span th:text="|${product.saleprice} 원|"></span><br>
+						<span th:text="${product.productexp}"></span><br>
+						<select th:if="${product.stock}!=0" th:id="|qty${product.code}|" class="ui dropdown">
+							<option value="1">1</option>
+							<option value="2">2</option>
+						</select >
+						<button th:if="${product.stock}!=0" class= "ui green basic button btn-cartin-act" th:data-num="${product.code}" type="button">장바구니 담기</button>				
+						<button th:if="${product.stock}!=0"  th:id="|cartout${product.code}|" class= "ui red basic button" type="button">장바구니 삭제</button>
+						<button th:if="${product.stock}==0" class="ui black basis button" disabled="disabled" style="width:300px">매진</button>				
+					</div>
+				</div>
+			</div>
+			            
+            <div class = "ui grid sixteen wide column memin" align="center">
+            <button class="ui inverted green button" type ="button" id="orderconfirm">등록하기</button>
+            <button class="ui inverted red button" type="button" id="ordercancle">취소</button>
+            
+            </div>   
+         </div>
+         
+         
+         <div class = "ui grid two wide column"></div>
+         
+         
+      </div>
+   </form>
+</body>
+</html>
+

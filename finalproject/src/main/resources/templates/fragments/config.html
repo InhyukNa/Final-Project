@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <head th:fragment="configFragment">
+       	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+       	<link rel="stylesheet" href="/css/header.css">
+       	<link rel="stylesheet" href="/css/member.css">
+       	<link rel="stylesheet" href="/css/content.css">
+       	<link rel="stylesheet" href="/css/admin.css">
+       	<link rel="stylesheet" href="/css/login.css">
+       	<link rel="stylesheet" href="/css/order.css">
+       	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+		<!-- Semantic UI CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.jqueryui.min.css">
+		<link rel="stylesheet" href="https://cdn.datatables.net/scroller/2.0.3/css/scroller.jqueryui.min.css">
+      
+        <th:block layout:fragment="css"></th:block>
+        
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+        <script src="/js/dropdown.js"></script>  
+     	<script src="/js/jquery.datatables.min.js"></script>  
+      	<script src="https://cdn.datatables.net/1.10.23/js/dataTables.jqueryui.min.js"></script>  
+      	<script src="https://cdn.datatables.net/scroller/2.0.3/js/dataTables.scroller.min.js"></script>
+      	<script src="https://cdn.tiny.cloud/1/53roo57v5rb8bmj0ek2cr3biu5ba5tiz6ldhr69s3tes0lq8/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>  
+      	<script src="/js/semantic.js"></script> 
+      	<script src="/js/jquery.validate.js"></script>
+        <script src="/js/member.js"></script>
+      	<script src="/js/board.js"></script>
+      	<script src="/js/order.js"></script>
+        <script src="/js/admin.js"></script>
+        <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>  
+       
+       
+        <th:block layout:fragment="script"></th:block>
+    </head>
+</html>

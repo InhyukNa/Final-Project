@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" th:lang="${session.lang}"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout.html">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>관리자 페이지</title>
+</head>
+
+<body layout:fragment="content">
+	<form id="adminlistform" name="adminlist" method="POST">
+		<div class="ui grid main">
+			<div class="ui grid sixteen wide column">
+				<p id="titleWord">관리자 페이지
+			</div>
+		
+			
+			<div class = "ui grid three wide column"></div>
+			
+			<div class = "ui grid eleven wide column memin" id="adminlistback" align="center">
+				<div class = "fluid ui input container">
+					<div style="background-color:#3E846A">
+						<br><br><br>
+						<a href="noconfirmlist"><span style="font:Georgia;font-size:20px;color:#ffffff" th:text="|${noconfirmorder}건|"></span></a><br><br>
+						<span style="font:Georgia;font-size:15px;color:#ffffff">미확인 주문</span>
+						<br>
+						<br>
+						<div style="border-top: 1px solid #ffffff;width:100%">
+							<button type="button" id="adminorderdetail" onclick="location.href='OrderList'" >주문 내역 관리</button>
+						</div>
+						<br>
+					</div>
+					<div style="background-color:#00C57D">
+						<br><br><br>
+						<a href="#"><span style="font:Georgia;font-size:20px;color:#ffffff">10건</span></a><br><br>
+						<span style="font:Georgia;font-size:15px;color:#ffffff">미확인 문의</span>
+						<br>
+						<br>												
+					</div>
+					<div style="background-color:#599AFE">
+						<br><br><br>
+						<a href='memberList'><span style="font:Georgia;font-size:20px;color:#ffffff" th:text="|${membercnt}명|"></span></a><br><br>
+						<span style="font:Georgia;font-size:15px;color:#ffffff">회원 수</span>
+						<br>
+						<br>
+					</div>
+					<div id="stockoutdiv"style="background-color:#85A4D2">
+						<br><br><br>
+						<a href="javascript:outstockChange1();"><span style="font:Georgia;font-size:20px;color:#ffffff" th:text="|${outofstocks}건|"></span></a><br><br>
+						<span style="font:Georgia;font-size:15px;color:#ffffff">부족 재고 수</span>
+						<br>
+						<br>
+						<div style="border-top: 1px solid #ffffff;width:100%">
+							<button type="button" id= "stockdetail" onclick="location.href='productList'" >재고 관리</button>
+						</div>
+						<br>
+					</div>
+					<div id="stockmanagediv" style="display:none;background-color:#85A4D2;">
+						<table class="ui basic table">
+							<tbody>
+								<tr th:each="stock : ${stocks}">
+									<td th:text="${stock.name}"></td>
+									<td th:text="|${stock.stock}개|"></td>
+									<td>
+										<button class="ui white small basic button"  type="button"
+										th:onclick="'location.href=\''+@{fastOrder(code=${stock.code},name=${stock.name})}+'\';'">주문처리</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<a id="stockback" href="javascript:outstockChange2();"><span>돌아가기</span></a>
+					</div>
+				</div>
+				
+				<div class = "fluid ui input container">
+					<div>
+						<button id="test1" type="button" class="ui white small basic button">재고 그래프</button>
+						<canvas id="myChart"></canvas>
+						
+					</div>
+					<div>
+						<span>인기 재료</span>
+					</div>
+				</div>
+			</div>
+			<div class = "ui grid three wide column"></div>
+		</div>
+	</form>
+</body>
+</html>

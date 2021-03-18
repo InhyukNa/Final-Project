@@ -1,0 +1,16 @@
+@charset "EUC-KR";
+.content {
+	min-width: 1680px;
+}
+.ui.grid.main {
+	margin: 60px 0 60px 0;
+}
+.ui.grid.seven.wide.column.memin>div{
+	margin: 20px 0 20px 0;
+}
+#titleWord {
+	text-align:center;
+	font-size:20px;
+	font-family:'µ¸¿ò';
+	font-weight:bold;
+}

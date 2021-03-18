@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" th:lang="${session.lang}"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout.html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>재고 관리</title>
+</head>
+
+<body layout:fragment="content">
+	<form id="adminlistform" name="adminlist" method="POST">
+		<div class="ui grid main">
+			<div class="ui grid sixteen wide column">
+				<p id="titleWord">주문 내역 관리
+			</div>
+			
+			
+			<div class = "ui grid two wide column"></div>
+			
+			<div class = "ui grid thirteen wide column memin" id="adminlistback" align="center">
+				<table id="nofirmorderlist" class="display nowrap">
+					<thead>	
+						<tr> 
+							<td>주문번호</td>
+							<td>회원 명</td>						
+							<td>주문시간</td>						
+							<td>처리시간</td>						
+							<td>배달 받을곳</td>
+							<td>총 금액</td>
+							<td>주문 접수</td>						
+							<td>주문 취소</td>						
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item : ${orderlist}">
+							<td th:text="${item.ordernum}"></td>
+							<td th:text="${item.name}"></td>
+							<td th:text="${item.date}"></td>
+							<td th:text="${item.completedate}"></td>
+							<td th:text="${item.orderadd}"></td>
+							<td th:text="|${item.totprice}원|"></td>
+							<td>
+								<a th:if="${item.orderconfirm == 0}" th:href="@{orderConfirm(ordernum=${item.ordernum})}">주문 접수</a>
+								<span th:unless= "${item.orderconfirm == 0}">접수 완료</span>
+							</td>
+							<td>
+								<a th:if="${item.orderconfirm == 0}" href="#">주문 취소</a>
+								<a th:unless= "${item.orderconfirm == 0}">취소</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<div class = "ui grid two wide column"></div>
+			
+			<div class="ui mini modal delete">
+				<i class="close icon"></i>
+				<div class="header">삭제하시겠습니까 ?</div>
+				<div class="actions">
+					<div class="ui positive right labeled icon button" id="deleteok">
+								삭제 <i class="checkmark icon"></i>
+					</div>
+					<div class="ui positive right labeled icon button" id="cancleok">
+							취소 <i class="reply icon"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

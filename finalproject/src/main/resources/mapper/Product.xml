@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.selsal.dao.ProductDao">
+	<select id="selectOutStock" resultType="com.project.selsal.entities.Product">
+		select code,name,stock from product where stock <![CDATA[ <= ]]> 5
+	</select>
+	
+	<select id="selectAll" resultType="com.project.selsal.entities.Product">
+		select * from product;
+	</select>
+	
+	<delete id="deleteAjax1">
+      	delete from product where code=#{code}
+   	</delete>
+   	
+	<delete id="deleteAjax2">
+      	delete from productdetail where code=#{code}
+   	</delete>
+	
+	<insert id="insertRow1">
+		insert product(
+		code,name,buyprice,saleprice,stock,image,calorie,productexp
+		)values(
+		(SELECT ifnull(MAX(code)+1,1 ) FROM product product_alias),
+		#{name},#{buyprice},#{saleprice},0,#{image},#{calorie},#{productexp}
+		)
+	</insert>
+	
+	<insert id="insertRow2">
+		insert productdetail(
+		seq,code,name,transdate
+		)values(
+		1,(select MAX(code) from product),
+		#{name},now()
+		)
+	</insert>
+		
+	<select id="selectdetailAll" resultType="com.project.selsal.entities.ProductDetail">
+		select * from productdetail where code =#{code} order by transdate desc
+	</select>
+	
+	<update id="Stockadd1">
+		update product set stock = (select stock from productdetail B where code=#{code} order by transdate desc limit 1) where code=#{code}
+	</update>
+	
+	<insert id="Stockadd2">
+		insert productdetail(
+		seq,code,name,buystock,stock,transdate
+		)values(
+		(SELECT ifnull(MAX(seq)+1,1 ) FROM productdetail A where code=#{code}),
+		#{code},#{name},20-(select stock from product B where code=#{code}),20,now()
+		)
+	</insert>
+	<select id="productChartData" resultType="com.project.selsal.entities.Product">
+		select name,stock from product
+	</select>
+	
+</mapper>

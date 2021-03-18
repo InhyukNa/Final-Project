@@ -1,0 +1,66 @@
+@charset "EUC-KR";
+
+#adminlistback{
+	background-color:#f0f0f0
+}
+
+.fluid.ui.input.container>div {
+	width:33%;
+	margin:20px 20px 20px 20px;
+	background-color:#ffffff;
+	box-shadow: 1px 1px 3px 0px #dadce0;
+}
+.fluid.ui.input.container>div>div {
+	float:left;
+}
+.fluid.ui.input.container>div>div>div {
+	float:left;
+}
+#productlist>thead>tr>td { 
+	text-align:center;
+	font-size:7px;
+	font-family:'µ¸¿ò';
+	font-weight:bold
+}
+.fluid.ui.labeled.input.proinsert{
+	margin: 20px 0 20px 0;
+}
+#stockmanagediv {
+	text-align:center;
+}
+#stockmanagediv>table>tbody>tr>td{
+	border:0px solid white;
+	color:#ffffff;
+	font-size:10px;	
+}
+
+#proimg{
+	width:50px;
+	height:50px;
+}
+#stockmanagediv>table>tbody>tr{
+	border : 2px solid black;
+	border-radius:15px;
+}
+#membermanage{
+	margin-left:120px;
+}
+#outstockchange, #stockdetail{
+	cursor:pointer;
+	color:#ffffff;
+	background-color:#85A4D2;
+	border:0;
+	outline:0;
+}
+#stockback {
+	color:#ffffff;
+}
+
+
+#adminorderdetail{
+	cursor:pointer;
+	color:#ffffff;
+	background-color:#3E846A;
+	border:0;
+	outline:0;
+}

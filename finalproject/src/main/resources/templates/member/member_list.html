@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:th="http://www.thymeleaf.org" th:lang="${session.lang}"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorator="layout/layout.html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>관리자 페이지</title>
+</head>
+
+<body layout:fragment="content">
+   <form id="adminlistform" name="adminlist" method="POST">
+   <div class="ui icon message" id="successmsg" >
+			<i class="notched circle loading icon"></i>
+			<div class="content">
+				<div class="header" id="resultmessage">수정되었습니다.</div>
+			</div>
+		</div>
+      <div class="ui grid main">
+      
+         <div class="ui grid sixteen wide column">
+            <p id="titleWord">회원관리
+         </div>
+         
+         
+         <div class = "ui grid two wide column"></div>
+         
+         <div class = "ui grid thirteen wide column memin" id="adminlistback" align="center">
+         <table class="ui single line table" id = "membertable">
+			  <thead>
+			    <tr>
+			      <th>Name</th>
+			      <th>E-mail ID</th>
+			      <th>Address</th>
+			      <th>Phone Nuber</th>
+			      <th>Gender</th>
+			      <th>Point</th>
+			      <th>TotalOrder</th>
+			      <th>Level</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  <tr th:each="member : ${members}">
+						<td th:text="${member.name}"></td>
+						<td><a th:href="@{adminUpdate(email=${member.email})}" ><span th:text = "${member.email}"></span></a></td>
+						<td th:text="|우편번호 ${member.zipcode} /${member.address},  ${member.detailaddress}|"></td>
+						<td th:text="|${member.phone1}-${member.phone2}-${member.phone3}|"></td>
+						<td th:if="${member.gender == 1 or member.gender == 3}">남자</td>
+						<td th:if="${member.gender == 2 || member.gender == 4}">여자</td>
+						<td th:if="${member.gender == 0 }">미입력</td>
+						<td th:text="${member.point}"></td>
+						<td th:text="${member.totalorder}"></td>
+						<td class = "ui input focus"><input id = "memberlevel" type="text" th:value="${member.level}"></td>
+						<td>
+							<a href="#"><i class="edit outline icon primary" id="leveleditbtn"></i></a>
+							<a href="#"><i class="trash alternate outline icon red" id="leveldeletebtn"></i></a>
+						</td>
+					</tr>
+			  </tbody>
+			</table>
+			<div class="ui mini modal delete">
+				<i class="close icon"></i>
+				<div class="header">삭제하시겠습니까 ?</div>
+				<div class="actions">
+					<div class="ui positive right labeled icon button" id="deleteok">
+								삭제 <i class="checkmark icon"></i>
+					</div>
+					<div class="ui positive right labeled icon button" id="cancleok">
+							취소 <i class="reply icon"></i>
+					</div>
+				</div>
+			</div>
+         </div>
+         <div class = "ui grid two wide column"></div>
+      </div>
+   </form>
+</body>
+</html>

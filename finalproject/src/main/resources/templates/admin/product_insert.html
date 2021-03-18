@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:th="http://www.thymeleaf.org" th:lang="${session.lang}"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorator="layout/layout.html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>제품관리</title>
+</head>
+
+<body layout:fragment="content">
+   <form id="productinsertform" name="formname" action="productInsertSave"
+      method="POST" enctype="multipart/form-data">
+      <div class="ui grid main">
+         <input type="hidden" class="confirmyn" value="n">
+         <div class="ui grid sixteen wide column">
+            <p style="text-align:center;font-size:20px;font-family:'돋움';font-weight:bold" >제품 등록
+         </div>
+         
+         
+         <div class = "ui grid six wide column"></div>
+         
+         <div class = "ui grid five wide column memin" align="center">
+            <div class = "fluid ui labeled input proinsert">
+               <div class = "ui label">
+               <label>제품명</label></div>
+               <input type = "text" name = "name" id ="name"placeholder = "제품명을 입력하세요" required>
+            </div>
+            <div class = "fluid ui labeled input proinsert">
+               <div class = "ui label">
+               <label>칼로리</label></div>
+               <input type = "text" name = "calorie" id ="calorie"placeholder = "칼로리를 입력하세요" required>
+            </div>
+            <div class = "fluid ui labeled input proinsert">
+               	<div class = "ui label">
+               		<i class="image icon imagebtn"></i>
+               	</div>
+               	<input type="file" id="imagefile" name="imagefile" style="display:none;"/>
+				<input type="text" name="imagename" class ="imagename" placeholder="이미지 파일">
+            </div>
+            <div class = "fluid ui labeled input proinsert">
+               <div class = "ui label">
+               <label>구매가</label></div>
+               <input type = "text" name = "buyprice" id ="buyprice"placeholder = "구매가격을 입력하세요" required>
+            </div>
+            <div class = "fluid ui labeled input proinsert">
+               <div class = "ui label">
+               <label>판매가</label></div>
+               <input type = "text" name = "saleprice" id ="saleprice"placeholder = "판매가격을 입력하세요" required>
+            </div>
+            <div class = "fluid ui labeled input proinsert">
+               <div class = "ui label">
+               <label>제품 설명</label></div>
+               <input type = "text" name = "productexp" id ="productexp"placeholder = "설명을 입력하세요" required>
+            </div>
+            
+            
+            <div>
+            <button class="ui inverted green button" type ="submit">등록하기</button>
+            <button class="ui inverted red button" onclick="location.href='index'">취소</button>
+            
+            </div>   
+         </div>
+         
+         
+         <div class = "ui grid six wide column"></div>
+         
+         
+      </div>
+   </form>
+</body>
+</html>
+

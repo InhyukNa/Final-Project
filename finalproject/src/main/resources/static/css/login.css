@@ -1,0 +1,78 @@
+#loginemail{
+	height:50px;
+	font-size:20px;
+	font: inherit;
+}
+
+#loginpassword{
+	height:50px;
+	font-size:20px;
+	margin-top:5px;
+	font: inherit;
+}
+.loginface{
+	width:480px;
+}
+.loginAll{
+	margin-left: auto;
+	margin-right: auto;
+}
+.subtitle{
+	margin-top:10px;
+	
+}
+#loginbtn{
+	margin-top:32px;
+	width:480px;
+	border-radius: 30px;
+	height:55px;
+	font-size:20px;
+}
+#top{
+	text-align:center;
+	font-family: inherit;
+	font-weight: 700;
+	font-size: 38px;
+	vertical-align: middle;
+}
+#loginpageinsert{
+	cursor:pointer;
+	font-size:15px;
+	font-weight: 800;
+	margin-left:10px;
+	color:#999;
+}
+#IDfind{
+	cursor:pointer;
+	font-size:15px;
+	font-weight: 800;
+	margin-left:25%;
+	color:#999;
+}
+#Passwordfind{
+	cursor:pointer;
+	font-size:15px;
+	font-weight: 800;
+	margin-left:25%;
+	color:#999;
+}
+#findmodal{
+	width:30%;
+	margin-left:12%;
+	height:43px;
+}
+#findname{
+	font-size:15px;
+	
+}
+.findbirth{
+	font-size:15px;
+	
+}
+.findgender{
+	font-size:15px;
+	
+}
+#idfinddes{
+	background:none;
+}

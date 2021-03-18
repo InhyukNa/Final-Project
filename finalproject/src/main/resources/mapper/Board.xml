@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.selsal.dao.BoardDao">
+
+	<insert id="insertRowFreeBoard">
+	   insert into freeboard (f_seq,f_ref,f_step,f_email,f_name,f_title,f_content,f_hit,f_attach, f_inputtime)
+	   values(
+	   (SELECT ifnull(MAX(f_seq)+1,1 ) FROM freeboard freeboard_alias),
+	   (SELECT ifnull(MAX(f_seq)+1,1 ) FROM freeboard freeboard_alias),
+	   0,#{f_email},#{f_name},#{f_title},#{f_content},0,#{f_attach},#{f_inputtime})
+	</insert>
+	
+	<select id="selectCountFirstFreeBoard" resultType="Integer">
+		select count(*) from freeboard;
+	</select>
+	
+	<select id="selectPageListFreeBoard"
+		resultType="com.project.selsal.entities.Freeboard">
+		select * from freeboard order by f_ref desc, f_step asc limit #{startrow}, #{endrow};
+	</select>
+	
+	<select id="selectPageListFreeBoardPopular"
+		resultType="com.project.selsal.entities.Freeboard">
+		select * from freeboard order by f_hit desc, f_step asc limit #{startrow}, #{endrow};
+	</select>
+	
+	<select id="selectOneFreeBoard"
+		resultType="com.project.selsal.entities.Freeboard">
+		select * from freeboard where f_seq = #{f_seq}
+	</select>
+	
+	<select id="selectOneFreeBoard2"
+		resultType="com.project.selsal.entities.Freeboard">
+		select * from freeboard where f_seq = #{f_seq}
+	</select>
+	
+	<update id="addHitFreeBoard">
+		update freeboard set f_hit = f_hit + 1 where f_seq = #{f_seq};
+	</update>
+	
+	<update id="updateRowFreeBoard">
+		update freeboard set f_title=#{f_title}, f_content=#{f_content} where f_seq = #{f_seq};
+	</update>
+	
+	<delete id="deleteRowFreeBoard">
+		delete from freeboard where f_seq=#{f_seq};
+	</delete>
+	
+	<select id="findListFreeBoard"
+		resultType="com.project.selsal.entities.Freeboard">
+		select * from freeboard where f_title like CONCAT('%',#{find},'%')
+		or f_name like CONCAT('%',#{find},'%') or f_content like CONCAT('%',#{find},'%')
+		order by f_ref desc, f_step asc limit #{startrow}, #{endrow};
+	</select>
+	
+	<select id="selectCountFreeBoard" resultType="Integer">
+		select count(*) from freeboard where f_title like CONCAT('%',#{find},'%')
+		or f_name like CONCAT('%',#{find},'%') or f_content like CONCAT('%',#{find},'%');
+	</select>
+	
+	<update id="freeBoardLike">
+		update freeboard set f_like = f_like + 1 where f_seq = #{f_seq};
+	</update>
+	
+	<select id="selectLike" resultType="Integer">
+		select count(*) from freeboardlike where f_seq=#{f_seq};
+	</select>
+	
+	<insert id="freeBoardLikeInsert">
+		insert into freeboardlike(f_seq, f_email) select #{f_seq}, #{f_sessionemail} from dual 
+		where not exists(select * from freeboardlike where f_seq=#{f_seq} and f_email=#{f_sessionemail});	
+	</insert>
+	
+	<select id="selectLikeCheck" resultType="Integer">
+		select count(*) from freeboardlike where f_seq=#{f_seq} and f_email=#{f_sessionemail};
+	</select>
+	
+	<delete id="freeBoardLikeDelete">
+		delete from freeboardlike where f_seq=#{f_seq} and f_email=#{f_sessionemail};
+	</delete>
+	
+	<insert id="insertRowFreeBoardComment">
+	    insert into freeboardcomment (comment_num,f_seq,comment_name,comment_date,comment_parent,comment_content,comment_email,date)
+	    values(
+	    (SELECT ifnull(MAX(comment_num)+1,1 ) FROM freeboardcomment freeboardcomment_alias),
+	    #{f_seq},#{comment_name},#{comment_date},0,#{comment_content},#{comment_email},now())
+	</insert>
+	
+	<select id="selectOneFreeBoardComment"
+		resultType="com.project.selsal.entities.Freeboardcomment">
+		select * from freeboardcomment where f_seq = #{f_seq} order by comment_num desc;
+	</select>
+	
+	<delete id="deleteRowFreeBoardComment">
+		delete from freeboardcomment where comment_num=#{comment_num};
+	</delete>
+</mapper>

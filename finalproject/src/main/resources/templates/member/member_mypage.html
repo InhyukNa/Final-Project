@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" th:lang="${session.lang}"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout.html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>마이페이지</title>
+</head>
+
+<body layout:fragment="content">
+	<form id="memberpageform" name="formname" action="memberpage"
+		method="POST">
+		<div class="ui grid main">
+		<div class = "ui grid sixteen wide column">
+		<p style = "text-align:center; font-size:35px; font-family:'돋움'; font-weight:bold">마이 페이지</div>
+			<div class ="ui grid two wide column"></div>
+			<div class ="ui grid twelve wide column">
+				<div class = "myInfo">
+					<div class = "myInfo_inside1">
+							<div class ="myInfo_inside3">
+								<p class = "myInfo_text">
+									<strong th:text = "${data.name}"></strong>님 안녕하세요
+								<p class = "myInfo_text2">신선한 재료만 쓰는SELECT SALAD입니다<p>
+								<p class = "myInfo_text">
+								<button type="button" class= "btn btnmargin btnblack btnstyle" onclick="location.href='memberUpdate'">
+								<span>개인정보 변경</span></button>
+							</div>
+							
+					</div>
+					<div class = "myInfo_inside2">
+								<dl class = "myInfo_pointtext">
+									<dt id = "dtid">포인트</dt>
+									<dd id = "pointimage">
+										<div id ="pointText">
+											<span th:text = "${data.point}"></span>
+										</div>
+								</dl>
+					</div>
+				</div>
+				</div>
+		</div>
+	</form>
+</body>
+</html>
+
+

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" th:lang="${session.lang}"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout.html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>재고 관리</title>
+</head>
+
+<body layout:fragment="content">
+	<form id="adminlistform" name="adminlist" method="POST">
+		<div class="ui grid main">
+			<div class="ui grid sixteen wide column">
+				<p id="titleWord">재고 목록
+			</div>
+			
+			
+			<div class = "ui grid three wide column"></div>
+			
+			<div class = "ui grid eleven wide column memin" id="adminlistback" align="center">
+				<div class="ui grid sixteen wide column">
+					<div style="float:right"><button class="ui blue basic button" type="button" 
+					onclick="location.href='productInsert'">제품 등록</button></div>				
+				</div>
+				<table id="productlist" class="display nowrap">
+					<thead>	
+						<tr> 
+							<td>code</td>
+							<td>image</td>
+							<td>품명</td>
+							<td>구매가</td>						
+							<td>판매가</td>						
+							<td>현재재고(1 = 150g)</td>						
+							<td>Option</td>						
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="product : ${products}">
+							<td th:text="${product.code}"></td>
+							<td><img id="proimg" th:src="${product.image}"></td>
+							<td>
+								<a th:href="@{productDetailList(code=${product.code})}">
+									<span th:text="${product.name}"></span>
+								</a>
+							</td>
+							
+							<td id = "buyprice" th:text="${product.buyprice}"></td>
+							<td id = "saleprice" th:text="${product.saleprice}"></td>
+							<td id = "stock" th:text="${product.stock}"></td>
+							<td>
+								<a href="#"><i class="trash alternate outline icon red" id="productdeletebtn"></i></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<div class = "ui grid three wide column"></div>
+			
+			<div class="ui mini modal delete">
+				<i class="close icon"></i>
+				<div class="header">삭제하시겠습니까 ?</div>
+				<div class="actions">
+					<div class="ui positive right labeled icon button" id="deleteok">
+								삭제 <i class="checkmark icon"></i>
+					</div>
+					<div class="ui positive right labeled icon button" id="cancleok">
+							취소 <i class="reply icon"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

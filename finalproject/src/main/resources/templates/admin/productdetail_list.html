@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" th:lang="${session.lang}"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout.html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>재고 관리</title>
+</head>
+
+<body layout:fragment="content">
+	<form id="adminlistform" name="adminlist" method="POST">
+		<div class="ui grid main">
+			<div class="ui grid sixteen wide column">
+				<p id="titleWord">재고 거래 목록
+			</div>
+			
+			
+			<div class = "ui grid three wide column"></div>
+			
+			<div class = "ui grid eleven wide column memin" id="adminlistback" align="center">
+				<table id="productdetaillist" class="display nowrap">
+					<thead>	
+						<tr> 
+							<td>거래날짜</td>
+							<td>품명</td>
+							<td>구매량</td>						
+							<td>판매량</td>						
+							<td>현재재고</td>						
+							<td>Option</td>						
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="productdetail : ${productdetails}">
+							<td th:text="${productdetail.transdate}"></td>
+							<td th:text="${productdetail.name}"></td>
+							<td th:text="${productdetail.buystock}"></td>
+							<td th:text="${productdetail.salestock}"></td>
+							<td th:text="${productdetail.stock}"></td>
+							<td>
+								<a href="#"><i class="trash alternate outline icon red" id="deletebtn"></i></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class = "ui grid three wide column"></div>
+		</div>
+	</form>
+</body>
+</html>

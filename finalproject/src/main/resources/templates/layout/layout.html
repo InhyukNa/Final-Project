@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:with="lang=${#locale.language}" th:lang="${session.lang}" 
+xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+
+<head>
+    <meta http-equiv="Content-Type" name="viewport" content="width=device-width,initial-scale=1,text/html; charset=utf-8"/>
+    <head th:replace="fragments/config :: configFragment"></head>
+</head>
+
+<body>
+<!--background-color:#F0F8FF;  -->
+   <div>
+      <header th:replace="/fragments/header :: headerFragment"></header>
+   </div>
+   
+   <div>
+      <div class="ui grid sixteen wide column"></div>
+         <div class="content" layout:fragment="content"  style="height:120vh;" ></div>
+      </div>
+   <div>
+      <footer th:replace="/fragments/footer :: footerFragment"></footer>
+   </div>
+</body>
+</html>

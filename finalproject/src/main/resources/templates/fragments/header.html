@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<header id="header" th:fragment="headerFragment">
+   <form name="formname" > <!--Form의 기본 속성 name/method(POST,GET)/action-->
+      <div class="ui grid sixteen wide column header" style="height:15%;">
+         <div class="ui grid three wide column"></div>         
+         <div class="ui grid ten wide column" id="title"><a onclick="location.href='index' " style = "cursor:pointer">SELECT SALAD</a></div>
+         
+        <div  class="ui grid three wide column" th:if="${session.sessionemail==null}" id="topdiv1">
+            <div class="top2">
+            
+               <a href="memberLogin"  style="cursor:pointer"><span>로그인</span></a>
+            </div>
+            <div class="top2">
+               <a href="memberInsert" style="cursor:pointer"><span>회원가입</span></a>
+            </div>
+         </div>
+         
+         <div th:unless="${session.sessionemail==null}" class="ui grid three wide column" id="topdiv2" >
+            <div class="top2" th:if="${session.sessionlevel ge 4}">
+            <a href="memberlogout"  style="cursor:pointer"><span>로그아웃</span></a>
+            </div>
+            <div class="top2" th:if="${session.sessionlevel ge 4}">
+               <a href="membermypage"  style="cursor:pointer"><span>마이페이지</span></a>
+            </div>
+            <div class="top2" th:if="${session.sessionlevel ge 4}">
+               <a href="qnaBoard"   style="cursor:pointer"><span>문의</span></a>
+            </div>
+            <div class="top2" th:if="${session.sessionlevel le 3}">
+               <a href="memberlogout" style="cursor:pointer"><span>로그아웃</span></a>
+            </div>
+            <div class="top2" th:if="${session.sessionlevel le 3}">
+               <a href="adminList"   style="cursor:pointer"><span>관리자페이지</span></a>
+            </div>
+         </div>
+
+         
+         <div class="ui grid sixteen wide column" id="menu">
+            <div class="menubar">
+               <div><a href="#" class="menu1">회사소개</a></div>
+               <div><a href="#" class="menu1">재료소개</a></div>
+               <div><a href="#" class="menu1">새소식</a></div>
+               <div><a id="Sessionchk1" style="cursor:pointer" class="menu1">자유게시판</a></div>
+               <div><a id="Sessionchk2" style="cursor:pointer" class="menu1">온라인주문</a></div>
+            </div>
+         </div>
+      </div>
+   </form>   
+   
+</header>
+
+</html>

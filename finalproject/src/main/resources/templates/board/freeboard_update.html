@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" th:lang="${session.lang}"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout.html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>자유게시판 수정</title>
+</head>
+
+<body layout:fragment="content">
+	<form id="freeBoardDetailform" name="formname" action="freeBoardUpdateSave"
+		method="POST" data-parsley-validate="true" enctype="multipart/form-data">
+		<div class="ui grid main">
+			<input type="hidden" class="confirmyn" value="n">
+			<div class="ui grid sixteen wide column">
+				<input type="hidden" name="hidden_f_seq" id="hidden_f_seq" th:value="${freeboard.f_seq}">
+				<input type="hidden" name="f_seq" id="f_seq" th:value="${freeboard.f_seq}">
+				<p style="text-align:center;font-size:20px;font-family:'돋움';font-weight:bold">자유게시판 수정
+			</div>
+			
+			
+			<div class = "ui grid five wide column"></div>
+			
+			<div class = "ui grid seven wide column memin" align="center">
+				<div class = "fluid ui labeled input" >
+					<div class = "ui label">
+						<label>이메일</label>
+					</div>
+					<input  type = "email" name = "f_email" id ="f_email" required readonly="readonly" th:value=${freeboard.f_email}>
+					<div class = "ui label">
+						<label>이름</label>
+					</div>
+					<input type = "text" name = "f_name" id ="f_name" required readonly="readonly" th:value=${freeboard.f_name}>
+					<div class="ui label">
+						<label>조회수</label>
+					</div>
+					<input type="text" name="f_hit" id="f_hit" th:value="${freeboard.f_hit}" readonly="readonly">
+				</div>
+				<div class = "fluid ui"></div>
+				<div class = "fluid ui labeled input">
+					<input type = "text" name = "f_title" id ="f_title" required placeholder="제목을 입력하시오" th:value="${freeboard.f_title}">
+				</div>
+				<div class = "fluid ui"></div>
+				<div class = "fluid ui labeled input">
+					<textarea name="f_content" id="f_content" placeholder="본문을 입력하시오" th:text="${freeboard.f_content}"></textarea>
+				</div>
+				<div class = "fluid ui labeled input">
+					<img name="f_attach" id="f_attach" th:src="${freeboard.f_attach}"></img>
+				</div>
+				<div>
+					<span th:if="${session.sessionemail==freeboard.f_email}">
+						<button type="submit" class="ui inverted green button">완료</button>
+					</span>
+					<button class="ui inverted blue button" onclick="history.back(-1);">목록</button>
+					<span th:if="${session.sessionlevel lt 1 || session.sessionemail==freeboard.f_email}">
+						<button type="button" class="ui inverted red button freeboarddelete">삭제</button>
+					</span>
+				</div>
+			</div>
+			<div class = "ui grid five wide column"></div>
+		</div>
+		
+		<div class="ui mini modal boardmodal">
+			<div class="header" style="text-align:center"></div>
+				<div class="image content">
+					<img class="image">
+					<div class="discription">
+						<p style="text-align:center">게시물을 삭제하시겠습니까?</p>
+					</div>
+				</div>
+				<div class="center" style="text-align:center">
+					<button type="button" class="modaldelete">삭제</button>
+					<button type="button" class="modalcancel">취소</button>
+				</div>
+		</div>
+	</form>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" th:lang="${session.lang}"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout.html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>회원가입</title>
+</head>
+
+<body layout:fragment="content">
+	<form id="memberinsertform" name="formname" action="memberInsertSave"
+		method="POST">
+		<div class="ui grid main">
+			<input type="hidden" class="confirmyn" value="n">
+			<div class="ui grid sixteen wide column">
+				<p style="text-align:center;font-size:20px;font-family:'돋움';font-weight:bold" >회원가입
+			</div>
+			
+			
+			<div class = "ui grid five wide column"></div>
+			
+			<div class = "ui grid seven wide column memin" align="center">
+				<div class = "fluid ui labeled input" >
+					<div class = "ui label">
+						<label>이메일</label>
+					</div>
+					<input  type = "email" name = "email" id ="email"placeholder = "이메일을 입력하세요"required>
+					<button type="button" name="" class="ui gray button doublecheck" id = >중복확인</button>
+				</div>
+				<div class = "fluid ui labeled input">
+					<div class = "ui label">
+					<label>이름</label></div>
+					<input type = "text" name = "name" id ="name"placeholder = "이름을 입력하세요" onclick="doublecheck();" required>
+				</div>
+				<div class = "fluid ui labeled input">
+					<div class = "ui label">
+					<label>패스워드</label></div>
+					<input type = "password" name = "password" id ="password"placeholder = "비밀번호를 입력하세요" required>
+				</div>
+				<div class = "fluid ui labeled input">
+					<div class = "ui label">
+					<label>연락처</label></div>
+					<input type = "text" name = "phone1" id ="phone1"maxlength="3" placeholder="010" required>
+					<input type = "text" name = "phone2" id ="phone2"maxlength="4" placeholder="0000" required>
+					<input type = "text" name = "phone3" id ="phone3"maxlength="4" placeholder="0000" required>
+				</div>
+				<div class = "fluid ui labeled input">
+					<div class = "ui label">
+					<label>우편번호</label></div>
+					<input type = "text" name = "zipcode" id ="zipcode" required readonly>
+				</div>
+				<div class = "fluid ui labeled input">
+					<div class = "ui label">
+					<label>주소</label></div>
+					<input type = "text" name = "address" id ="addr1" required>
+					<button type="button" name="" class="ui gray button adrrconfirm" onclick="zipcodeFind()">
+					<i class="search icon"></i></button>
+				</div>
+				<div class = "fluid ui labeled input">
+					<div class = "ui label">
+					<label>상세주소</label></div>
+					<input type = "text" name = "detailaddress" id ="addr2" required>
+				</div>
+				<div class = "fluid ui labeled input">
+					<div class = "ui label">
+					<label>생년월일</label></div>
+					<input type = "text" name = "birth" id ="birth" maxlength="6" placeholder="960206" required>-
+					<input type = "text" name = "gender" id ="gender" maxlength="1" placeholder="1"  class = "Signup" required>
+					<input type = "text" value="xxxxxx" readonly="readonly" >
+				</div>
+				<div>
+				<button class="ui inverted green button" type ="submit" >가입하기</button>
+				<button class="ui inverted red button" onclick="location.href='index'">취소</button>
+				</div>	
+			</div>
+			<div class="ui mini modal" >
+				<i class="close icon"></i>
+				<div class="header">Email 중복검사</div>
+				
+					<div class="ui">
+						<i class="envelope icon" style="width: 20px; height: 20px"></i>
+					</div>
+					<div class="description">
+						<div class="ui header"></div>
+					</div>
+				
+				<div class="actions">
+<!-- 					<div class="ui black deny button">close</div> -->
+					<div class="ui positive right labeled icon button">
+						확인 <i class="checkmark icon"></i>
+					</div>
+				</div>
+			</div>
+			<div class = "ui grid five wide column"></div>
+		</div>
+	</form>
+</body>
+</html>
+
+

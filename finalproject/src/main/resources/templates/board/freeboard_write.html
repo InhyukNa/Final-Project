@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" th:lang="${session.lang}"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout.html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>자유게시판 작성</title>
+</head>
+
+<body layout:fragment="content">
+	<form id="freeBoardWriteform" name="formname" action="freeBoardWriteSave"
+		method="POST" data-parsley-validate="true" enctype="multipart/form-data">
+		<div class="ui grid main">
+			<input type="hidden" class="confirmyn" value="n">
+			<div class="ui grid sixteen wide column">
+				<p style="text-align:center;font-size:20px;font-family:'돋움';font-weight:bold" >자유게시판 작성
+			</div>
+			
+			
+			<div class = "ui grid five wide column"></div>
+			
+			<div class = "ui grid seven wide column memin" align="center">
+				<div class = "fluid ui labeled input" >
+					<div class = "ui label">
+						<label>이메일</label>
+					</div>
+					<input  type = "email" name = "f_email" id ="f_email" required readonly="readonly" th:value=${session.sessionemail}>
+				</div>
+				<div class = "fluid ui labeled input">
+					<div class = "ui label">
+						<label>이름</label>
+					</div>
+					<input type = "text" name = "f_name" id ="f_name" required readonly="readonly" th:value=${session.sessionname}>
+				</div>
+				<div class = "fluid ui labeled input">
+					<input type = "text" name = "f_title" id ="f_title" required placeholder="제목을 입력하시오">
+				</div>
+				<div class = "fluid ui labeled input">
+					<div class = "ui button attachbtn">
+						<i class="black upload icon"></i>
+					</div>
+					<input type = "file" name = "f_attachfile" id ="f_attachfile" style="display:none">
+					<input type="text" name="f_attachname" id="f_attachname" placeholder="파일 첨부">
+				</div>
+				<div class = "fluid ui labeled input">
+					<textarea name="f_content" id="f_content" placeholder="본문을 입력하시오"></textarea>
+				</div>
+				<div>
+					<button class="ui inverted green button" type ="submit">작성</button>
+					<button class="ui inverted red button" onclick="history.back(-1);">취소</button>
+				</div>	
+			</div>
+			<div class = "ui grid five wide column"></div>
+		</div>
+	</form>
+</body>
+</html>

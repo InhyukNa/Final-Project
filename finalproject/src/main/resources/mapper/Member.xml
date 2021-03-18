@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.selsal.dao.MemberDao">
+
+	<select id="selectOne" resultType="com.project.selsal.entities.Member">
+		select * from member where email = #{email}
+    </select>
+	<insert id="insertRow">
+      insert into member (email,name,password,phone1,phone2,phone3,zipcode,address,detailaddress,totalorder,point,birth,gender)
+      values(#{email},#{name},#{password},#{phone1},#{phone2},#{phone3},#{zipcode},#{address},#{detailaddress},#{totalorder},#{point},#{birth},#{gender})
+   </insert>
+	<select id="selectAll" resultType="com.project.selsal.entities.Member">
+      select * from member
+   </select>
+   	<select id="selectAllcount" resultType="Integer">
+      select count(*) from member
+   </select>
+   <update id="updateRow">
+      update member set name = #{name},password = #{password},phone1 = #{phone1},phone2 = #{phone2},phone3 = #{phone3},
+      zipcode = #{zipcode},address = #{address},detailaddress = #{detailaddress},totalorder= #{totalorder},point = #{point},birth = #{birth}
+      where email = #{email};
+   </update>
+   
+    <update id="updateAjax">
+      update member set level=#{level} where email= #{email}
+   </update>
+   
+    <delete id="deleteAjax">
+      delete from member where email = #{email};
+   </delete>
+   
+   <update id = "levelUpdate">
+      update member set level =if(point>1500,6,9) where email=#{email}
+   </update>
+   <select id="selectIdFind" resultType="string">
+   		select email from member where gender = #{gender} and birth = #{birth} and name = #{name}
+   </select>
+  <!--  
+   
+
+   <update id="updateRow">
+      update member set name=#{name}, password = #{password}, 
+      phone1 = #{phone1}, phone2 = #{phone2}, phone3 = #{phone3},photo = #{photo}
+      where email = #{email};
+   </update>
+   <select id="selectAll" resultType="com.naver.dgkim1007.entities.Member">
+      select * from member
+   </select>
+
+   <update id="updateAjax">
+      update member set memlevel = #{memlevel} where email
+      = #{email};
+   </update>
+
+   <delete id="deleteAjax">
+      delete from member where email = #{email};
+   </delete>
+ -->
+</mapper>
