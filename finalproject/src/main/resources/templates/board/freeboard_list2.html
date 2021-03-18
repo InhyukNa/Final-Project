@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" th:lang="${session.lang}"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout.html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>자유게시판</title>
+</head>
+
+<body layout:fragment="content">
+	<form id="findListformname" name="formname" action="findListFreeBoard"
+		method="POST" data-parsley-validate="true" enctype="multipart/form-data">
+		<div class="ui grid main">
+			<input type="hidden" class="confirmyn" value="n">
+			<div class="ui grid sixteen wide column">
+				<p style="text-align:center;font-size:20px;font-family:'돋움';font-weight:bold" >자유게시판
+			</div>
+			
+			
+			<div class = "ui grid five wide column"></div>
+			
+			<div class = "ui grid seven wide column memin">
+				<div class="grid">
+					<p>총 <strong th:text="${rowcount}"></strong>건의 게시글이 있습니다</p>
+				</div>
+				<div>
+					<select class="ui dropdown" onchange="if(this.value) location.href=(this.value);">
+						<option value="freeBoardListPopular" onclick="">인기순</option>
+						<option value="freeBoardList">최신순</option>
+					</select >
+				</div>
+				<div class = "fluid ui labeled input" >
+					<table class="ui celled table">
+						<thead>
+							<tr style="text-align: center">
+								<th>번호</th>
+								<th>이름</th>
+								<th>제목</th>
+								<th>첨부파일</th>
+								<th>조회</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="board : ${boards}">
+								<td th:text="${board.f_seq}" style="text-align: center"></td>
+								<td th:text="${board.f_name}"></td>
+								<td>
+									<a th:href="@{freeBoardDetail(f_seq=${board.f_seq})}">
+										<span th:text="${board.f_title}"></span>
+									</a>
+								</td>
+								<td style="text-align: center">
+									<span th:if="${board.f_attach != null}">
+									<a th:href="@{fileDownloadFreeBoard(f_attach=${board.f_attach})}">
+									<i class="folder open outline icon"></i>
+									</a>
+									</span>
+								</td>
+								<td th:text="${board.f_hit}" style="text-align: center"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div>
+					<div class = "pagination" style="text-align: center;">
+						<span th:each="page:${pages}"> 
+							<a th:href="@{freeBoardPageSelect(page=${page})}"><span th:text="${page}+'&nbsp&nbsp&nbsp&nbsp'" tabindex="0"></span></a>
+						</span>
+					</div>
+					<br>
+					<div class="ui input">
+						<input type="text" name="find" placeholder="글 제목" th:value="${find}"> 
+						<button class="ui inverted blue button" onclick="findListformname.submit()">검색</button>
+					</div>
+					<button class="ui inverted green button" type ="button" 
+					style="float:right" onclick="location.href='freeBoardWrite'">글 작성</button>
+				</div>	
+			</div>
+			<div class = "ui grid five wide column"></div>
+		</div>
+	</form>
+</body>
+</html>

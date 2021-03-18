@@ -13,6 +13,7 @@ public class Product {
 	private String image;
 	private String productexp;
 	private int calorie;
+	private int orderstock;
 	
 	public String getCode() {
 		return code;
@@ -67,6 +68,12 @@ public class Product {
 	}
 	public void setSaleqty(int saleqty) {
 		this.saleqty = saleqty;
+	}
+	public int getOrderstock() {
+		return orderstock;
+	}
+	public void setOrderstock(int orderstock) {
+		this.orderstock = orderstock;
 	}
 
 	

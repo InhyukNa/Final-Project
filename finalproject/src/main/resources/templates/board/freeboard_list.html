@@ -23,11 +23,12 @@
 			<div class = "ui grid seven wide column memin">
 				<div class="grid">
 					<p>총 <strong th:text="${rowcount}"></strong>건의 게시글이 있습니다</p>
-					<a style="cursor:pointer">
-						<span onclick="location.href='freeBoardList'">최신순</span>
-						<span>&nbsp&nbsp&nbsp</span>
-						<span onclick="location.href='freeBoardListPopular'">인기순</span>
-					</a>
+				</div>
+				<div>
+					<select class="ui dropdown" onchange="if(this.value) location.href=(this.value);">
+						<option value="freeBoardList">최신순</option>
+						<option value="freeBoardListPopular" onclick="">인기순</option>
+					</select >
 				</div>
 				<div class = "fluid ui labeled input" >
 					<table class="ui celled table">

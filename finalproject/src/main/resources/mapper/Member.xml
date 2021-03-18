@@ -37,6 +37,10 @@
    <select id="selectIdFind" resultType="string">
    		select email from member where gender = #{gender} and birth = #{birth} and name = #{name}
    </select>
+   
+   <select id="selectPWFind" resultType="string">
+   		select password from member where gender = #{gender} and birth = #{birth} and email = #{email}
+   </select>
   <!--  
    
 

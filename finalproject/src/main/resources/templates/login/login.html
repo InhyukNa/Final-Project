@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org" th:lang="${session.lang}"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="layout/layout.html">
+   xmlns:th="http://www.thymeleaf.org" th:lang="${session.lang}"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorator="layout/layout.html">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>LOGIN</title>
@@ -13,95 +13,116 @@
 </head>
 
 <body layout:fragment="content">
-	<form id="memberLoginform" name="formname" action="memberLoginUP"
-		method="POST">
-		<div class="ui grid main">
-			<div class="loginAll">
-				<p id="top">로그인
-				<div class="fluid ui labeled input loginface">
-					<input type="email" name="email" id="loginemail"
-						placeholder="E-mail을 입력하세요" required>
-				</div>
-				<div class="fluid ui labeled input loginface">
-					<input type="password" name="password" id="loginpassword"
-						placeholder="비밀번호를 입력하세요" required>
-				</div>
+   <form id="memberLoginform" name="formname" action="memberLoginUP"
+      method="POST">
+      <div class="ui grid main">
+         <div class="loginAll">
+            <p id="top">로그인
+            <div class="fluid ui labeled input loginface">
+               <input type="email" name="email" id="loginemail"
+                  placeholder="E-mail을 입력하세요" required>
+            </div>
+            <div class="fluid ui labeled input loginface">
+               <input type="password" name="password" id="loginpassword"
+                  placeholder="비밀번호를 입력하세요" required>
+            </div>
 
-				<div class="buttoncss">
-					<button class="ui inverted green button" id="loginbtn"
-						type="submit">로그인</button>
-				</div>
-	
-				<div class="subtitle">
-					<a href="memberInsert" id="loginpageinsert"><span>회원가입</span></a> 
-					<a href="#" class = "idfinder" id="IDfind"><span>아이디찾기</span></a>
-					<a href="#" class = "passwordfinder" id="Passwordfind"><span>비밀번호찾기</span></a>
-				</div>
-			</div>
-	
-		</div>
-	</form>
-		<div class="ui basic modal first">
-			<div class="ui icon header">
-				<i class="archive icon"></i> 아이디찾기
-			</div>
-			<div class="content" >
-				<div class = "fluid ui labeled input" id ="findmodal" >
-					<input type = "text" name = "name" id ="name"placeholder = "이름을 입력하세요" required>
-				</div>
-				<div class = "fluid ui labeled input" id ="findmodal">
-					<input type = "text" name = "birth" class = "birth" id ="birth" maxlength="6" placeholder="960206" required>-
-					<input type = "text" name = "gender" id ="gender" maxlength="1" placeholder="1"  class = "Signup findgender" required>
-				</div>
-			</div>
-			<div class="actions">
-				<div class="ui green ok inverted button">
-					<a href="#" id = "Idfindclick" type = "button"><i class="checkmark icon" ></i> 찾기</a>
-				</div>
-				<div class="ui red basic cancel inverted button">
-					<i class="remove icon"></i> 취소
-				</div>
-			</div>
-		</div>
-		<div class="ui mini modal second" >
-			<div class="ui icon header">
-				<i class="archive icon"></i> 아이디
-			</div>
-			<div class="content" id ="idfinddes">
-				<div class = "description">
-				</div>
-			</div>
-			<div class="actions">
-				<div class="ui green ok inverted button">
-					<i class="remove icon"></i>확인
-				</div>
-			</div>
-		</div>
-		<div class="ui basic modal third">
-			<div class="ui icon header">
-				<i class="archive icon"></i> 아이디찾기
-			</div>
-			<div class="content" >
-			<div class = "fluid ui labeled input" id ="findmodal" >
-			<input  type = "email" name = "email" id ="email"placeholder = "이메일을 입력하세요"required>
-			</div>
-				<div class = "fluid ui labeled input" id ="findmodal" >
-					<input type = "text" name = "name" id ="name"placeholder = "이름을 입력하세요" required>
-				</div>
-				<div class = "fluid ui labeled input" id ="findmodal">
-					<input type = "text" name = "birth" class = "birth" id ="birth" maxlength="6" placeholder="960206" required>-
-					<input type = "text" name = "gender" id ="gender" maxlength="1" placeholder="1"  class = "Signup findgender" required>
-				</div>
-			</div>
-			<div class="actions">
-				<div class="ui green ok inverted button">
-					<a href="#" id = "Idfindclick" type = "button"><i class="checkmark icon" ></i> 찾기</a>
-				</div>
-				<div class="ui red basic cancel inverted button">
-					<i class="remove icon"></i> 취소
-				</div>
-			</div>
-		</div>
-	
+            <div class="buttoncss">
+               <button class="ui inverted green button" id="loginbtn"
+                  type="submit">로그인</button>
+            </div>
+   
+            <div class="subtitle">
+               <a href="memberInsert" id="loginpageinsert"><span>회원가입</span></a> 
+               <a href="#" class = "idfinder"  id="IDfind"><span>아이디찾기</span></a>
+               <a href="#" class = "passwordfinder"  id="Passwordfind"><span>비밀번호찾기</span></a>
+            </div>
+         </div>
+   
+      </div>
+   </form>
+   
+   <!--       ===============================아이디찾기 모달================================== -->
+      <div class="ui basic modal first">
+         <div class="ui icon header">
+            <i class="archive icon"></i> 아이디찾기
+         </div>
+         <div class="content" >
+            <div class = "fluid ui labeled input" id ="findmodal" >
+               <input type = "text" name = "name" id ="name"placeholder = "이름을 입력하세요" required>
+            </div>
+            <div class = "fluid ui labeled input" id ="findmodal">
+               <input type = "text" name = "birth" class = "birth" id ="birth" maxlength="6" placeholder="960206" required>-
+               <input type = "text" name = "gender" id ="gender" maxlength="1" placeholder="1"  class = "Signup findgender" required>
+            </div>
+         </div>
+         <div class="actions">
+            <div class="ui green ok inverted button">
+               <a href="#" id = "Idfindclick" type = "button"><i class="checkmark icon" ></i>아이디 찾기</a>
+            </div>
+            <div class="ui red basic cancel inverted button">
+               <i class="remove icon"></i> 취소
+            </div>
+         </div>
+      </div>
+      
+<!--       ================================아이디찾기 두번째모달================================= -->
+      
+      <div class="ui mini modal second" >
+         <div class="ui icon header">
+            <i class="archive icon"></i> 아이디
+         </div>
+         <div class="content" id ="idfinddes">
+            <div class = "description">
+            </div>
+         </div>
+         <div class="actions">
+            <div class="ui green ok inverted button">
+               <i class="remove icon"></i>확인
+            </div>
+         </div>
+      </div>
+      
+      <!--       ===============================비밀번호찾기 두번째 모달================================== -->
+      <div class="ui mini modal fourth" >
+         <div class="ui icon header">
+            <i class="archive icon"></i> 비밀번호
+         </div>
+         <div class="content" id ="idfinddes">
+            <div class = "description 2">
+            </div>
+         </div>
+         <div class="actions">
+            <div class="ui green ok inverted button">
+               <i class="remove icon"></i>확인
+            </div>
+         </div>
+      </div>
+      
+      <!--       ================================비밀번호찾기 모달================================= -->
+      
+      <div class="ui basic modal third">
+         <div class="ui icon header">
+            <i class="archive icon"></i> 비밀번호찾기
+         </div>
+         <div class="content" >
+         <div class = "fluid ui labeled input" id ="findmodal" >
+         <input  type = "email" name = "email" id ="PWemail"placeholder = "이메일을 입력하세요" required>
+         </div>
+            <div class = "fluid ui labeled input" id ="findmodal">
+               <input type = "text" name = "birth"  id ="PWbirth" maxlength="6" placeholder="960206" required>-
+               <input type = "text" name = "gender" id ="PWgender" maxlength="1" placeholder="1"  class = "Signup1 findgender" required>
+            </div>
+         </div>
+         <div class="actions">
+            <div class="ui green ok inverted button">
+               <a href="#" id = "PWfindclick" type = "button"><i class="checkmark icon" ></i>비밀번호 찾기</a>
+            </div>
+            <div class="ui red basic cancel inverted button">
+               <i class="remove icon"></i> 취소
+            </div>
+         </div>
+      </div>
+   
 </body>
 </html>

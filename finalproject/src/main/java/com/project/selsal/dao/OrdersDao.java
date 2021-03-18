@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.project.selsal.entities.Member;
 import com.project.selsal.entities.Orderdetail;
 import com.project.selsal.entities.Orders;
+import com.project.selsal.entities.Product;
 
 @Mapper
 @Repository
@@ -44,13 +45,25 @@ public interface OrdersDao {
 	
 	public int insertSaleProduct(String code,int saleqty);
 	
-	public int updateTotalOrderPrice(String email,int totprice);
+	public int updateTotalOrderPrice(int ordernum,int totprice);
 	
-	public int updateOrderPoint(String email,int point);
+	public int AdminselectTotalOrder(String email);
+	
+	public int selectTotalOrder(int ordernum);
+	
+	public int updateOrderPoint(int ordernum,int point);
+	
+	public ArrayList<Product> selectNowStock(int ordernum);
 	
 	public int OrderTotalPrice(int ordernum);
 	
 	public int completedateUpdate(int ordernum);
+	
+	public int selectMemLevel(int ordernum);
+	
+	public int updateMemlevel(int ordernum,int level);
+	
+	public int AdminupdateMemlevel(String email,int level);
 //
 //	public int levelUpdate(Member member);
 //	

@@ -15,6 +15,14 @@
     padding-left: 118px;
     background-size: 85px 97px;
 }
+.myInfo_inside4{
+	float:left;
+	margin-top:20px;
+	width: 550px;
+    height: 169px;
+    padding: 24px 33px;
+    background-color: #f8f8f8;
+}
 
 .myInfo_text{
 	padding:10px 0 10px;
@@ -133,6 +141,8 @@ div {
     font-size: 20px;
 	
 }
+
+
 
 
 

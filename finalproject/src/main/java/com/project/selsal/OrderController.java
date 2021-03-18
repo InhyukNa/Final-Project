@@ -83,7 +83,7 @@ public class OrderController {
 		OrdersDao dao = sqlSession.getMapper(OrdersDao.class);
 		String email = (String) session.getAttribute("sessionemail");
 		Member member = dao.selectAddress(email);
-		String address = "�슦�렪踰덊샇:"+ member.getZipcode()+" / "+member.getAddress()+" , "+member.getDetailaddress(); 
+		String address = "우편번호:"+ member.getZipcode()+" / "+member.getAddress()+" , "+member.getDetailaddress(); 
 		dao.orderInsert(ordernum, email,address);
 		return "";
 	}
@@ -128,6 +128,24 @@ public class OrderController {
 		return "redirect:order_list";
 	}
 	
+	@RequestMapping(value = "/NowStockChk", method = RequestMethod.POST)
+	@ResponseBody
+	public String NowStockChk(@RequestParam int ordernum) {
+		OrdersDao orderdao = sqlSession.getMapper(OrdersDao.class);
+		ArrayList<Product> stockchk = orderdao.selectNowStock(ordernum);
+		String result = "";
+		for(Product chk : stockchk) {
+			if(chk.getOrderstock()==chk.getStock()) {
+				result = "end";
+			}else if(chk.getOrderstock()>chk.getStock()){
+				result = "n";
+			}else {
+				result ="y";
+			}
+		}
+		return result;	
+	}
+	
 	@RequestMapping(value = "/QuickorderConfirm", method = RequestMethod.GET)
 	public String QuickorderConfirm(@RequestParam int ordernum,HttpSession session) throws Exception {
 		OrdersDao orderdao = sqlSession.getMapper(OrdersDao.class);
@@ -137,14 +155,37 @@ public class OrderController {
 		ArrayList<Orderdetail> saleproduct = orderdao.selectSaleProduct(ordernum);
 		for(Orderdetail salepro:saleproduct) {
 			String code = String.valueOf(salepro.getProcode());
-//			orderdao.selectNowStock
 			orderdao.insertSaleProduct(code,salepro.getQty());
 			productdao.Stockadd1(code);
 		}
 		int totprice = orderdao.OrderTotalPrice(ordernum);
-		int point = (int) (totprice*0.05);
-		orderdao.updateTotalOrderPrice((String) session.getAttribute("sessionemail"), totprice);
-		orderdao.updateOrderPoint((String) session.getAttribute("sessionemail"), point);
+		orderdao.updateTotalOrderPrice(ordernum, totprice);
+		int point = 0;
+		int level = orderdao.selectMemLevel(ordernum);
+		if(level==5) { // 브론즈
+			point = (int) (totprice*0.05);
+		}else if(level==4){ // 실버
+			point = (int) (totprice*0.10);
+		}else if(level==3){ // 골드
+			point = (int) (totprice*0.15);
+		}else if(level==2){ // VIP
+			point = (int) (totprice*0.2);
+		}
+		orderdao.updateOrderPoint(ordernum, point);
+		
+		int changelevel=0;
+		int totalorder = orderdao.selectTotalOrder(ordernum);
+		if(0<=totalorder && totalorder<50000) {
+			changelevel = 5;
+		}else if(50000<=totalorder && totalorder<200000) {
+			changelevel = 4;
+		}else if(200000<=totalorder && totalorder<500000) {
+			changelevel = 3;
+		}else if(500000<=totalorder) {
+			changelevel = 2;
+		}
+		orderdao.updateMemlevel(ordernum,changelevel);
+		
 		
 		return "redirect:OrderList";
 	}

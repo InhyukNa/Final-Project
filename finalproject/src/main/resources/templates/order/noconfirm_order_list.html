@@ -33,13 +33,13 @@
 					</thead>
 					<tbody>
 						<tr th:each="item : ${noconfirmlist}">
-							<td th:text="${item.ordernum}"></td>
-							<td th:text="${item.name}"></td>
+							<td th:text="${item.ordernum}" th:value="${item.ordernum}"></td>
+							<td th:value="${item.email}" th:text="${item.name}"></td>
 							<td th:text="${item.date}"></td>
 							<td th:text="${item.orderadd}"></td>
 							<td th:text="|${item.totprice}원|"></td>
 							<td>
-								<a  th:href="@{QuickorderConfirm(ordernum=${item.ordernum})}">주문 접수</a>
+								<a href="#" id="orderReceive" >주문 접수</a>
 							</td>
 							<td>
 								<a href="#">주문 취소</a>

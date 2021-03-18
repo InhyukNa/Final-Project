@@ -22,19 +22,19 @@
          </div>
          
          <div th:unless="${session.sessionemail==null}" class="ui grid three wide column" id="topdiv2" >
-            <div class="top2" th:if="${session.sessionlevel ge 4}">
+            <div class="top2" th:if="${session.sessionlevel ge 2}">
             <a href="memberlogout"  style="cursor:pointer"><span>로그아웃</span></a>
             </div>
-            <div class="top2" th:if="${session.sessionlevel ge 4}">
+            <div class="top2" th:if="${session.sessionlevel ge 2}">
                <a href="membermypage"  style="cursor:pointer"><span>마이페이지</span></a>
             </div>
-            <div class="top2" th:if="${session.sessionlevel ge 4}">
+            <div class="top2" th:if="${session.sessionlevel ge 2}">
                <a href="qnaBoard"   style="cursor:pointer"><span>문의</span></a>
             </div>
-            <div class="top2" th:if="${session.sessionlevel le 3}">
+            <div class="top2" th:if="${session.sessionlevel le 1}">
                <a href="memberlogout" style="cursor:pointer"><span>로그아웃</span></a>
             </div>
-            <div class="top2" th:if="${session.sessionlevel le 3}">
+            <div class="top2" th:if="${session.sessionlevel le 1}">
                <a href="adminList"   style="cursor:pointer"><span>관리자페이지</span></a>
             </div>
          </div>

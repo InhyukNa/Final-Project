@@ -24,6 +24,9 @@ public interface MemberDao {
 	
 	public String selectIdFind(String name,int gender,int birth);
 	
+	public String selectPWFind(String email,int gender,int birth);
+	
+	
 	public int selectAllcount();
 	
 //

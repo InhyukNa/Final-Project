@@ -60,11 +60,11 @@
 	</select>
 	
 	<select id="noConfirmList" resultType="com.project.selsal.entities.Orders">
-		select * from orders where orderconfirm = 0;
+		select * from orders where orderconfirm = 0  order by ordernum desc;
 	</select>
 	
 	<select id="selectAll" resultType="com.project.selsal.entities.Orders">
-		select ordernum,email,orderadd,date,totprice,orderconfirm,name,completedate from orders;
+		select ordernum,email,orderadd,date,totprice,orderconfirm,name,completedate from orders order by ordernum desc;
 	</select>
 	
 	<update id="changeConfirm">
@@ -79,8 +79,9 @@
 		select procode,qty from orderdetail where ordernum=#{ordernum}
 	</select>
 	
-	<select id="selectNowStock" resultType="Integer">
-		select stock from product where code=#{code}
+	<select id="selectNowStock" resultType="com.project.selsal.entities.Product">
+		select stock,(select qty from orderdetail B where ordernum = #{ordernum} and B.procode = A.code) as orderstock 
+		from product A group by code
 	</select>
 	
 	<insert id="insertSaleProduct">
@@ -93,16 +94,36 @@
 		)
 		
 	</insert>
+	
 	<select id="OrderTotalPrice" resultType="Integer">
 		select totprice from orders where ordernum = #{ordernum}
 	 </select>
+	 
 	<update id="updateTotalOrderPrice">
-		update member set totalorder=totalorder+#{totprice} where email=#{email} 
+		update member set totalorder=totalorder+#{totprice} where email=(select email from orders A where ordernum=#{ordernum})
 	</update>
+	
+	<select id="selectTotalOrder" resultType="Integer">
+		select totalorder from member where email=(select email from orders A where ordernum=#{ordernum})
+	</select>
+	<select id="AdminselectTotalOrder" resultType="Integer">
+		select totalorder from member where email=#{email}
+	</select>
 	
 	<update id="updateOrderPoint">
-		update member set point=point+#{point} where email=#{email} 
+		update member set point=point+#{point} where email=(select email from orders A where ordernum=#{ordernum})
 	</update>
 	
+	<select id="selectMemLevel" resultType="Integer">
+		select level from member where email=(select email from orders A where ordernum=#{ordernum})
+	</select>
+	
+	<update id="updateMemlevel">
+		update member set level=#{level} where email=(select email from orders A where ordernum=#{ordernum})
+	</update>
+	
+	<update id="AdminupdateMemlevel">
+		update member set level=#{level} where email=#{email}
+	</update>
 	
 </mapper>

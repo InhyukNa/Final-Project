@@ -141,6 +141,9 @@ $(document).ready(function() {
          });
       });
    });
+
+
+
    $('.idfinder').on('click',function(){
       $('.ui.basic.modal.first').modal('show');
       $('#Idfindclick').on('click',function(){
@@ -149,22 +152,22 @@ $(document).ready(function() {
          var birth = $('#birth').val();
           $.ajax({
              type: 'POST',
-               data: {name: name,gender:gender,birth:birth},
-              datatype: 'json',
-              url: 'IdFindUP',
-              success: function(data) {
-               if(!data){
-                  $('.ui.basic.modal.first').modal('hide');
-                  $('.description').text("잘못된 정보입니다.")
-                  $('.ui.mini.modal.second').modal('show');
-               }else{
-                  $('.ui.basic.modal.first').modal('hide');
-                  $('.description').text("회원님의 이메일은 "+data+" 입니다")
-                  $('.ui.mini.modal.second').modal('show');
-               }
+             data: {name: name,gender:gender,birth:birth},
+             datatype: 'json',
+             url: 'IdFindUP',
+             success: function(data) {
+              if(!data){
+                 $('.ui.basic.modal.first').modal('hide');
+                 $('.description').text("잘못된 정보입니다.")
+                 $('.ui.mini.modal.second').modal('show');
+              }else{
+                 $('.ui.basic.modal.first').modal('hide');
+                 $('.description').text("회원님의 이메일은 "+data+" 입니다")
+                 $('.ui.mini.modal.second').modal('show');
+              }
              },
              error: function(xhr, status, error) {
-                alert('ajax error : ' + xhr.status + error);
+                   alert('ajax error : ' + xhr.status + error);
              }
           });
       });
@@ -172,8 +175,35 @@ $(document).ready(function() {
    });
    $('.passwordfinder').on('click',function(){
       $('.ui.basic.modal.third').modal('show');
-   })
-   
+      $('#PWfindclick').on('click',function(){
+         var email = $('#PWemail').val();
+         var gender = $('#PWgender').val();
+         var birth = $('#PWbirth').val();
+          $.ajax({
+             type: 'POST',
+             data: {email:email,gender:gender,birth:birth},
+             datatype: 'json',
+             url: 'PWFindUP',
+             success: function(data) {
+              if(!data){
+                 $('.ui.basic.modal.third').modal('hide');
+                 $('.description.2').text("잘못된 정보입니다.")
+                 $('.ui.mini.modal.fourth').modal('show');
+              }else{
+                 $('.ui.basic.modal.third').modal('hide');
+                 $('.description.2').text("회원님의 패스워드:  "+data+" 입니다")
+                 $('.ui.mini.modal.fourth').modal('show');
+              }
+             },
+             error: function(xhr, status, error) {
+                   alert('ajax error : ' + xhr.status + error);
+             }
+          });
+      });
+
+   });
+
+
    $('.Signup').keyup(function(){
       var gender = $('#gender').val();
       if(gender == 1 || gender == 3){
@@ -184,4 +214,16 @@ $(document).ready(function() {
          alert('올바론 숫자를 입력하세요(ex:1,2,3,4)')
       }
    });
+   $('.Signup1').keyup(function(){
+      var gender = $('#PWgender').val();
+      if(gender == 1 || gender == 3){
+      }
+      else if(gender == 2 || gender == 4) {
+      }
+      else{
+         alert('올바론 숫자를 입력하세요(ex:1,2,3,4)')
+      }
+   });
+
+
 });

@@ -146,7 +146,7 @@ public class BoardController {
 		model.addAttribute("rowcount",rowcount);
 		model.addAttribute("boards", boards);
 		model.addAttribute("pages", pages);
-		return "/board/freeboard_list";
+		return "/board/freeboard_list2";
 	}
 	
 	@RequestMapping(value = "/freeBoardDetail", method = RequestMethod.GET)
