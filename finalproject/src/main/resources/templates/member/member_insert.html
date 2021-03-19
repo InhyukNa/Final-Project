@@ -35,8 +35,19 @@
 				</div>
 				<div class = "fluid ui labeled input">
 					<div class = "ui label">
-					<label>패스워드</label></div>
-					<input type = "password" name = "password" id ="password"placeholder = "비밀번호를 입력하세요" required>
+					<label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp패스워드&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+					</div>
+					<input type = "password" name = "password" id ="password" placeholder = "비밀번호를 입력하세요" required>
+					<button class="ui button" id="pwshow" type="button">비밀번호 보이기</button>
+					<button class="ui button" id="pwhide" type="button" style="display:none">비밀번호 숨기기</button>
+				</div>
+				<div class = "fluid ui labeled input">
+					<div class = "ui label">
+					<label>패스워드 체크</label>
+					</div>
+					<input type = "password" name = "passwordchk" id ="passwordchk" placeholder = "비밀번호를 다시 입력하시오" required>
+					<i class="big green checkmark icon" id="pwsame" style="display:none"></i>
+					<i class="big red cancel icon" id="pwdifferent" style="display:none"></i>
 				</div>
 				<div class = "fluid ui labeled input">
 					<div class = "ui label">

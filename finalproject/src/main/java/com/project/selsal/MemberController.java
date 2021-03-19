@@ -2,7 +2,6 @@ package com.project.selsal;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.Properties;
 
@@ -18,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.project.selsal.dao.MemberDao;
 import com.project.selsal.dao.OrdersDao;
 import com.project.selsal.entities.Member;
+import com.project.selsal.entities.Orders;
 
 
 @Controller
@@ -39,6 +40,8 @@ public class MemberController {
 	private SqlSession sqlSession;
 	@Autowired
 	Member member;
+	@Autowired
+	Orders orders;
 
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index(Locale locale, Model model) {
@@ -82,26 +85,11 @@ public class MemberController {
 		return email;
 	}
 	
-	
-	
-	@RequestMapping(value = "/PWFindUP", method = RequestMethod.POST)
-	@ResponseBody
-	public String PWFindUP(Model model,@RequestParam String email,@RequestParam int birth,@RequestParam int gender) throws Exception {
-		MemberDao dao = sqlSession.getMapper(MemberDao.class);
-		String password = dao.selectPWFind(email,gender,birth);
-		return password;
-	}
-	
-
-
-	
 	@RequestMapping(value = "/memberlogout", method = RequestMethod.GET)
 	public String memberlogout(HttpSession session) {
 		session.invalidate();
 		return "index";
 	}
-
-	
 	
 	@RequestMapping(value = "/memberInsert", method = RequestMethod.GET)
 	public String memberInsert() {
@@ -130,11 +118,13 @@ public class MemberController {
 		String email = (String) session.getAttribute("sessionemail");
 		ArrayList<Member> members = dao.selectAll();
 		Member data = dao.selectOne(email);
-		
+		ArrayList<Orders> orders =  dao.orderselectAll(email);
+	    model.addAttribute("orders",orders);
 		model.addAttribute("data",data);
 		model.addAttribute("members", members);
 		return "member/member_mypage";
 	}
+	
 	@RequestMapping(value = "/memberList", method = RequestMethod.GET)
 		public String memberList(Locale locale,Model model) {
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
@@ -154,15 +144,12 @@ public class MemberController {
 	
 	@RequestMapping(value = "/memberUpdateSave", method = RequestMethod.POST)
     public String memberUpdateSave( Model model,HttpSession session, @ModelAttribute Member member) throws IOException {  
-    	 MemberDao dao = sqlSession.getMapper(MemberDao.class);
+		MemberDao dao = sqlSession.getMapper(MemberDao.class);
     	String encodepassword = hashPassword(member.getPassword());
  		member.setPassword(encodepassword);
     	dao.updateRow(member);    	
-    	return "redirect:memberList";
+    	return "redirect:membermypage";
 	}
-	
-	
-	
 	
 
 	@RequestMapping(value = "/adminUpdate", method = RequestMethod.GET)
@@ -287,5 +274,35 @@ public class MemberController {
         return buffer.toString();
     }
 	
-
+	public static String getRandomPassword(int len) { 
+		char[] charSet = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8',
+				'9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+				'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+		int idx = 0; 
+		StringBuffer sb = new StringBuffer();
+		for (int i = 0; i < len; i++) { 
+			idx = (int) (charSet.length * Math.random()); // 36 * 생성된 난수를 Int로 추출 (소숫점제거) 
+			sb.append(charSet[idx]); 
+		}
+		return sb.toString();
+	}
+	
+	@RequestMapping(value = "/PWFindUP", method = RequestMethod.POST)
+	@ResponseBody
+	public String PWFindUP(Model model,@RequestParam String email,@RequestParam int birth,@RequestParam int gender) throws Exception {
+		MemberDao dao = sqlSession.getMapper(MemberDao.class);
+		String result = "";
+		String newPW = "";
+		int pwchk = dao.selectPWFind(email,gender,birth);
+		if(pwchk == 0 ) {
+			result = "n";
+		}else {
+			result = getRandomPassword(10);
+			newPW = hashPassword(result);
+			member.setPassword(newPW);
+			dao.updatePW(newPW, email, gender, birth);
+			
+		}
+		return result;
+	}
 }

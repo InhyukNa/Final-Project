@@ -34,8 +34,8 @@
    
             <div class="subtitle">
                <a href="memberInsert" id="loginpageinsert"><span>회원가입</span></a> 
-               <a href="#" class = "idfinder"  id="IDfind"><span>아이디찾기</span></a>
-               <a href="#" class = "passwordfinder"  id="Passwordfind"><span>비밀번호찾기</span></a>
+               <a style= "cursor:pointer" class = "idfinder"  id="IDfind"><span>아이디찾기</span></a>
+               <a style= "cursor:pointer" class = "passwordfinder"  id="Passwordfind"><span>비밀번호찾기</span></a>
             </div>
          </div>
    
@@ -57,8 +57,8 @@
             </div>
          </div>
          <div class="actions">
-            <div class="ui green ok inverted button">
-               <a href="#" id = "Idfindclick" type = "button"><i class="checkmark icon" ></i>아이디 찾기</a>
+            <div class="ui green ok inverted button" id = "Idfindclick">
+               <i class="checkmark icon" ></i>아이디 찾기
             </div>
             <div class="ui red basic cancel inverted button">
                <i class="remove icon"></i> 취소
@@ -93,8 +93,11 @@
             </div>
          </div>
          <div class="actions">
-            <div class="ui green ok inverted button">
-               <i class="remove icon"></i>확인
+         	<div id = "newPWcreate" class="ui green ok inverted button">
+               <i class="checkmark icon" ></i>확인
+            </div>
+            <div class="ui red cancel inverted button">
+               <i class="remove icon"></i>취소
             </div>
          </div>
       </div>
@@ -115,8 +118,8 @@
             </div>
          </div>
          <div class="actions">
-            <div class="ui green ok inverted button">
-               <a href="#" id = "PWfindclick" type = "button"><i class="checkmark icon" ></i>비밀번호 찾기</a>
+            <div class="ui green ok inverted button" id = "PWfindclick">
+              <i class="checkmark icon" ></i>비밀번호 찾기
             </div>
             <div class="ui red basic cancel inverted button">
                <i class="remove icon"></i> 취소

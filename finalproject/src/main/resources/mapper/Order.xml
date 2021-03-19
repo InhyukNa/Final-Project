@@ -67,6 +67,14 @@
 		select ordernum,email,orderadd,date,totprice,orderconfirm,name,completedate from orders order by ordernum desc;
 	</select>
 	
+	<delete id="deleteOrderDetail">
+		delete from orderdetail where ordernum=#{ordernum}
+	</delete>
+	
+	<update id="updateOrderConfirm">
+		update orders set orderconfirm=2 where ordernum=#{ordernum}
+	</update>
+	
 	<update id="changeConfirm">
 		update orders set orderconfirm=1 where ordernum=#{ordernum} 
 	</update>

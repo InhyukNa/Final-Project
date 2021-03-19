@@ -29,17 +29,57 @@
 							
 					</div>
 					<div class = "myInfo_inside2">
-								<dl class = "myInfo_pointtext">
-									<dt id = "dtid">포인트</dt>
-									<dd id = "pointimage">
-										<div id ="pointText">
-											<span th:text = "${data.point}"></span>
-										</div>
-								</dl>
+						<dl class = "myInfo_pointtext">
+							<dt id = "dtid">포인트</dt>
+								<dd id = "pointimage">
+									<div id ="pointText">
+										<span th:text = "${data.point}"></span>
+									</div>
+						</dl>
+					</div>
+					<div class = "myInfo_inside4">
+						<div class = "myInfo_order">
+							<div id="orlist">주문내역</div>
+								<table id = "ordertable" style = "width:100%;">
+									<thead id="orderhead">
+										<tr>
+											<th id = "thborder">주문날짜</th>
+											<th id = "thborder">금액</th>
+											<th id = "thborder">주문상태</th>
+											<th><button class="ui olive button" id = "sldjfrnf">상세보기</button></th>
+										</tr>
+									</thead>
+									<tbody id = "orderbody">
+										<tr class = "orderbodyclass"  th:each="order:${orders}">
+											<td id = "tdborder" th:text ="${order.date}" style = "width:150px; height:60px;"></td>
+											<td id = "tdborder" th:text ="${order.totprice}" style = "width:150px;"></td>
+											<td id = "tdborder" th:if="${order.orderconfirm == 0}" style = "width:150px;">주문처리전</td>
+											<td id = "tdborder" th:if="${order.orderconfirm == 1}" style = "width:150px;">주문확인</td>
+											<td id = "tdborder" th:if="${order.orderconfirm == 2}" style = "width:150px; height:40px;">주문거절</td>
+											<td><button class="ui yellow button">주문취소</button></td>
+										</tr>
+									</tbody>
+								</table>
+						</div>
 					</div>
 				</div>
-				</div>
+			</div>
+			<div class ="ui grid two wide column"></div>
 		</div>
+		<div class="ui basic modal orderdetails">
+         <div class="ui icon header">
+            <i class="archive icon"></i> 상세 주문내역
+         </div>
+         <div class="content" >
+         <div class = "fluid ui labeled input" id ="orderdetailsmodal" >
+         </div>
+         </div>
+         <div class="actions">
+            <div class="ui red basic cancel inverted button">
+               <i class="remove icon"></i> 취소
+            </div>
+         </div>
+      </div>
 	</form>
 </body>
 </html>

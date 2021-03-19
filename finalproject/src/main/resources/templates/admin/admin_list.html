@@ -22,7 +22,7 @@
 				<div class = "fluid ui input container">
 					<div style="background-color:#3E846A">
 						<br><br><br>
-						<a href="noconfirmlist"><span style="font:Georgia;font-size:20px;color:#ffffff" th:text="|${noconfirmorder}건|"></span></a><br><br>
+						<a href="noconfirmList"><span style="font:Georgia;font-size:20px;color:#ffffff" th:text="|${noconfirmorder}건|"></span></a><br><br>
 						<span style="font:Georgia;font-size:15px;color:#ffffff">미확인 주문</span>
 						<br>
 						<br>
@@ -73,14 +73,22 @@
 					</div>
 				</div>
 				
-				<div class = "fluid ui input container">
-					<div>
-						<button id="test1" type="button" class="ui white small basic button">재고 그래프</button>
-						<canvas id="myChart"></canvas>
-						
+				<div class = "ui fluid input container">
+					<div class="ui fluid eight wide column" style="width:50%">
+							<div class="ui fluid wide column" style="width:100%">
+								<button id="adminChart1" type="button" class="ui white basic button">재고 그래프</button>
+							</div>
+							<div class="ui fluid wide column" style="width:100%">
+								<canvas id="Chart1"></canvas>
+							</div>
 					</div>
-					<div>
-						<span>인기 재료</span>
+					<div class="ui fluid eight wide column" style="width:50%">
+						<div class="ui fluid wide column" style="width:100%">
+							<button id="adminChart2" type="button" class="ui white basic button">인기 재료</button>
+						</div>
+						<div class="ui fluid wide column" style="width:100%">
+							<canvas id="Chart2"></canvas>
+						</div>
 					</div>
 				</div>
 			</div>

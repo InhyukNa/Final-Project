@@ -39,6 +39,10 @@ public interface OrdersDao {
 	
 	public ArrayList<Orders> selectAll();
 	
+	public int deleteOrderDetail(int ordernum);
+	
+	public int updateOrderConfirm(int ordernum);
+	
 	public int changeConfirm(int ordernum);
 	
 	public ArrayList<Orderdetail> selectSaleProduct(int ordernum);

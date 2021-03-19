@@ -8,7 +8,7 @@ body {
 }
 #header{
    margin-top:20px;
-   min-width: 1280px;
+   min-width: 1680px;
 }
 
 #footer{
@@ -27,7 +27,12 @@ body {
 #title>a {
 	color: #020202;
 }
-
+#title>a>img {
+	width:300px;
+	height:80px;
+	
+	
+}
 .navbar {
    background: #FDFCFC;
    margin: 0;
@@ -65,8 +70,8 @@ list-style:none;}
 
 .menubar>div> a.menu1 { 
    float:left;
-    font-weight: bold;
-    display: block;
+   font-weight: bold;
+   display: block;
    text-decoration: none;
    color: #292929;
    font-size: 18px;

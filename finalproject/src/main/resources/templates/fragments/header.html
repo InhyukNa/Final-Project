@@ -9,7 +9,7 @@
    <form name="formname" > <!--Form의 기본 속성 name/method(POST,GET)/action-->
       <div class="ui grid sixteen wide column header" style="height:15%;">
          <div class="ui grid three wide column"></div>         
-         <div class="ui grid ten wide column" id="title"><a onclick="location.href='index' " style = "cursor:pointer">SELECT SALAD</a></div>
+         <div class="ui grid ten wide column" id="title" style="margin:0 14px 0 14px;padding:0 14px 0 14px;"><a onclick="location.href='index' " style = "cursor:pointer"><img src="/images/SELSAL_LOGO.png"></a></div>
          
         <div  class="ui grid three wide column" th:if="${session.sessionemail==null}" id="topdiv1">
             <div class="top2">
@@ -40,7 +40,7 @@
          </div>
 
          
-         <div class="ui grid sixteen wide column" id="menu">
+         <div class="ui grid sixteen wide column" id="menu" style="margin:0 14px 14px 14px;padding:0 14px 14px 14px;">
             <div class="menubar">
                <div><a href="#" class="menu1">회사소개</a></div>
                <div><a href="#" class="menu1">재료소개</a></div>

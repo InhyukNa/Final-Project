@@ -7,16 +7,20 @@
 	<select id="selectOne" resultType="com.project.selsal.entities.Member">
 		select * from member where email = #{email}
     </select>
+    
 	<insert id="insertRow">
       insert into member (email,name,password,phone1,phone2,phone3,zipcode,address,detailaddress,totalorder,point,birth,gender)
       values(#{email},#{name},#{password},#{phone1},#{phone2},#{phone3},#{zipcode},#{address},#{detailaddress},#{totalorder},#{point},#{birth},#{gender})
    </insert>
+   
 	<select id="selectAll" resultType="com.project.selsal.entities.Member">
       select * from member
    </select>
+   
    	<select id="selectAllcount" resultType="Integer">
       select count(*) from member
    </select>
+   
    <update id="updateRow">
       update member set name = #{name},password = #{password},phone1 = #{phone1},phone2 = #{phone2},phone3 = #{phone3},
       zipcode = #{zipcode},address = #{address},detailaddress = #{detailaddress},totalorder= #{totalorder},point = #{point},birth = #{birth}
@@ -34,32 +38,20 @@
    <update id = "levelUpdate">
       update member set level =if(point>1500,6,9) where email=#{email}
    </update>
+   
    <select id="selectIdFind" resultType="string">
    		select email from member where gender = #{gender} and birth = #{birth} and name = #{name}
    </select>
    
-   <select id="selectPWFind" resultType="string">
-   		select password from member where gender = #{gender} and birth = #{birth} and email = #{email}
+   <select id="selectPWFind" resultType="Integer">
+   		select count(email) from member where gender = #{gender} and birth = #{birth} and email = #{email}
    </select>
-  <!--  
    
-
-   <update id="updateRow">
-      update member set name=#{name}, password = #{password}, 
-      phone1 = #{phone1}, phone2 = #{phone2}, phone3 = #{phone3},photo = #{photo}
-      where email = #{email};
+   <update id="updatePW">
+        update member set password=#{newPW} where gender = #{gender} and birth = #{birth} and email = #{email}
    </update>
-   <select id="selectAll" resultType="com.naver.dgkim1007.entities.Member">
-      select * from member
+   
+   <select id = "orderselectAll" resultType="com.project.selsal.entities.Orders">
+      select * from orders where email=(select email from member where email = #{email})
    </select>
-
-   <update id="updateAjax">
-      update member set memlevel = #{memlevel} where email
-      = #{email};
-   </update>
-
-   <delete id="deleteAjax">
-      delete from member where email = #{email};
-   </delete>
- -->
 </mapper>

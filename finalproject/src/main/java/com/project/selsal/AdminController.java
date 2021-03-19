@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.project.selsal.dao.ChartDataDao;
 import com.project.selsal.dao.MemberDao;
 import com.project.selsal.dao.OrdersDao;
 import com.project.selsal.dao.ProductDao;
+import com.project.selsal.entities.ChartData;
 import com.project.selsal.entities.Product;
 
 @Controller
@@ -55,9 +57,18 @@ public class AdminController {
 	@RequestMapping(value = "/productDataSelect", method = RequestMethod.POST)
 	@ResponseBody
 	public ArrayList<Product> productDataSelect() {
-		ProductDao dao = sqlSession.getMapper(ProductDao.class);
-		ArrayList<Product> data = dao.productChartData();
+		ChartDataDao dao = sqlSession.getMapper(ChartDataDao.class);
+		ArrayList<Product> data = dao.stockChartData();
 		return data;
+	}
+	
+	@RequestMapping(value = "/SaleProductDataSelect", method = RequestMethod.POST)
+	@ResponseBody
+	public ArrayList<ChartData> SaleProductDataSelect() {
+		ChartDataDao chartdao = sqlSession.getMapper(ChartDataDao.class);
+		ArrayList<ChartData> chartdata = chartdao.saleChartData();
+		
+		return chartdata;
 	}
 	
 	@RequestMapping(value = "/fastOrder", method = RequestMethod.GET)

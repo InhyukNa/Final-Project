@@ -88,16 +88,9 @@ public class OrderController {
 		return "";
 	}
 	
-	@RequestMapping(value = "/orderCancle", method = RequestMethod.POST)
-	@ResponseBody
-	public String orderCancle(@RequestParam int ordernum) {
-		OrdersDao dao = sqlSession.getMapper(OrdersDao.class);
-		dao.orderDelete(ordernum);
-		return "";
-	}
 	
-	@RequestMapping(value = "/noconfirmlist", method = RequestMethod.GET)
-	public String noConfirmList(Locale locale, Model model) throws Exception {
+	@RequestMapping(value = "/noconfirmList", method = RequestMethod.GET)
+	public String noconfirmList(Locale locale, Model model) throws Exception {
 		OrdersDao orderdao = sqlSession.getMapper(OrdersDao.class);
 		ArrayList<Orders> noconfirmlist = orderdao.noConfirmList();
 		model.addAttribute("noconfirmlist",noconfirmlist);
@@ -185,9 +178,17 @@ public class OrderController {
 			changelevel = 2;
 		}
 		orderdao.updateMemlevel(ordernum,changelevel);
-		
-		
 		return "redirect:OrderList";
+	}
+	
+	@RequestMapping(value = "/QuickOrderCancle", method = RequestMethod.POST)
+	@ResponseBody
+	public String QuickOrderCancle(@RequestParam int ordernum) {
+		OrdersDao orderdao = sqlSession.getMapper(OrdersDao.class);
+		orderdao.deleteOrderDetail(ordernum);
+		orderdao.updateOrderConfirm(ordernum);
+		orderdao.completedateUpdate(ordernum);
+		return "";	
 	}
 	
 	
