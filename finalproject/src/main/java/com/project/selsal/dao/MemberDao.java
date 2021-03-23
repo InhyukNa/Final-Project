@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.project.selsal.entities.Member;
+import com.project.selsal.entities.Orderdetail;
 import com.project.selsal.entities.Orders;
 
 @Mapper
@@ -18,8 +19,14 @@ public interface MemberDao {
 	public int updateRow(Member member);
 	
 	public int updateAjax(Member member);
+	
+	public int deleteorders(int ordernum) throws Exception;
 
 	public ArrayList<Member> selectAll();
+	
+	public Orders orderselectOne(int ordernum);
+	
+	ArrayList<Orderdetail> ordernumselect(int ordernum);
 
 	public int levelUpdate(Member member);
 	
@@ -29,9 +36,13 @@ public interface MemberDao {
 	
 	public int selectAllcount();
 	
-	public int deleteAjax(String email);
+	public int couponcount(String email);
 	
-	public int updatePW(String newPW, String email,int gender,int birth);
+	public Member deleteAjax(String email);
+	
+	public int updatePW(String newPW, String email);
 	
 	public ArrayList<Orders> orderselectAll(String email);
+
+	
 }

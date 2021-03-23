@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:th="http://www.thymeleaf.org" th:lang="${session.lang}"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorator="layout/layout.html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>관리자 페이지</title>
+</head>
+
+<body layout:fragment="content">
+   <form id="mypagedetailform" name="mypagedetail" method="POST">
+      <div class="ui grid main">
+         <div class="ui grid sixteen wide column">
+            <p id="titleWord2">주문상세조회
+         </div>
+         <div class = "mypagetetailtitle">
+	         <h3>주문정보</h3>
+	         <table id = "mypagedetailtable">
+				  <tbody id = "ordermemo">
+				    <tr>
+				      <th>주문번호</th>
+				      <td th:text = "${orderpage.ordernum}"></td>
+				    </tr>
+				    <tr>
+				      <th>주문일자</th>
+				      <td th:text = "${orderpage.date}"></td>
+				    </tr>
+				    <tr>
+				      <th>주문자</th>
+				      <td th:text = "${orderpage.name}"></td>
+				    </tr>
+				    <tr>
+				      <th>주문처리상태</th>
+				      <td th:if="${orderpage.orderconfirm == 0}" style = "width:150px;">주문처리전</td>
+				      <td th:if="${orderpage.orderconfirm == 1}" style = "width:150px;">주문확인</td>
+				      <td th:if="${orderpage.orderconfirm == 2}" style = "width:150px; height:40px;">주문거절</td>
+				    </tr>
+				    <tr>
+				      <th>총주문금액</th>
+				      <td th:text = "${orderpage.totprice}"></td>
+				    </tr>
+				    <tr>
+				      <th>총결제금액</th>
+				      <td th:text = "${orderpage.totprice}"></td>
+				    </tr>
+				  </tbody>
+				</table>
+	
+	         	<h3>상품정보</h3>
+	         <table id = "ordermemo2">
+	         	<thead>
+	         		<tr>
+	         			<th>상품구성</th>
+	         			<th>수량</th>
+	         			<th>가격</th>
+	         			<th>주문처리상태</th>
+	         		</tr>
+	         		
+	         	</thead>
+				<tbody th:each = "orderpageing:${orderpageing}">
+					<tr>
+						<td th:text = "${orderpageing.proname}"></td>
+						<td th:text = "${orderpageing.qty}"></td>
+						<td th:text = "${orderpageing.proprice}"></td>
+						<td th:if="${orderpage.orderconfirm == 0}" style = "width:150px;">
+							<span th:if="${orderpageing.seq == 1}">주문처리전</span></td>
+						<td th:if="${orderpage.orderconfirm == 1}" style = "width:150px;">
+						<span th:if="${orderpageing.seq == 1}">주문확인</span></td>
+						<td th:if="${orderpage.orderconfirm == 2}" style = "width:150px; height:40px;">
+						<span th:if="${orderpageing.seq == 1}">주문거절</span></td>
+					</tr>
+				</tbody>
+			</table>
+			<table>
+				<tr class = "ordertot">
+					<td id ="totfinal">
+						<strong>총주문금액</strong>
+						<strong th:text = "|[${orderpage.totprice}]|"></strong>
+					</td>
+				</tr>
+			</table>
+			
+			<h3>배송지정보</h3>
+	         <table id = "mypagedetailtable">
+				  <tbody id = "ordermemo">
+				    <tr>
+				      <th>받으시는분</th>
+				      <td th:text = "${orderpage.name}"></td>
+				    </tr>
+				    <tr>
+				      <th>우편번호</th>
+				      <td th:text = "${member.zipcode}"></td>
+				    </tr>
+				    <tr>
+				      <th>주소</th>
+				      <td th:text = "|${member.address} ${member.detailaddress}|"></td>
+				    </tr>
+				    <tr>
+				      <th>휴대전화</th>
+				      <td th:text="|${member.phone1}-${member.phone2}-${member.phone3}|" style = "width:150px;"></td>
+				    </tr>
+				  </tbody>
+				</table>
+				<div id="detailmypage">
+				<a href = "detailmypage">
+					<button class="ui inverted green button"
+                  		type="button">마이페이지</button></a>
+                </div>
+				
+		</div>
+			<div class="ui mini modal delete">
+				<i class="close icon"></i>
+				<div class="header">삭제하시겠습니까 ?</div>
+				<div class="actions">
+					<div class="ui positive right labeled icon button" id="deleteok">
+								삭제 <i class="checkmark icon"></i>
+					</div>
+					<div class="ui positive right labeled icon button" id="cancleok">
+							취소 <i class="reply icon"></i>
+					</div>
+				</div>
+			</div>
+         
+         <div class = "ui grid two wide column"></div>
+      </div>
+   </form>
+</body>
+</html>

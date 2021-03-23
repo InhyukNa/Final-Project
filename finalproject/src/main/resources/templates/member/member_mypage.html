@@ -12,74 +12,94 @@
 	<form id="memberpageform" name="formname" action="memberpage"
 		method="POST">
 		<div class="ui grid main">
-		<div class = "ui grid sixteen wide column">
-		<p style = "text-align:center; font-size:35px; font-family:'돋움'; font-weight:bold">마이 페이지</div>
+			<div class = "ui grid sixteen wide column">
+				<p style = "text-align:center; font-size:35px; font-family:'돋움'; font-weight:bold">마이 페이지
+			</div>
 			<div class ="ui grid two wide column"></div>
 			<div class ="ui grid twelve wide column">
 				<div class = "myInfo">
 					<div class = "myInfo_inside1">
-							<div class ="myInfo_inside3">
-								<p class = "myInfo_text">
-									<strong th:text = "${data.name}"></strong>님 안녕하세요
-								<p class = "myInfo_text2">신선한 재료만 쓰는SELECT SALAD입니다<p>
-								<p class = "myInfo_text">
-								<button type="button" class= "btn btnmargin btnblack btnstyle" onclick="location.href='memberUpdate'">
-								<span>개인정보 변경</span></button>
-							</div>
-							
-					</div>
-					<div class = "myInfo_inside2">
-						<dl class = "myInfo_pointtext">
-							<dt id = "dtid">포인트</dt>
-								<dd id = "pointimage">
-									<div id ="pointText">
-										<span th:text = "${data.point}"></span>
-									</div>
-						</dl>
-					</div>
-					<div class = "myInfo_inside4">
-						<div class = "myInfo_order">
-							<div id="orlist">주문내역</div>
-								<table id = "ordertable" style = "width:100%;">
-									<thead id="orderhead">
-										<tr>
-											<th id = "thborder">주문날짜</th>
-											<th id = "thborder">금액</th>
-											<th id = "thborder">주문상태</th>
-											<th><button class="ui olive button" id = "sldjfrnf">상세보기</button></th>
-										</tr>
-									</thead>
-									<tbody id = "orderbody">
-										<tr class = "orderbodyclass"  th:each="order:${orders}">
-											<td id = "tdborder" th:text ="${order.date}" style = "width:150px; height:60px;"></td>
-											<td id = "tdborder" th:text ="${order.totprice}" style = "width:150px;"></td>
-											<td id = "tdborder" th:if="${order.orderconfirm == 0}" style = "width:150px;">주문처리전</td>
-											<td id = "tdborder" th:if="${order.orderconfirm == 1}" style = "width:150px;">주문확인</td>
-											<td id = "tdborder" th:if="${order.orderconfirm == 2}" style = "width:150px; height:40px;">주문거절</td>
-											<td><button class="ui yellow button">주문취소</button></td>
-										</tr>
-									</tbody>
-								</table>
+						<div id = "memberlevelimage">
+							<img th:if = "${data.level == 5}" src="images/Family.png" >
+							<img th:if = "${data.level == 4}" src="images/Silver.png">
+							<img th:if = "${data.level == 3}" src="images/Gold.png">
+							<img th:if = "${data.level == 2}" src="images/VIP.png">
+						</div>
+						<div class ="myInfo_inside3">
+							<p class = "myInfo_text">
+								<strong th:text = "${data.name}"></strong>님 안녕하세요
+							<p class = "myInfo_text2">신선한 재료만 쓰는SELECT SALAD입니다<p>
+							<p class = "myInfo_text">
+							<button type="button" class= "btn btnmargin btnblack btnstyle" onclick="location.href='memberUpdate'">
+							<span>개인정보 변경</span></button>
 						</div>
 					</div>
+				<div class = "myInfo_inside2">
+					<dl class = "myInfo_pointtext">
+						<dt id = "dtid">포인트</dt>
+						<dd id = "pointimage">
+						<div id ="pointText">
+							<span th:text = "${data.point}"></span>
+						</div>
+					</dl>
+				</div>
+				<div class = "box">
+					<span th:if ="${couponcount}%12 == 0">
+						<img th:if ="${couponcount} == 0" class = "back" src="images/stampcoupon.png" id="coupon0">
+						<img th:if ="${couponcount} != 0" class = "back" src="images/stampcoupon12.png" id="coupon12">
+					</span>
+					<img th:if ="${couponcount}%12 == 1" class = "back" src="images/stampcoupon1.png">
+					<img th:if ="${couponcount}%12 == 2" class = "back" src="images/stampcoupon2.png" >
+					<img th:if ="${couponcount}%12 == 3" class = "back" src="images/stampcoupon3.png" >
+					<img th:if ="${couponcount}%12 == 4" class = "back" src="images/stampcoupon4.png" >
+					<img th:if ="${couponcount}%12 == 5" class = "back" src="images/stampcoupon5.png" >
+					<img th:if ="${couponcount}%12 == 6" class = "back" src="images/stampcoupon6.png" >
+					<img th:if ="${couponcount}%12 == 7" class = "back" src="images/stampcoupon7.png" >
+					<img th:if ="${couponcount}%12 == 8" class = "back" src="images/stampcoupon8.png" >
+					<img th:if ="${couponcount}%12 == 9" class = "back" src="images/stampcoupon9.png" >
+					<img th:if ="${couponcount}%12 == 10" class = "back" src="images/stampcoupon10.png" >
+					<img th:if ="${couponcount}%12 == 11" class = "back" src="images/stampcoupon11.png" >
+				</div>
+				<div class = "myInfo_inside4">
+					<div class = "myInfo_order">
+						<div id="orlist">주문내역</div>
+							<table id = "ordertable" style = "width:100%;">
+							<thead id="orderhead">
+								<tr>
+									
+									<th id = "thborder">주문날짜</th>
+									<th id = "thborder">금액</th>
+									<th id = "thborder">주문상태</th>
+									<th id = "thborder" >비고</th>
+								</tr>
+							</thead>
+							<tbody id = "orderbody">
+								<tr class = "orderbodyclass"  th:each="order:${orders}">
+									
+									<td id = "tdborder">
+										<p th:text ="|[${order.date}]|" style = "width:150px;"></p>
+										<p >
+										<a th:href="@{memberMypagedetail(ordernum=${order.ordernum})}">
+											<span th:text ="${order.ordernum}" style = "width:150px;"></span>
+										</a></p>
+									</td>
+									<td id = "tdborder" th:text ="${order.totprice}" style = "width:150px;"></td>
+									<td id = "tdborder" th:if="${order.orderconfirm == 0}" style = "width:150px;">주문처리전</td>
+									<td id = "tdborder" th:if="${order.orderconfirm == 1}" style = "width:150px;">주문확인</td>
+									<td id = "tdborder" th:if="${order.orderconfirm == 2}" style = "width:150px; height:40px;">주문거절</td>
+									<td th:if = "${order.orderconfirm == 0}" id = "buttonorder"><button class="ui yellow button" type="button" id = "viewdetails">주문취소</button></td>
+									<td th:if = "${order.orderconfirm == 1}" id = "buttonorder"><button class="ui yellow button" type="button" id = "viewdetails">주문취소</button></td>
+								</tr>
+							</tbody>
+							</table>
+						</div>
+					</div>
+				
+				
 				</div>
 			</div>
 			<div class ="ui grid two wide column"></div>
 		</div>
-		<div class="ui basic modal orderdetails">
-         <div class="ui icon header">
-            <i class="archive icon"></i> 상세 주문내역
-         </div>
-         <div class="content" >
-         <div class = "fluid ui labeled input" id ="orderdetailsmodal" >
-         </div>
-         </div>
-         <div class="actions">
-            <div class="ui red basic cancel inverted button">
-               <i class="remove icon"></i> 취소
-            </div>
-         </div>
-      </div>
 	</form>
 </body>
 </html>

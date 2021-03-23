@@ -19,7 +19,6 @@
 				<p style="text-align:center;font-size:20px;font-family:'돋움';font-weight:bold" >자유게시판 본문
 			</div>
 			
-			
 			<div class = "ui grid five wide column"></div>
 			
 			<div class = "ui grid seven wide column memin" align="center">
@@ -43,7 +42,7 @@
 				</div>
 				<div class = "fluid ui"></div>
 				<div class = "fluid ui labeled input">
-					<textarea name="f_content" id="f_content" placeholder="본문을 입력하시오" th:text="${freeboard.f_content}"></textarea>
+					<textarea name="f_content" id="f_content" placeholder="본문을 입력하시오" th:text="${freeboard.f_content}" style="width:100%; height:100px"></textarea>
 				</div>
 				<div class = "fluid ui labeled input">
 					<img name="f_attach" id="f_attach" th:src="${freeboard.f_attach}"></img>
@@ -78,7 +77,8 @@
 					<input type="hidden" name="comment_name" id="comment_name" th:value="${session.sessionname}">
 					<input type="hidden" name="comment_email" id="comment_email" th:value="${session.sessionemail}">
 					<input type="hidden" name="comment_date" id="comment_date">
-					<button type="submit" class="ui gray button commentInsert" id = "commentInsert">댓글입력</button>
+					<button th:if="${session.sessionemail}!=null" type="submit" class="ui gray button commentInsert" id = "commentInsert">댓글입력</button>
+					<button th:if="${session.sessionemail}==null" type="button" class="ui gray button commentInsert" id="noSession">댓글입력</button>
 				</div>
 				<div class = "fluid ui" style= "overflow:scroll;height:400px">
 					<div th:each="freeboardcomments:${freeboardcomments}">

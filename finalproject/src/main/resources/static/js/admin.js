@@ -1,3 +1,4 @@
+/* 관리자 페이지 5개 이하 재료 확인 div 전환 */
 function outstockChange1() {
    $('#stockoutdiv').css('display', 'none');
    $('#stockmanagediv').css('display', 'block')
@@ -7,13 +8,13 @@ function outstockChange2() {
    $('#stockoutdiv').css('display', 'block');
    $('#stockmanagediv').css('display', 'none')
 };
-
+/*END*/
 
 
 $(document).ready(function() {
+   /*Bar Chart START*/
    var name = [];
    var stock = [];
-   /*Bar Chart START*/
    $.ajax({
       type: 'POST',
       datatype: 'json',
@@ -164,6 +165,8 @@ $(document).ready(function() {
         });
    });
    /*Pie Chart END*/
+   
+   /* 제품 등록시 image 추가 script */
    $(".imagebtn").on('click', function() {
       $('#imagefile').click();
       $('#imagefile').change(function() {
@@ -171,18 +174,23 @@ $(document).ready(function() {
          $('.imagename').attr('value', imgfilename);
       });
    });
+   /*END*/
+   
+   /** 제품 목록 DataTables Library */
    $('#productlist').DataTable({
       deferRender: true,
       scrollY: 360,
       scrollCollapse: true
    });
+   
+   /**제품 상세 거래내역 DataTables Library */
    $('#productdetaillist').DataTable({
       aaSorting: [],
       deferRender: true,
       scrollY: 360,
       scrollCollapse: true
    });
-
+   /**제품 목록에서 제품 삭제 버튼 Script(Ajax 사용) */
    $(document).on('click', '#productlist td #productdeletebtn', function() {
       var row = $(this).closest('tr'); // 현재 선택된 tr을 row로 보겠다
       var td = row.children();

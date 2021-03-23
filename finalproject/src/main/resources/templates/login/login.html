@@ -49,11 +49,11 @@
          </div>
          <div class="content" >
             <div class = "fluid ui labeled input" id ="findmodal" >
-               <input type = "text" name = "name" id ="name"placeholder = "이름을 입력하세요" required>
+               <input type = "text"id ="name"placeholder = "이름을 입력하세요" required>
             </div>
             <div class = "fluid ui labeled input" id ="findmodal">
-               <input type = "text" name = "birth" class = "birth" id ="birth" maxlength="6" placeholder="960206" required>-
-               <input type = "text" name = "gender" id ="gender" maxlength="1" placeholder="1"  class = "Signup findgender" required>
+               <input type = "text" class = "birth" id ="birth" maxlength="6" placeholder="960206" required>-
+               <input type = "text" id ="gender" maxlength="1" placeholder="1"  class = "Signup findgender" required>
             </div>
          </div>
          <div class="actions">
@@ -83,38 +83,18 @@
          </div>
       </div>
       
-      <!--       ===============================비밀번호찾기 두번째 모달================================== -->
-      <div class="ui mini modal fourth" >
-         <div class="ui icon header">
-            <i class="archive icon"></i> 비밀번호
-         </div>
-         <div class="content" id ="idfinddes">
-            <div class = "description 2">
-            </div>
-         </div>
-         <div class="actions">
-         	<div id = "newPWcreate" class="ui green ok inverted button">
-               <i class="checkmark icon" ></i>확인
-            </div>
-            <div class="ui red cancel inverted button">
-               <i class="remove icon"></i>취소
-            </div>
-         </div>
-      </div>
-      
       <!--       ================================비밀번호찾기 모달================================= -->
-      
       <div class="ui basic modal third">
          <div class="ui icon header">
             <i class="archive icon"></i> 비밀번호찾기
          </div>
          <div class="content" >
          <div class = "fluid ui labeled input" id ="findmodal" >
-         <input  type = "email" name = "email" id ="PWemail"placeholder = "이메일을 입력하세요" required>
+         <input  type = "email" id ="PWemail"placeholder = "이메일을 입력하세요" required>
          </div>
             <div class = "fluid ui labeled input" id ="findmodal">
-               <input type = "text" name = "birth"  id ="PWbirth" maxlength="6" placeholder="960206" required>-
-               <input type = "text" name = "gender" id ="PWgender" maxlength="1" placeholder="1"  class = "Signup1 findgender" required>
+               <input type = "text"  id ="PWbirth" maxlength="6" placeholder="960206" required>-
+               <input type = "text" id ="PWgender" maxlength="1" placeholder="1"  class = "Signup1 findgender" required>
             </div>
          </div>
          <div class="actions">
@@ -126,6 +106,44 @@
             </div>
          </div>
       </div>
-   
+      
+      
+      <!--       ===============================비밀번호찾기 두번째 모달================================== -->
+      <div class="ui modal fourth" >
+         <div class="ui icon header">
+            <i class="archive icon"></i> 비밀번호
+         </div>
+         <div class="content" id ="idfinddes">
+            <div class = "description 2" style="text-align:center;width:850px">
+               <div class = "ui labeled input" id="newPwdInsert1" style="display:none;">
+               <div class = "ui label">
+               <label style="width:30%">NEW 패스워드</label>
+               </div>
+               <input type = "password" class= "newpassword" id ="newpassword" style="width:40%"
+                placeholder = "비밀번호를 입력하세요" required>
+            </div>
+            <div class = "ui labeled input" id="newPwdInsert2" style="display:none;">
+               <div class = "ui label">
+               <label style="width:30%">재입력</label>
+               </div>
+               <input type = "password"  id ="newpasswordchk"style="width:35%" 
+                placeholder = "비밀번호를 다시 입력하시오" required>
+               <i class="green checkmark icon" id="newPwsame" style="display:none"></i>
+               <i class="red cancel icon" id="newPwdifferent" style="display:none"></i>
+            </div>
+            </div>
+         </div>
+         <div class="actions">
+            <div id = "newPWcreate" class="ui green ok inverted button" style="display:block">
+               <i class="checkmark icon" ></i>확인
+            </div>
+            <div id = "newPWconfrim" class="ui green ok inverted button" style="display:none">
+               <i class="checkmark icon" ></i>확인
+            </div>
+            <div class="ui red cancel inverted button">
+               <i class="remove icon"></i>취소
+            </div>
+         </div>
+      </div>
 </body>
 </html>

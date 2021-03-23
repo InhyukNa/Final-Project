@@ -3,21 +3,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.project.selsal.dao.MemberDao">
+	<select id = "orderselectOne" resultType="com.project.selsal.entities.Orders">
+		select * from orders where ordernum=#{ordernum};
+	</select>
 
-	<select id="selectOne" resultType="com.project.selsal.entities.Member">
-		select * from member where email = #{email}
+   <select id="selectOne" resultType="com.project.selsal.entities.Member">
+      select * from member where email = #{email}
     </select>
     
-	<insert id="insertRow">
+    <delete id ="deleteorders">
+    	delete from orders where ordernum = #{ordernum}
+    </delete>
+    
+    <select id = "couponcount" resultType= "Integer">
+    	select count(*) from orders where email =#{email} and orderconfirm=1;
+    </select>
+    
+   <insert id="insertRow">
       insert into member (email,name,password,phone1,phone2,phone3,zipcode,address,detailaddress,totalorder,point,birth,gender)
       values(#{email},#{name},#{password},#{phone1},#{phone2},#{phone3},#{zipcode},#{address},#{detailaddress},#{totalorder},#{point},#{birth},#{gender})
    </insert>
+   <select id ="ordernumselect" resultType = "com.project.selsal.entities.Orderdetail">
+	 select * from orderdetail where ordernum=#{ordernum}
+	</select>
    
-	<select id="selectAll" resultType="com.project.selsal.entities.Member">
+   <select id="selectAll" resultType="com.project.selsal.entities.Member">
       select * from member
    </select>
    
-   	<select id="selectAllcount" resultType="Integer">
+      <select id="selectAllcount" resultType="Integer">
       select count(*) from member
    </select>
    
@@ -40,15 +54,15 @@
    </update>
    
    <select id="selectIdFind" resultType="string">
-   		select email from member where gender = #{gender} and birth = #{birth} and name = #{name}
+         select email from member where gender = #{gender} and birth = #{birth} and name = #{name}
    </select>
    
    <select id="selectPWFind" resultType="Integer">
-   		select count(email) from member where gender = #{gender} and birth = #{birth} and email = #{email}
+         select count(email) from member where gender = #{gender} and birth = #{birth} and email = #{email}
    </select>
    
    <update id="updatePW">
-        update member set password=#{newPW} where gender = #{gender} and birth = #{birth} and email = #{email}
+        update member set password=#{newPW} where email = #{email}
    </update>
    
    <select id = "orderselectAll" resultType="com.project.selsal.entities.Orders">

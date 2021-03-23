@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:th="http://www.thymeleaf.org" th:lang="${session.lang}"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorator="layout/layout.html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>재료 소개</title>
+</head>
+
+<body layout:fragment="content">
+   <form id="orderinsertform" name="formname">
+      <div class="ui grid main">
+         <div class="ui grid sixteen wide column">
+            <p style="text-align:center;font-size:20px;font-family:'돋움';font-weight:bold">재료 소개
+         </div>
+         
+         <div class = "ui grid two wide column"></div>
+         
+         <div class = "ui grid thirteen wide column memin" align="center">
+         	<input type="hidden" name="ordernum" id="ordernum" th:value="${ordernum}">
+			<div th:each="product: ${products}" style="float:left">
+				<div>
+					<div th:id="|product${product.code}|">
+						<div th:id="|moreDetail${product.code}|" style="display:in-line; width:300px; height:300px">
+							<img th:src="${product.image}" style="position: relative; width:300px;height:250px;top:0;">
+							<div class="ui label" style="width:300px;height:50px;font-size:18px">
+								<input th:id="|procode${product.code}|" type="hidden" th:value="${product.code}">
+								<span th:value="${product.code}" th:text="${product.name}"></span><br>
+								<span th:text="|${product.saleprice} 원|"></span><br>		
+							</div>
+						</div>
+						<div style="background-color: #72BB2D; position:absolute; width:300px; height:300px;top:0;margin-top:13px; display:none" 
+						th:id="|afterproduct${product.code}|">
+							<br><br><br><br><br><br>
+							<Strong th:text="${product.name}" style="font-size:30px"></Strong><br><br>
+							<Strong th:text="|${product.calorie} kcal|" style="font-size:20px"></Strong><br><br>
+							<p th:text="${product.productexp}"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+         </div>
+         
+         <div class = "ui grid two wide column"></div>
+      </div>
+   </form>
+</body>
+</html>
+

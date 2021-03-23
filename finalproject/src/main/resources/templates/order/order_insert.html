@@ -25,7 +25,7 @@
 					<div style="float:left">
 						<img th:src="${product.image}" style="width:80px;height:80px;">
 					</div>
-					<div style="float:left">
+					<div style="float:right;">
 						<input  th:id="|procode${product.code}|" type="hidden" th:value="${product.code}">
 						<span th:value="${product.code}" th:text="${product.name}"></span><br>
 						<span th:text="|${product.calorie} kcal|"></span><br>
@@ -42,7 +42,7 @@
 				</div>
 			</div>
 			            
-            <div class = "ui grid sixteen wide column memin" align="center">
+            <div class = "ui grid sixteen wide column memin">
             <button class="ui inverted green button" type ="button" id="orderconfirm">등록하기</button>
             <button class="ui inverted red button" type="button" id="ordercancle">취소</button>
             
