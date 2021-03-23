@@ -304,7 +304,8 @@ $(document).ready(function() {
                
                }
                else{
-                     alert('주문이 취소되었습니당')
+                    alert('주문이 취소되었습니당')
+					document.location.href = "membermypage";
                }
             
             },

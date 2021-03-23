@@ -19,20 +19,47 @@
       	delete from productdetail where code=#{code}
    	</delete>
 	
-	<insert id="insertRow1">
+	<select id="meatMaxCode" resultType="Integer">
+		SELECT ifnull(MAX(code)+1,101) FROM product where code between 101 and 199 
+	</select>
+	
+	<select id="vegetableMaxCode" resultType="Integer">
+		SELECT ifnull(MAX(code)+1,201) FROM product where code between 201 and 299
+	</select>
+	
+	<select id="sauceMaxCode" resultType="Integer">
+		SELECT ifnull(MAX(code)+1,301) FROM product where code between 301 and 399
+	</select>
+	
+	<insert id="insertRow">
 		insert product(
 		code,name,buyprice,saleprice,stock,image,calorie,productexp
 		)values(
-		(SELECT ifnull(MAX(code)+1,1 ) FROM product product_alias),
-		#{name},#{buyprice},#{saleprice},0,#{image},#{calorie},#{productexp}
+		#{code},#{name},#{buyprice},#{saleprice},0,#{image},#{calorie},#{productexp}
 		)
 	</insert>
 	
-	<insert id="insertRow2">
+	<insert id="insertRowMeat">
 		insert productdetail(
 		seq,code,name,transdate
 		)values(
-		1,(select MAX(code) from product),
+		1,(select MAX(code) from product where code between 101 and 199),
+		#{name},now()
+		)
+	</insert>
+	<insert id="insertRowVegetable">
+		insert productdetail(
+		seq,code,name,transdate
+		)values(
+		1,(select MAX(code) from product where code between 201 and 299),
+		#{name},now()
+		)
+	</insert>
+	<insert id="insertRowSauce">
+		insert productdetail(
+		seq,code,name,transdate
+		)values(
+		1,(select MAX(code) from product where code between 301 and 399),
 		#{name},now()
 		)
 	</insert>
@@ -53,8 +80,4 @@
 		#{code},#{name},20-(select stock from product B where code=#{code}),20,now()
 		)
 	</insert>
-	<select id="productChartData" resultType="com.project.selsal.entities.Product">
-		select name,stock from product
-	</select>
-	
 </mapper>

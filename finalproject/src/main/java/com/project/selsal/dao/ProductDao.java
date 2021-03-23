@@ -19,10 +19,14 @@ public interface ProductDao {
 	public int deleteAjax2(String code);
 	
 	//등록 재고 product에 넣기
-	public int insertRow1(Product product);
+	public int insertRow(Product product);
 	
 	//등록 재고 productdetail에 수량 0으로 넣기
-	public int insertRow2(Product product);
+	public int insertRowMeat(Product product);
+	
+	public int insertRowVegetable(Product product);
+	
+	public int insertRowSauce(Product product);
 	
 	//재고 거래내역 상세보기
 	public ArrayList<Product> selectdetailAll(String code) throws Exception;
@@ -32,5 +36,13 @@ public interface ProductDao {
 	
 	// productdetail에 최근 거래내역 넣기
 	public int Stockadd2(HashMap hashmap);
+	
+	// 재고 등록시 분류별 max code 가져오기
+	public int meatMaxCode();
+	
+	public int vegetableMaxCode();
+	
+	public int sauceMaxCode();
+	
 
 }

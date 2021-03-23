@@ -14,6 +14,7 @@ public class Product {
 	private String productexp;
 	private int calorie;
 	private int orderstock;
+	private int product_csf;
 	
 	public String getCode() {
 		return code;
@@ -74,6 +75,12 @@ public class Product {
 	}
 	public void setOrderstock(int orderstock) {
 		this.orderstock = orderstock;
+	}
+	public int getProduct_csf() {
+		return product_csf;
+	}
+	public void setProduct_csf(int product_csf) {
+		this.product_csf = product_csf;
 	}
 
 	
