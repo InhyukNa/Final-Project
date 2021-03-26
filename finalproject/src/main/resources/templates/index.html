@@ -6,17 +6,41 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title data-th-text="title"></title>
+<script src="/js/chart.js"></script>
 </head>
 <body>
 	<form layout:fragment="content">
-		<div class="ui grid">
-			<div class="ui grid sixteen wide column">
+		<div class="ui grid">	
+			<div class="ui grid eleven wide column">
 				<a href="membermypage" style="cursor:pointer">
 					<img class="slide1" src="../images/salad1.png" style="width:100%; height:500px">
 				</a>
 				<a href="memberLogin" style="cursor:pointer">
 					<img class="slide1" src="../images/salad2.png" style="width:100%; height:500px">
 				</a>
+			</div>
+			<div class="ui grid five wide column">
+				<div>
+					<div class="ui fluid wide column" style="width:100%;">
+						<button id="indexChartbtn1" type="button" style="width:29%;" value="100" class="ui white basic button">고기류</button>
+						<button id="indexChartbtn2" type="button" style="width:29%;" value="200" class="ui white basic button">채소류</button>
+						<button id="indexChartbtn3" type="button" style="width:29%;" value="300" class="ui white basic button">소스류</button>
+					</div>
+					<div class="ui fluid wide column" style="width:100%;" >
+						<div style="width:430px;height:270px;">
+							<img src="/images/male_graph.PNG" id="indexMaleChart0" style="display:block;border:black solid 1px;width:430px;height:270px;">
+							<canvas id="indexMaleChart1" style="display:none;border:black solid 1px;width:430px;height:270px;"></canvas>
+							<canvas id="indexMaleChart2" style="display:none;border:black solid 1px;width:430px;height:270px;"></canvas>
+							<canvas id="indexMaleChart3" style="display:none;border:black solid 1px;width:430px;height:270px;"></canvas>
+						</div>
+						<div style="width:430px;height:270px;margin-top:20px">
+							<img src="/images/female_graph.PNG" id="indexfeMaleChart0" style="display:block;border:black solid 1px;width:430px;height:270px;">
+							<canvas id="indexfeMaleChart1" style="display:none;border:black solid 1px;width:430px;height:270px;"></canvas>
+							<canvas id="indexfeMaleChart2" style="display:none;border:black solid 1px;width:430px;height:270px;"></canvas>
+							<canvas id="indexfeMaleChart3" style="display:none;border:black solid 1px;width:430px;height:270px;"></canvas>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</form>

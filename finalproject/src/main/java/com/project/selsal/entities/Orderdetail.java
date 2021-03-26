@@ -11,9 +11,6 @@ public class Orderdetail {
 	private int qty;
 	private int proprice;
 	
-	
-	
-	
 	public int getOrdernum() {
 		return ordernum;
 	}

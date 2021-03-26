@@ -3,8 +3,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.project.selsal.dao.MemberDao">
+	<select id="findListMember"
+		resultType="com.project.selsal.entities.Member">
+		select * from member where email like CONCAT('%',#{memfind},'%')
+		or name like CONCAT('%',#{memfind},'%')
+		order by name limit #{memstartrow}, #{memendrow};
+	</select>
 	<select id = "orderselectOne" resultType="com.project.selsal.entities.Orders">
 		select * from orders where ordernum=#{ordernum};
+	</select>
+	
+	<select id = "orderCart" resultType="com.project.selsal.entities.Orderdetail">
+		select sum(qty) as qty,proprice,proname from orderdetail where ordernum = #{ordernum} group by proname,proprice
+	</select>
+	
+	<select id = "memberlistfinder" resultType = "Integer">
+		select count(*) from member where email like CONCAT('%',#{memfind},'%')
+		or name like CONCAT('%',#{memfind},'%') order by name asc limit #{memstartrow},#{memendrow}
+	</select>
+	
+	<select id = "pointsum" resultType = "com.project.selsal.entities.Orders">
+		select sum(totprice) from orders where orderconfirm = '1' and email = #{email}
 	</select>
 
    <select id="selectOne" resultType="com.project.selsal.entities.Member">

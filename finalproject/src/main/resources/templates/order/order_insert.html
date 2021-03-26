@@ -6,8 +6,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>주문 페이지</title>
+<script type="text/javascript">
+   $('document').ready(function(){
+      $('.memin').trigger('click');
+   });
+</script>
 </head>
-
 <body layout:fragment="content">
    <form id="orderinsertform" name="formname">
       <div class="ui grid main" id ="orderinserttoptext">
@@ -15,51 +19,46 @@
             <p id = "orderinsertptag" >재료 목록
          </div>
        
-         <div class = "memin">
-         	<input type="hidden" name="ordernum" id="ordernum" th:value="${ordernum}">
-			<div th:each="product: ${products}" style="float:left">
-				<div id = "mainbody">
-					<div style="float:bottom" id = "backgroundcolorimg">
-						<img  th:src="${product.image}" id = "orderimagestyle">
-					</div>
-					<div id = "menutext" >
-						<input  th:id="|procode${product.code}|" type="hidden" th:value="${product.code}">
-						<span id = "menutext1" th:value="${product.code}" th:text="${product.name}" ></span><br>
-						<span id = "menutext2" th:text="|${product.calorie} kcal|"></span><br>
-						<span  id = "menutext2" th:text="${product.productexp}"></span><br>
-						<span id = "menutext3" th:text="|${product.saleprice} 원|"></span><br>
-						<select th:if="${product.stock}!=0" th:id="|qty${product.code}|" class="ui dropdown">
-							<option value="1">1</option>
-							<option value="2">2</option>
-						</select >
-						<button th:if="${product.stock}!=0" class= "ui green basic button btn-cartin-act" th:data-num="${product.code}" type="button">담기</button>				
-						<button th:if="${product.stock}!=0"  th:id="|cartout${product.code}|" class= "ui red basic button" type="button">장바구니 삭제</button>
-						<button th:if="${product.stock}==0" class="ui black basis button" disabled="disabled" style="width:300px">매진</button>				
-					</div>
-				</div>
-			</div>
-			<table>
-				<tbody>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
-			<div class = "orderinsertbtn">
-	            <button class="" type="button" id="ordercancle">취소</button>
-	            <button class="" type ="button" id="orderconfirm">등록하기</button>
-	       </div>
+         <div class = "memin" onclick="pageOut()">
+            <input type="hidden" name="ordernum" id="ordernum" th:value="${ordernum}">
+         <div th:each="product: ${products}" style="float:left">
+            <div id = "mainbody">
+               <div style="float:bottom" id = "backgroundcolorimg">
+                  <img  th:src="${product.image}" id = "orderimagestyle">
+               </div>
+               <div id = "menutext" >
+                  <input  th:id="|procode${product.code}|" type="hidden" th:value="${product.code}">
+                  <span id = "menutext1" th:value="${product.code}" th:text="${product.name}" ></span><br>
+                  <span id = "menutext2" th:text="|${product.calorie} kcal|"></span><br>
+                  <span  id = "menutext2" th:text="${product.productexp}"></span><br>
+                  <span id = "menutext3" th:text="|${product.saleprice} 원|"></span><br>
+                  <select th:if="${product.stock}!=0" th:id="|qty${product.code}|" class="ui dropdown">
+                     <option value="1">1</option>
+                     <option value="2">2</option>
+                  </select >
+                  <button th:if="${product.stock}!=0" class= "ui green basic button btn-cartin-act" th:data-num="${product.code}" type="button" id = "ordersadds">담기</button>            
+                  <button th:if="${product.stock}!=0"  th:id="|cartout${product.code}|" class= "ui red basic button" type="button">장바구니 삭제</button>
+                  <button th:if="${product.stock}==0" class="ui black basis button" disabled="disabled" style="width:300px">매진</button>            
+               </div>
+            </div>
+         </div>
+         <table id = "tableid" style = "position: fixed; right:50px; bottom:10px; background-color :#999; width:400px;">
+            <tbody>
+               <tr th:each = "cart:${cart}">
+                  <td th:text = "${cart.proname}"></td>
+                  <td th:text = "${cart.qty}"></td>
+                  <td th:text = "${cart.proprice}"></td>
+               </tr>
+               <tr>
+                  <td class = "orderinsertbtn"colspan="3">
+                        <button class="" type="button" id="ordercancle">취소</button>
+                        <button class="" type ="button" id="orderconfirm" >등록하기</button>
+                     </td>
+               </tr>
+            </tbody>
+         </table>
       </div>
       </div>
    </form>
 </body>
 </html>
-

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project.selsal.dao.MemberDao;
 import com.project.selsal.dao.OrdersDao;
 import com.project.selsal.dao.ProductDao;
 import com.project.selsal.entities.Member;
@@ -53,18 +54,42 @@ public class OrderController {
    @RequestMapping(value = "/Order", method = RequestMethod.GET)
    public String Order(Locale locale, Model model) throws Exception {
       ProductDao productDao = sqlSession.getMapper(ProductDao.class);
+      MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
       ArrayList<Product> products = productDao.selectAll();
       model.addAttribute("products",products);
       OrdersDao orderDao = sqlSession.getMapper(OrdersDao.class);
       int orderNum = orderDao.maxOrderNum();
       model.addAttribute("ordernum",orderNum);
+      ArrayList<Orderdetail> cart = memberDao.orderCart(orderNum);
+      model.addAttribute("cart",cart);
+      return "order/order_insert";
+   }
+   
+   @RequestMapping(value = "/orderpageout", method = RequestMethod.POST)
+   @ResponseBody
+   public String orderpageout(@RequestParam int ordernum) {
+	   OrdersDao orderDao = sqlSession.getMapper(OrdersDao.class);
+	   orderDao.deleteOrderDetail(ordernum);
+      return "";
+   }
+   @RequestMapping(value = "/orderReloading", method = RequestMethod.GET)
+   public String orderReloading(Locale locale, Model model,@RequestParam int ordernum) throws Exception {
+      ProductDao productDao = sqlSession.getMapper(ProductDao.class);
+      MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+      ArrayList<Product> products = productDao.selectAll();
+      model.addAttribute("products",products);
+      
+      model.addAttribute("ordernum",ordernum);
+      ArrayList<Orderdetail> cart = memberDao.orderCart(ordernum);
+      model.addAttribute("cart",cart);
+      
       return "order/order_insert";
    }
    
    //온라인주문 선택한 재료 담기 ajax연동
    @RequestMapping(value = "/orderInsert", method = RequestMethod.POST)
    @ResponseBody
-   public String orderInsert(@RequestParam int procode,@RequestParam int qty,@RequestParam int ordernum) {
+   public String orderInsert(Model model,@RequestParam int procode,@RequestParam int qty,@RequestParam int ordernum) {
       OrdersDao orderDao = sqlSession.getMapper(OrdersDao.class);
       orderdetail.setOrdernum(ordernum);
       orderdetail.setQty(qty);

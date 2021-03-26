@@ -5,16 +5,20 @@
 <mapper namespace="com.project.selsal.dao.OrdersDao">
 	
 	<insert id="insertRow">
-		insert orderdetail(
-		ordernum,seq,procode,proname,proprice,qty
-		)values(
-		#{ordernum},
-		(select ifnull(max(seq)+1,1) from orderdetail A where ordernum=#{ordernum})
-		,#{procode},
-		(select name from product where code = #{procode}),
-		(select saleprice from product where code = #{procode})*#{qty},#{qty}		
-		)
-	</insert>
+      insert orderdetail(
+      ordernum,seq,procode,proname,proprice,qty
+      )values(
+      #{ordernum},
+      (select ifnull(max(seq)+1,1) from orderdetail A where ordernum=#{ordernum})
+      ,#{procode},
+      (select name from product where code = #{procode}),
+      (select saleprice from product where code = #{procode})*#{qty},#{qty}      
+      )
+      ON DUPLICATE KEY UPDATE
+      proprice = proprice+(select saleprice from product where code = #{procode})*#{qty},
+      qty = qty+#{qty}
+      
+   </insert>
 	
 	<select id="selectAddress" resultType="com.project.selsal.entities.Member">
 		select zipcode,address,detailaddress from member where email = #{email};

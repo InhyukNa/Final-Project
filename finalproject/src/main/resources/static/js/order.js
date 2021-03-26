@@ -1,3 +1,26 @@
+var checkUnload = true;
+function pageOut() {
+   checkUnload = true;
+    $(window).on("beforeunload", function () {
+   if(checkUnload){
+    var ordernum = $('#ordernum').val();
+   $.ajax({
+            type: 'POST',
+            datatype: 'json',
+             data:{ordernum:ordernum},
+            url: 'orderpageout',
+            success: function(data) {
+            alert('주문중인 정보는 삭제됩니다.');
+
+         },
+            error: function(xhr, status, error) {
+               alert('ajax error : ' + xhr.status + error);
+            }
+      });
+   
+}
+    });
+}
 
 $(document).ready(function() {
    /** 관리자 주문 들어온 리스트에서 주문 접수처리하는 Script */
@@ -52,7 +75,6 @@ $(document).ready(function() {
             success: function(data) {
             if(data=="n"){
                   alert("권한이 없습니다. 로그인을 하십시오.")
-               document.location.href = "memberLogin";
             }else{
                document.location.href = "Order";
             }
@@ -76,12 +98,13 @@ $(document).ready(function() {
          url: 'orderInsert',
          success: function(data) {
             alert("담기가 완료되었습니다.");
+         checkUnload = false;
+         document.location.href = "orderReloading?ordernum="+ordernum;
          },
          error: function(xhr, status, error) {
             alert('ajax error : ' + xhr.status + error);
          }
       });
-
    });
    
    /** 온라인 주문 페이지 주문 접수 */
@@ -94,6 +117,7 @@ $(document).ready(function() {
             url: 'orderConfirm',
             success: function(data) {
                alert("주문이 완료되었습니다.");
+            checkUnload = false;
             document.location.href = "membermypage";
             },
             error: function(xhr, status, error) {
@@ -127,19 +151,18 @@ $(document).ready(function() {
       scrollY: 360,
       scrollCollapse: true
    });
-   
-   
-   $('.detailproduct').on('mouseover',function(){
+     $('.detailproduct').on('mouseover',function(){
       var num = $(this).attr('data-num')
       $('#proimage'+num).css('display','none');
       $('#afterproduct'+num).css('display','block');
-	  $('#afterproduct'+num).css('opacity','100');
+     $('#afterproduct'+num).css('opacity','100');
    });
    
    $('.detailproduct').on('mouseleave',function(){
       var num = $(this).attr('data-num')
-	  $('#proimage'+num).css('display','block');
+     $('#proimage'+num).css('display','block');
       $('#afterproduct'+num).css('display','none');
       $('#afterproduct'+num).css('opacity','0');
    });
+
 })

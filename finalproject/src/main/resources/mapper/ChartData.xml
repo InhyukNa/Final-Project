@@ -13,7 +13,19 @@
 		where MONTH(transdate) = (select MONTH(now()) from dual) group by name 
 	</select>
 	
-	<select id="GendersaleChartData" resultType="com.project.selsal.entities.ChartData">
+	<select id="malesaleChartData" resultType="com.project.selsal.entities.ChartData">
+		select proname as salename,sum(qty) as salestock from orderdetail as a 
+		where ordernum =any(select ordernum from orders as b 
+		where email =any(select email from member as c where gender = 1 or gender = 3) and month(date) = month(now())) 
+		and procode between #{clscode} and (#{clscode}+99) group by proname order by sum(qty) desc limit 3
+	</select>
+	
+	<select id="femalesaleChartData" resultType="com.project.selsal.entities.ChartData">
+		select proname as salename,sum(qty) as salestock from orderdetail as a 
+		where ordernum =any(select ordernum from orders as b where email =
+		any(select email from member as c where gender = 2 or gender = 4) and month(date) = month(now()))
+		 and procode between #{clscode} and (#{clscode}+99) group by proname order by sum(qty) desc limit 3
+	
 	</select>
 	
 </mapper>

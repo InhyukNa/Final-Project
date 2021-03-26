@@ -91,6 +91,7 @@ img {vertical-align: middle;}
 .memin{
 	border-top:1px solid #999999;
 	width:100%;
+	margin-bottom:20%;
 }
 #backgroundcolorimg{
 	border:2px solid #999999;
@@ -138,12 +139,12 @@ img {vertical-align: middle;}
 	left:50px;
 }
 .orderinsertbtn{
-	margin:0 0 100px 0;
+	
 	background-color: #999999;
 	
 }
 #orderconfirm:hover{
-	width: 15%;
+	width: 50%;
 	border: 2px solid #424242;
     background: #ffffff;
     color: #424242;
@@ -153,10 +154,9 @@ img {vertical-align: middle;}
     cursor:pointer;
 }
 #orderconfirm{
-	margin:15px 0 150px 0;
 	transition: background 0.3s;
 	float: right;
-	width: 15%;
+	width: 50%;
 	border: 2px solid #424242;
     background: #434343;
     color: #fff;
@@ -170,10 +170,8 @@ img {vertical-align: middle;}
 	color:#000000;
 }
 #ordercancle{
-	margin-top:15px;
-	margin-right:100px;
 	float: right;
-	width: 15%;
+	width: 50%;
 	border: 2px solid #999999;
     background: #fff;
     color: #6f6f6f;
@@ -186,3 +184,5 @@ img {vertical-align: middle;}
 #orderinserttoptext{
 	margin:0 0 0 0;
 }
+
+
