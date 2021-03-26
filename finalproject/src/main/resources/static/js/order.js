@@ -52,6 +52,7 @@ $(document).ready(function() {
             success: function(data) {
             if(data=="n"){
                   alert("권한이 없습니다. 로그인을 하십시오.")
+               document.location.href = "memberLogin";
             }else{
                document.location.href = "Order";
             }
@@ -126,47 +127,19 @@ $(document).ready(function() {
       scrollY: 360,
       scrollCollapse: true
    });
-   $('#product1').on('mouseover',function(){
-      $('#afterproduct1').css('display','block');
-      $('#afterproduct1').css('opacity','100');
+   
+   
+   $('.detailproduct').on('mouseover',function(){
+      var num = $(this).attr('data-num')
+      $('#proimage'+num).css('display','none');
+      $('#afterproduct'+num).css('display','block');
+	  $('#afterproduct'+num).css('opacity','100');
    });
    
-     $('#product1').on('mouseleave',function(){
-         $('#afterproduct1').css('display','none');
-         $('#afterproduct1').css('opacity','0');
-      });
-   
-      $('#product2').on('mouseover',function(){
-         $('#afterproduct2').css('display','block');
-         $('#afterproduct2').css('opacity','100');
-      });
-   
-      $('#product2').on('mouseleave',function(){
-         $('#afterproduct2').css('display','none');
-         $('#afterproduct2').css('opacity','0');
-      });
-   
-      $('#product3').on('mouseover',function(){
-         $('#afterproduct3').css('display','block');
-         $('#afterproduct3').css('opacity','100');
-      });
-   
-     $('#product3').on('mouseleave',function(){
-         $('#afterproduct3').css('display','none');
-         $('#afterproduct3').css('opacity','0');
-      });
-   
-      $('#product4').on('mouseover',function(){
-         $('#afterproduct4').css('display','block');
-         $('#afterproduct4').css('opacity','100');
-      });
-   
-      $('#product4').on('mouseleave',function(){
-         $('#afterproduct4').css('display','none');
-         $('#afterproduct4').css('opacity','0');
-      });
-   
-
-
-
+   $('.detailproduct').on('mouseleave',function(){
+      var num = $(this).attr('data-num')
+	  $('#proimage'+num).css('display','block');
+      $('#afterproduct'+num).css('display','none');
+      $('#afterproduct'+num).css('opacity','0');
+   });
 })

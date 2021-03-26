@@ -169,68 +169,6 @@ $(document).ready(function() {
       });
    });
 
-   $('.passwordfinder').on('click', function() {
-      $('.ui.basic.modal.third').modal('show');
-      $('#PWfindclick').on('click', function() {
-         var email = $('#PWemail').val();
-         var gender = $('#PWgender').val();
-         var birth = $('#PWbirth').val();
-         $.ajax({
-            type: 'POST',
-            data: { email: email, gender: gender, birth: birth },
-            datatype: 'json',
-            url: 'PWFindUP',
-            success: function(data) {
-               if (data == "n") {
-                  $('.ui.basic.modal.third').modal('hide');
-                  $('.description.2').text("가입되지 않은 정보입니다.")
-                  $('.ui.modal.fourth').modal('show');
-                  $('#newPWcreate').on('click', function() {
-                     $('#PWemail').val("");
-                     $('#PWgender').val("");
-                     $('#PWbirth').val("");
-                     $('.ui.basic.modal.third').modal('show');
-                  });
-               } else {
-                  $('.ui.basic.modal.third').modal('hide');
-                  $('#newPwdInsert1').css('display', 'block')
-                  $('#newPwdInsert2').css('display', 'block')
-                  $('.ui.modal.fourth').modal('show');
-                  var newPwd = $('#newpassword').val();
-                  $('#newPWcreate').on('click', function() {
-                     if(!newPwd)
-                        alert("잠시만 기다려주세요.");
-                     else{
-                        $('.ui.modal.fourth').modal('hide');
-                        $.ajax({
-                           type: 'POST',
-                           data: { newPwd: newPwd, email: email },
-                           datatype: 'json',
-                           url: 'PwdUpdate',
-                           success: function(data) {
-                              $('.description.2').text("성공적으로 변경되었습니다.")
-                              $('.ui.modal.fourth').modal('show');
-                              $('#newPWcreate').css("display","none")
-                              $('#newPWconfrim').css("display","block")
-                              $('#newPWconfrim').on('click', function() {
-                                 document.location.href = "memberLogin";
-                              });
-                           },
-                           error: function(xhr, status, error) {
-                              alert('ajax error : ' + xhr.status + error);
-                           }
-                        });
-                     }
-                  });
-               }
-            },
-            error: function(xhr, status, error) {
-               alert('ajax error : ' + xhr.status + error);
-            }
-         });
-      });
-   });
-
    $('.Signup').keyup(function() {
       var gender = $('#gender').val();
       if (gender == 1 || gender == 3) {
@@ -299,17 +237,55 @@ $(document).ready(function() {
             datatype: 'json',
             url: 'deleteordersAjax',
             success: function(data) {
-               if(!data){
-                   alert('이미 취소된 주문입니다')
-               
-               }
-               else{
-                    alert('주문이 취소되었습니당')
-					document.location.href = "membermypage";
-               }
-            
+               alert('주문이 취소되었습니당');
+               document.location.href = "membermypage";
             },
             error: function(xhr, status, error) {
+               alert('ajax error : ' + xhr.status + error);
+            }
+      });
+   });
+
+   $('#findPWclick').on('click',function(){
+      var email = $('#PWemail').val();
+      var gender = $('#PWgender').val();
+      var birth = $('#PWbirth').val();
+      $.ajax({
+         type: 'POST',
+            data: { email: email, gender: gender, birth: birth },
+            datatype: 'json',
+            url: 'passwordFindUP',
+            success: function(data){
+            if(data=="y"){
+               document.location.href="passwordChange?email="+email;
+            }else{
+               alert("일치하는 정보가 없습니다");
+            }
+         },
+         error: function(xhr, status, error) {
+               alert('ajax error : ' + xhr.status + error);
+            }
+      });
+   });
+   
+   $('#passwordChangeClick').on('click',function(){
+      var email = $('#email').val();
+      var password = $('#newpassword').val();
+      $.ajax({
+         type: 'POST',
+            data: {password:password, email:email},
+            datatype: 'json',
+            url: 'passwordChangeUP',
+            success: function(data){
+            if(data=="y"){
+               alert("변경되었습니다");
+               window.close();
+            }else{
+               alert("변경되지 않았습니다");
+               window.close();
+            }
+         },
+         error: function(xhr, status, error) {
                alert('ajax error : ' + xhr.status + error);
             }
       });

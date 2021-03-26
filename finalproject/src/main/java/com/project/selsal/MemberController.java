@@ -3,15 +3,7 @@ package com.project.selsal;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
-import java.util.Properties;
 
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeUtility;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -259,28 +251,38 @@ public class MemberController {
       return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
    }
    
-   @RequestMapping(value = "/PWFindUP", method = RequestMethod.POST)
+   @RequestMapping(value = "/passwordFind", method = RequestMethod.GET)
+   public String passwordFind(Locale locale, Model model) {
+      return "login/password_find";
+   }
+   
+   @RequestMapping(value = "/passwordFindUP", method = RequestMethod.POST)
    @ResponseBody
-   public String PWFindUP(Model model,@RequestParam String email,@RequestParam int birth,@RequestParam int gender) throws Exception {
+   public String passwordFindUP(Model model,@RequestParam String email,@RequestParam int birth,@RequestParam int gender) throws Exception {
       MemberDao dao = sqlSession.getMapper(MemberDao.class);
       String result = "";
       int pwchk = dao.selectPWFind(email,gender,birth);
-      if(pwchk == 0 ) {
+      if(pwchk == 0) {
          result = "n";
       }else {
          result = "y";
-         
       }
       return result;
    }
    
-   @RequestMapping(value = "/PwdUpdate", method = RequestMethod.POST)
-   @ResponseBody
-   public String PwdUpdate(Model model,@RequestParam String email,@RequestParam String newPwd) throws Exception {
-      MemberDao dao = sqlSession.getMapper(MemberDao.class);
-       String encodepassword = hashPassword(newPwd);
-      dao.updatePW(encodepassword, email);
-      
-      return "";
+   @RequestMapping(value = "/passwordChange", method = RequestMethod.GET)
+   public String passwordChange(Locale locale, Model model,@RequestParam String email) {
+	   model.addAttribute("email",email);
+	   return "login/password_change";
    }
+   
+   @RequestMapping(value = "/passwordChangeUP", method = RequestMethod.POST)
+   @ResponseBody
+   public String passwordChangeUP(Model model,HttpSession session,@RequestParam String email,@RequestParam String password) throws IOException {
+	   MemberDao dao = sqlSession.getMapper(MemberDao.class);
+      String encodepassword = hashPassword(password);
+      dao.updatePW(encodepassword, email);
+      String result = "y";
+      return result;
+  }
 }

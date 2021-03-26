@@ -52,16 +52,18 @@ public class BoardController {
 	
 	public static String find;
 	
+	//게시글 작성 페이지
 	@RequestMapping(value = "/freeBoardWrite", method = RequestMethod.GET)
 	public String freeBoard(Locale locale, Model model) {
 		return "board/freeboard_write";
 	}
 	
+	//게시글 등록
 	@RequestMapping(value = "/freeBoardWriteSave", method = RequestMethod.POST)
 	public String freeboardWriteSave(Model model, @ModelAttribute Freeboard freeboard,
 			@RequestParam("f_attachfile") MultipartFile f_attachfile, HttpServletRequest request) throws Exception {
 		String filename = f_attachfile.getOriginalFilename();
-		String path = "F:/SPRINGBOOTPROJECT/finalproject/src/main/resources/static/uploadattaches/";
+		String path = "C:/Users/IT-5C/git/Final-Project/finalproject/src/main/resources/static/uploadattaches/";
 		String realpath = "/uploadattaches/";
 		if (!filename.equals("")) {
 			byte bytes[] = f_attachfile.getBytes();
@@ -85,6 +87,7 @@ public class BoardController {
 		return "redirect:freeBoardList";
 	}
 	
+	//게시글 목록
 	@RequestMapping(value = "/freeBoardList", method = RequestMethod.GET)
 	public String freeBoardList(Locale locale, Model model) throws Exception {
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
@@ -117,6 +120,7 @@ public class BoardController {
 		return "/board/freeboard_list";
 	}
 	
+	//게시글 인기순
 	@RequestMapping(value = "/freeBoardListPopular", method = RequestMethod.GET)
 	public String freeBoardListPopular(Locale locale, Model model) throws Exception {
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
@@ -149,6 +153,7 @@ public class BoardController {
 		return "/board/freeboard_list2";
 	}
 	
+	//게시글 본문
 	@RequestMapping(value = "/freeBoardDetail", method = RequestMethod.GET)
 	public String freeBoardDetail(@RequestParam int f_seq, Model model, HttpSession session) throws Exception {
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
@@ -254,6 +259,7 @@ public class BoardController {
 		return "board/freeboard_detail";
 	}
 	
+	//파일 다운로드
 	@RequestMapping(value = "/fileDownloadFreeBoard")
 	@ResponseBody
 	public void fileDownloadFreeBoard(@RequestParam String f_attach, HttpServletRequest request, HttpServletResponse response)
@@ -261,10 +267,10 @@ public class BoardController {
 
 		request.setCharacterEncoding("UTF-8");
 		File file = new File(
-				"F:/SPRINGBOOTPROJECT/finalproject/src/main/resources/static/"
+				"C:/Users/IT-5C/git/Final-Project/finalproject/src/main/resources/static/uploadattaches/"
 						+ f_attach);
 		String oriFileName = file.getName();
-		String filePath = "F:/SPRINGBOOTPROJECT/finalproject/src/main/resources/static/uploadattaches/";
+		String filePath = "C:/Users/IT-5C/git/Final-Project/finalproject/src/main/resources/static/uploadattaches/";
 		InputStream in = null;
 		OutputStream os = null;
 		File newfile = null;
@@ -313,6 +319,7 @@ public class BoardController {
 		os.close();
 	}
 	
+	//게시판 수정
 	@RequestMapping(value = "/freeBoardUpdateSave", method = RequestMethod.POST)
 	public String freeBoardUpdateSave(@ModelAttribute Freeboard freeboard) throws Exception {
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
@@ -320,6 +327,7 @@ public class BoardController {
 		return "redirect:freeBoardList";
 	}
 	
+	//게시판 삭제
 	@RequestMapping(value = "/freeBoardDelete", method = RequestMethod.GET)
 	public String freeBoardDelete(@RequestParam int f_seq) throws Exception {
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
@@ -327,6 +335,7 @@ public class BoardController {
 		return "redirect:freeBoardList";
 	}
 	
+	//게시판 검색
 	@RequestMapping(value = "/findListFreeBoard", method = RequestMethod.POST)
 	public String findListFreeBoard(Locale locale, Model model, @RequestParam String find) throws Exception {
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
@@ -361,6 +370,7 @@ public class BoardController {
 		return "board/freeboard_list";
 	}
 	
+	//게시판 페이징
 	@RequestMapping(value = "/freeBoardPageSelect", method = RequestMethod.GET)
 	public String freeBoardPageSelect(Locale locale, Model model, @RequestParam int page) throws Exception {
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
@@ -394,6 +404,7 @@ public class BoardController {
 		return "board/freeboard_list";
 	}
 	
+	//게시글 좋아요
 	@RequestMapping(value = "/freeBoardLike", method = RequestMethod.POST)
 	@ResponseBody
 	public HashMap freeBoardLike(@RequestParam int f_seq, HttpSession session) throws Exception {
@@ -422,6 +433,7 @@ public class BoardController {
 		return hashmap;
 	}
 	
+	//게시글 수정
 	@RequestMapping(value = "/freeBoardUpdate", method = RequestMethod.GET)
 	public String freeBoardUpdate(Model model,@RequestParam int f_seq) throws Exception {
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
@@ -430,6 +442,7 @@ public class BoardController {
 		return "board/freeboard_update";
 	}
 	
+	//게시글 댓글
 	@RequestMapping(value = "/freeBoardComment", method = RequestMethod.POST)
 	public String freeBoardComment(Model model, @ModelAttribute Freeboardcomment freeboardcomment, HttpServletRequest request,@RequestParam int f_seq,HttpSession session) throws Exception {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -539,6 +552,7 @@ public class BoardController {
 		return "board/freeboard_detail";
 	}
 
+	//댓글 삭제
 	@RequestMapping(value = "/freeBoardcommentDelete", method = RequestMethod.POST)
 	@ResponseBody
 	public String freeBoardcommentDelete(@RequestParam int comment_num, @RequestParam int f_seq) throws Exception {

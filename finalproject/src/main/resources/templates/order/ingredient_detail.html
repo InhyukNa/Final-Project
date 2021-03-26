@@ -6,6 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>재료 소개</title>
+<script type="text/javascript">
+
+</script>
 </head>
 
 <body layout:fragment="content">
@@ -21,21 +24,21 @@
          	<input type="hidden" name="ordernum" id="ordernum" th:value="${ordernum}">
 			<div th:each="product: ${products}" style="float:left">
 				<div>
-					<div th:id="|product${product.code}|">
-						<div th:id="|moreDetail${product.code}|" style="display:in-line; width:300px; height:300px">
-							<img th:src="${product.image}" style="position: relative; width:300px;height:250px;top:0;">
+					<div class="detailproduct" th:data-num="${product.code}">
+						<div style="display:in-line; width:300px; height:300px">
+							<img th:id="|proimage${product.code}|" th:src="${product.image}" style="position: relative; width:300px;height:250px;top:0;">
+							<div style="background-color: #72BB2D; position:absolute; width:300px; height:300px; display:none" 
+							th:id="|afterproduct${product.code}|">
+								<br><br><br><br><br><br>
+								<Strong th:text="${product.name}" style="font-size:30px"></Strong><br><br>
+								<Strong th:text="|${product.calorie} kcal|" style="font-size:20px"></Strong><br><br>
+								<p th:text="${product.productexp}"></p>
+							</div>
 							<div class="ui label" style="width:300px;height:50px;font-size:18px">
 								<input th:id="|procode${product.code}|" type="hidden" th:value="${product.code}">
 								<span th:value="${product.code}" th:text="${product.name}"></span><br>
 								<span th:text="|${product.saleprice} 원|"></span><br>		
 							</div>
-						</div>
-						<div style="background-color: #72BB2D; position:absolute; width:300px; height:300px;top:0;margin-top:13px; display:none" 
-						th:id="|afterproduct${product.code}|">
-							<br><br><br><br><br><br>
-							<Strong th:text="${product.name}" style="font-size:30px"></Strong><br><br>
-							<Strong th:text="|${product.calorie} kcal|" style="font-size:20px"></Strong><br><br>
-							<p th:text="${product.productexp}"></p>
 						</div>
 					</div>
 				</div>
