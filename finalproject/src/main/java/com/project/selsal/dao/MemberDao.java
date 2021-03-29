@@ -53,5 +53,5 @@ public interface MemberDao {
 	
 	public ArrayList<Orders> orderselectAll(String email);
 
-	
+	public int deleteOrderCart(int ordernum,String proname) throws Exception;
 }

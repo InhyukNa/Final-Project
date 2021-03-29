@@ -65,11 +65,23 @@ public class OrderController {
       return "order/order_insert";
    }
    
+   @RequestMapping(value = "/ordercartdelete", method = RequestMethod.POST)
+   @ResponseBody
+   public String ordercartdelete(Model model,@RequestParam String proname) throws Exception {
+	   MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+	   OrdersDao orderDao = sqlSession.getMapper(OrdersDao.class);
+	   int orderNum = orderDao.currentOrderNum();
+	   memberDao.deleteOrderCart(orderNum,proname);
+      return "";
+   }
+   
+   
    @RequestMapping(value = "/orderpageout", method = RequestMethod.POST)
    @ResponseBody
    public String orderpageout(@RequestParam int ordernum) {
 	   OrdersDao orderDao = sqlSession.getMapper(OrdersDao.class);
 	   orderDao.deleteOrderDetail(ordernum);
+	   
       return "";
    }
    @RequestMapping(value = "/orderReloading", method = RequestMethod.GET)
@@ -78,10 +90,14 @@ public class OrderController {
       MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
       ArrayList<Product> products = productDao.selectAll();
       model.addAttribute("products",products);
-      
       model.addAttribute("ordernum",ordernum);
       ArrayList<Orderdetail> cart = memberDao.orderCart(ordernum);
       model.addAttribute("cart",cart);
+      int totprices = 0;
+      for(Orderdetail a : cart) {
+    	  totprices = totprices + a.getProprice();
+      }
+      model.addAttribute("totprices",totprices);
       
       return "order/order_insert";
    }

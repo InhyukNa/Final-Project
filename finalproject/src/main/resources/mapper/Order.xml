@@ -41,6 +41,9 @@
 		select ifnull(max(ordernum)+1,1) from orderdetail;
 	</select>
 	
+	<select id="currentOrderNum" resultType="Integer">
+		select ifnull(max(ordernum),1) from orderdetail;
+	</select>
 	
 	<insert id="insertRow2">
 		insert productdetail(

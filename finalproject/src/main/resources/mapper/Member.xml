@@ -14,8 +14,9 @@
 	</select>
 	
 	<select id = "orderCart" resultType="com.project.selsal.entities.Orderdetail">
-		select sum(qty) as qty,proprice,proname from orderdetail where ordernum = #{ordernum} group by proname,proprice
+		select sum(qty) as qty,sum(proprice) as proprice,proname from orderdetail where ordernum = #{ordernum} group by proname,proprice
 	</select>
+		
 	
 	<select id = "memberlistfinder" resultType = "Integer">
 		select count(*) from member where email like CONCAT('%',#{memfind},'%')
@@ -87,4 +88,8 @@
    <select id = "orderselectAll" resultType="com.project.selsal.entities.Orders">
       select * from orders where email=(select email from member where email = #{email})
    </select>
+   
+   <delete id="deleteOrderCart">
+      delete from orderdetail where ordernum= #{ordernum} and proname = #{proname}
+   </delete>
 </mapper>

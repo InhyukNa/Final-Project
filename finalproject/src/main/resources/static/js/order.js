@@ -1,27 +1,30 @@
 var checkUnload = true;
+var isRun = false;
 function pageOut() {
+   if(isRun==true){
+      return;
+   };
+   isRun=true;
    checkUnload = true;
     $(window).on("beforeunload", function () {
-   if(checkUnload){
-    var ordernum = $('#ordernum').val();
-   $.ajax({
+      if(checkUnload){
+         var ordernum = $('#ordernum').val();
+         $.ajax({
             type: 'POST',
             datatype: 'json',
-             data:{ordernum:ordernum},
+            data:{ordernum:ordernum},
             url: 'orderpageout',
             success: function(data) {
-            alert('주문중인 정보는 삭제됩니다.');
-
-         },
+               alert('주문중인 정보는 삭제됩니다.');
+               isRun=false;
+            },
             error: function(xhr, status, error) {
                alert('ajax error : ' + xhr.status + error);
             }
-      });
-   
-}
+         });
+      }
     });
 }
-
 $(document).ready(function() {
    /** 관리자 주문 들어온 리스트에서 주문 접수처리하는 Script */
    $('.btn-orderin-act').on('click',function(){
@@ -164,5 +167,30 @@ $(document).ready(function() {
       $('#afterproduct'+num).css('display','none');
       $('#afterproduct'+num).css('opacity','0');
    });
+
+   $(document).on('click', '#tableid td #ordercarticon', function() {
+      var row = $(this).closest('tr');
+      var td = row.children();
+      var ordernum = td.eq(0).text();
+      var proname = td.eq(1).text();
+      var proprice  = td.eq(3).text();
+      var totprice = $('#totprice').text();
+      totprice = totprice.substring(7,);
+      $.ajax({
+         type: 'POST',
+         datatype: 'json',
+         data:{ordernum:ordernum,proname:proname},
+         url: 'ordercartdelete',
+         success: function(data) {
+            row.remove();
+            totprice = totprice - proprice;
+            $('#totprice').text("주문금액 : "+totprice);
+            alert("주문이 취소되었습니다.");
+         },
+         error: function(xhr, status, error) {
+            alert('ajax error : ' + xhr.status + error);
+         }
+      });
+   })
 
 })

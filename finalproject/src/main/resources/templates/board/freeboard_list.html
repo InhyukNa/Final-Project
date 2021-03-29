@@ -73,7 +73,7 @@
 						<input type="text" name="find" placeholder="글 제목" th:value="${find}"> 
 						<button class="ui inverted blue button" onclick="findListformname.submit()">검색</button>
 					</div>
-					<button class="ui inverted green button" type ="button" 
+					<button class="ui inverted green button" type ="button" th:if="${session.sessionemail}!=null"
 					style="float:right" onclick="location.href='freeBoardWrite'">글 작성</button>
 				</div>	
 			</div>

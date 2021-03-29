@@ -185,4 +185,11 @@ img {vertical-align: middle;}
 	margin:0 0 0 0;
 }
 
-
+#tableid{
+   position: fixed;
+   right:50px;
+   bottom:10px;
+   background-color :#999;
+   width:400px;
+   text-align:center;
+}

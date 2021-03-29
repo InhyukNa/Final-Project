@@ -42,15 +42,21 @@
                </div>
             </div>
          </div>
-         <table id = "tableid" style = "position: fixed; right:50px; bottom:10px; background-color :#999; width:400px;">
+         <table id = "tableid">
             <tbody>
-               <tr th:each = "cart:${cart}">
-                  <td th:text = "${cart.proname}"></td>
-                  <td th:text = "${cart.qty}"></td>
-                  <td th:text = "${cart.proprice}"></td>
+            	<tr th:each = "cart:${cart}">
+            		<td><input type="hidden" name="ordernum"  id="ordernum" th:value="${ordernum}"></td>
+            		<td id = "proname" th:text = "${cart.proname}" th:value = "${cart.proname}"></td>
+          	 		<td th:text = "${cart.qty}" th:value = "${cart.qty}"></td>
+             		<td th:text = "${cart.proprice}" th:value = "${cart.proprice}"></td>
+               		<td><i class="close icon" id = "ordercarticon" style = "cursor:pointer"></i></td>
                </tr>
                <tr>
-                  <td class = "orderinsertbtn"colspan="3">
+					<td colspan="5" th:if="${totprices!=null}" th:text = "|주문금액 : ${totprices}|" id="totprice" style = "text-align:right"></td>
+					<td colspan="5" th:if=${totprices==null} th:text = "|주문금액 : 0|" id="totprice" style = "text-align:right"></td>
+               </tr>
+               <tr>
+                  <td class = "orderinsertbtn"colspan="5">
                         <button class="" type="button" id="ordercancle">취소</button>
                         <button class="" type ="button" id="orderconfirm" >등록하기</button>
                      </td>
