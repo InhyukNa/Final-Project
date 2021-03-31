@@ -10,7 +10,7 @@ xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
 <body>
 <!--background-color:#F0F8FF;  -->
    <div>
-      <header th:replace="/fragments/header :: headerFragment"></header>
+      <header th:replace="fragments/header :: headerFragment"></header>
    </div>
    
    <div>
@@ -18,7 +18,7 @@ xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
          <div class="content" layout:fragment="content"  style="height:120vh;" ></div>
       </div>
    <div>
-      <footer th:replace="/fragments/footer :: footerFragment"></footer>
+      <footer th:replace="fragments/footer :: footerFragment"></footer>
    </div>
 </body>
 </html>

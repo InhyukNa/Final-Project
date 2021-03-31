@@ -92,11 +92,17 @@ img {vertical-align: middle;}
 	border-top:1px solid #999999;
 	width:100%;
 	margin-bottom:20%;
+	padding:0 !important ;
 }
 #backgroundcolorimg{
-	border:2px solid #999999;
+	border:2px solid #ECC946;
 	width:280px;
 	height:220px;
+	
+	border-bottom-right-radius:5px;
+    border-bottom-left-radius:5px;
+    border-top-right-radius:5px;
+    border-top-left-radius:5px;
 }
 #orderimagestyle{
 	width:270px;
@@ -108,6 +114,7 @@ img {vertical-align: middle;}
 #mainbody{
 	 margin:20px 20px 20px 5px;
 	 padding : 10px 10px 10px 5px;
+	 
 }
 #menutxt{
 	font:0.75em Verdana,Dotum,AppleGothic,sans-serif;
@@ -126,9 +133,11 @@ img {vertical-align: middle;}
 	font-weight:bold
 }
 #menutext>#menutext2{
-	margin-left:115px;
+	
 	font-size:13px;
+	
 	color:#999999;
+	
 	
 }
 #menutext>#menutext3{
@@ -145,9 +154,9 @@ img {vertical-align: middle;}
 }
 #orderconfirm:hover{
 	width: 50%;
-	border: 2px solid #424242;
+	border: 2px solid #79BE37;
     background: #ffffff;
-    color: #424242;
+    color: #79BE37;
     letter-spacing: 2px;
     font-weight: bold;
     height: 48px;
@@ -157,8 +166,8 @@ img {vertical-align: middle;}
 	transition: background 0.3s;
 	float: right;
 	width: 50%;
-	border: 2px solid #424242;
-    background: #434343;
+	border: 2px solid #79BE37;
+    background: #79BE37;
     color: #fff;
     letter-spacing: 2px;
     font-weight: bold;
@@ -166,15 +175,16 @@ img {vertical-align: middle;}
     cursor:pointer;
 }
 #ordercancle:hover{
-	border: 2px solid #000000;
-	color:#000000;
+	border: 2px solid #EA4A37;
+	background: #ffffff;
+	color:#EA4A37;
 }
 #ordercancle{
 	float: right;
 	width: 50%;
-	border: 2px solid #999999;
-    background: #fff;
-    color: #6f6f6f;
+	border: 2px solid #EA4A37;
+    background: #EA4A37;
+    color: #fff;
     letter-spacing: 1px;
     height: 48px;
     cursor:pointer;
@@ -183,13 +193,46 @@ img {vertical-align: middle;}
 
 #orderinserttoptext{
 	margin:0 0 0 0;
+	
+}
+#tableid{
+	position: fixed;
+	right:10px;
+	bottom:10px;
+	background-color :#ffffff;
+	border: 2.3px solid #EA4A37;
+	width:320px;
+	text-align:center;
 }
 
-#tableid{
-   position: fixed;
-   right:50px;
-   bottom:10px;
-   background-color :#999;
-   width:400px;
-   text-align:center;
+#ordersadds:hover{
+	width:230px;
+	border: 2px solid #EA4A37;
+    background: #EA4A37;
+    color: #fff;
+    letter-spacing: 2px;
+    font-weight: bold;
+    height: 40px;
+    cursor:pointer;
+    border-bottom-right-radius:5px;
+    border-bottom-left-radius:5px;
+    border-top-right-radius:5px;
+    border-top-left-radius:5px;
+}
+
+
+#ordersadds{
+	width:230px;
+	transition: all 0.3s;
+	border: 2px solid #79BE37;
+    background: #79BE37;
+    color: #fff;
+    letter-spacing: 2px;
+    font-weight: bold;
+    height: 40px;
+    cursor:pointer;
+    border-bottom-right-radius:5px;
+    border-bottom-left-radius:5px;
+    border-top-right-radius:5px;
+    border-top-left-radius:5px;
 }

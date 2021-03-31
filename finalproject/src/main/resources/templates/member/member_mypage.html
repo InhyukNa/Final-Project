@@ -66,7 +66,6 @@
 							<table id = "ordertable" style = "width:100%;">
 							<thead id="orderhead">
 								<tr>
-									
 									<th id = "thborder">주문날짜</th>
 									<th id = "thborder">금액</th>
 									<th id = "thborder">주문상태</th>
@@ -88,7 +87,6 @@
 									<td id = "tdborder" th:if="${order.orderconfirm == 1}" style = "width:150px;">주문확인</td>
 									<td id = "tdborder" th:if="${order.orderconfirm == 2}" style = "width:150px; height:40px;">주문거절</td>
 									<td th:if = "${order.orderconfirm == 0}" id = "buttonorder"><button class="ui yellow button" type="button" id = "viewdetails">주문취소</button></td>
-									<td th:if = "${order.orderconfirm == 1}" id = "buttonorder"><button class="ui yellow button" type="button" id = "viewdetails">주문취소</button></td>
 								</tr>
 							</tbody>
 							</table>

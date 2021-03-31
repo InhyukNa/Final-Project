@@ -18,7 +18,7 @@
          <div class="ui grid sixteen wide column" >
             <p id = "orderinsertptag" >재료 목록
          </div>
-       
+       <div class="ui grid sixteen wide column" >
          <div class = "memin" onclick="pageOut()">
             <input type="hidden" name="ordernum" id="ordernum" th:value="${ordernum}">
          <div th:each="product: ${products}" style="float:left">
@@ -30,21 +30,20 @@
                   <input  th:id="|procode${product.code}|" type="hidden" th:value="${product.code}">
                   <span id = "menutext1" th:value="${product.code}" th:text="${product.name}" ></span><br>
                   <span id = "menutext2" th:text="|${product.calorie} kcal|"></span><br>
-                  <span  id = "menutext2" th:text="${product.productexp}"></span><br>
+                  <span  id = "menutext2" th:text="${product.productexp}" ></span><br>
                   <span id = "menutext3" th:text="|${product.saleprice} 원|"></span><br>
                   <select th:if="${product.stock}!=0" th:id="|qty${product.code}|" class="ui dropdown">
                      <option value="1">1</option>
                      <option value="2">2</option>
                   </select >
-                  <button th:if="${product.stock}!=0" class= "ui green basic button btn-cartin-act" th:data-num="${product.code}" type="button" id = "ordersadds">담기</button>            
-                  <button th:if="${product.stock}!=0"  th:id="|cartout${product.code}|" class= "ui red basic button" type="button">장바구니 삭제</button>
+                  <button th:if="${product.stock}!=0" class= "btn-cartin-act" th:data-num="${product.code}" type="button" id = "ordersadds">담기</button>            
                   <button th:if="${product.stock}==0" class="ui black basis button" disabled="disabled" style="width:300px">매진</button>            
                </div>
             </div>
          </div>
-         <table id = "tableid">
+         <table id = "tableid" >
             <tbody>
-            	<tr th:each = "cart:${cart}">
+            	<tr id = "tableidBody" th:each = "cart:${cart}">
             		<td><input type="hidden" name="ordernum"  id="ordernum" th:value="${ordernum}"></td>
             		<td id = "proname" th:text = "${cart.proname}" th:value = "${cart.proname}"></td>
           	 		<td th:text = "${cart.qty}" th:value = "${cart.qty}"></td>
@@ -57,12 +56,13 @@
                </tr>
                <tr>
                   <td class = "orderinsertbtn"colspan="5">
-                        <button class="" type="button" id="ordercancle">취소</button>
-                        <button class="" type ="button" id="orderconfirm" >등록하기</button>
+                        <button class="" type="button" id="ordercancle" onclick = "location.href = 'index'">취소</button>
+                        <button class="" type ="button" id="orderconfirm" >주문하기</button>
                      </td>
                </tr>
             </tbody>
          </table>
+       </div>
       </div>
       </div>
    </form>

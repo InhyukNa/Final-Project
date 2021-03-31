@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -68,10 +69,10 @@ public class OrderController {
    @RequestMapping(value = "/ordercartdelete", method = RequestMethod.POST)
    @ResponseBody
    public String ordercartdelete(Model model,@RequestParam String proname) throws Exception {
-	   MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
-	   OrdersDao orderDao = sqlSession.getMapper(OrdersDao.class);
-	   int orderNum = orderDao.currentOrderNum();
-	   memberDao.deleteOrderCart(orderNum,proname);
+      MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+      OrdersDao orderDao = sqlSession.getMapper(OrdersDao.class);
+      int orderNum = orderDao.currentOrderNum();
+      memberDao.deleteOrderCart(orderNum,proname);
       return "";
    }
    
@@ -124,15 +125,31 @@ public class OrderController {
    }
    
    //온라인주문 내역 최종 저장 ajax
-   @RequestMapping(value = "/orderConfirm", method = RequestMethod.POST)
-   @ResponseBody
-   public String orderConfirm(@RequestParam int ordernum,HttpSession session) {
+   @RequestMapping(value = "/orderConfirmSave", method = RequestMethod.POST)
+   public String orderConfirmSave(@ModelAttribute Member member,@RequestParam int ordernum, HttpSession session) {
       OrdersDao orderDao = sqlSession.getMapper(OrdersDao.class);
       String email = (String) session.getAttribute("sessionemail");
-      Member member = orderDao.selectAddress(email);
       String address = "우편번호:"+ member.getZipcode()+" / "+member.getAddress()+" , "+member.getDetailaddress(); 
+      int usePoint = member.getPoint();
       orderDao.orderInsert(ordernum, email,address);
-      return "";
+      orderDao.usePoint(usePoint);
+      return "redirect:membermypage";
+   }
+   @RequestMapping(value = "/orderConfirm", method = RequestMethod.GET)
+   public String orderConfirm(Model model,HttpSession session,@RequestParam int ordernum) throws Exception {
+	   MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+	   OrdersDao ordersDao = sqlSession.getMapper(OrdersDao.class);
+	   String email = (String) session.getAttribute("sessionemail");
+	   Member members = memberDao.selectOne(email);
+	   int totPrice = ordersDao.orderTotPrice(ordernum);
+	   ArrayList<Orderdetail> trytoorder = memberDao.ordernumselect(ordernum);
+	   model.addAttribute("members",members);
+	   model.addAttribute("totPrice",totPrice);
+	   model.addAttribute("trytoorder",trytoorder);
+	   model.addAttribute("ordernum", ordernum);
+	   
+
+      return "order/order_confirm";
    }
    
    // 미확인 주문 리스트 띄우기
@@ -251,5 +268,6 @@ public class OrderController {
       model.addAttribute("products",products);
       return "order/ingredient_detail";
    }
+
 
 }

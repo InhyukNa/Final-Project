@@ -51,6 +51,7 @@ public class BoardController {
 	BoardPaging boardpaging;
 	
 	public static String find;
+
 	
 	//게시글 작성 페이지
 	@RequestMapping(value = "/freeBoardWrite", method = RequestMethod.GET)
@@ -63,7 +64,7 @@ public class BoardController {
 	public String freeboardWriteSave(Model model, @ModelAttribute Freeboard freeboard,
 			@RequestParam("f_attachfile") MultipartFile f_attachfile, HttpServletRequest request) throws Exception {
 		String filename = f_attachfile.getOriginalFilename();
-		String path = "C:/Users/IT-5C/git/Final-Project/finalproject/src/main/resources/static/uploadattaches/";
+		String path = "/home/team2/uploadattaches/";
 		String realpath = "/uploadattaches/";
 		if (!filename.equals("")) {
 			byte bytes[] = f_attachfile.getBytes();
@@ -117,7 +118,7 @@ public class BoardController {
 		model.addAttribute("rowcount",rowcount);
 		model.addAttribute("boards", boards);
 		model.addAttribute("pages", pages);
-		return "/board/freeboard_list";
+		return "board/freeboard_list";
 	}
 	
 	//게시글 인기순
@@ -150,7 +151,7 @@ public class BoardController {
 		model.addAttribute("rowcount",rowcount);
 		model.addAttribute("boards", boards);
 		model.addAttribute("pages", pages);
-		return "/board/freeboard_list2";
+		return "board/freeboard_list2";
 	}
 	
 	//게시글 본문
@@ -158,6 +159,8 @@ public class BoardController {
 	public String freeBoardDetail(@RequestParam int f_seq, Model model, HttpSession session) throws Exception {
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
 		freeboard = dao.selectOneFreeBoard(f_seq);
+		String f_attach = freeboard.getF_attach(); 
+		freeboard.setF_attach("home/team2"+f_attach);
 		String cursession = (String) session.getAttribute("sessionemail");
 		if (cursession == null || !cursession.equals(freeboard.getF_email())) {
 			dao.addHitFreeBoard(f_seq);
@@ -266,11 +269,10 @@ public class BoardController {
 			throws IOException {
 
 		request.setCharacterEncoding("UTF-8");
-		File file = new File(
-				"C:/Users/IT-5C/git/Final-Project/finalproject/src/main/resources/static/uploadattaches/"
-						+ f_attach);
+		File file = new File("/home/team2/"+f_attach);
+		System.out.println(file.length());
 		String oriFileName = file.getName();
-		String filePath = "C:/Users/IT-5C/git/Final-Project/finalproject/src/main/resources/static/uploadattaches/";
+		String filePath = "/home/team2/uploadattaches/";
 		InputStream in = null;
 		OutputStream os = null;
 		File newfile = null;

@@ -112,21 +112,35 @@ $(document).ready(function() {
    
    /** 온라인 주문 페이지 주문 접수 */
    $('#orderconfirm').on('click',function(){
-      var ordernum = $('#ordernum').val();
-      $.ajax({
-            type: 'POST',
-            datatype: 'json',
-            data:{ordernum:ordernum},
-            url: 'orderConfirm',
-            success: function(data) {
-               alert("주문이 완료되었습니다.");
-            checkUnload = false;
-            document.location.href = "membermypage";
-            },
-            error: function(xhr, status, error) {
-               alert('ajax error : ' + xhr.status + error);
-            }
-      });
+         var ordernum = $('#ordernum').val();
+         checkUnload = false;
+      document.location.href = "orderConfirm?ordernum="+ordernum;           
+   });
+
+   $('#ordernameCss2').keyup(function(){
+      var usePoint = $('#ordernameCss2').val();
+      var totPoint = $('#maxPoint').val();
+      var orderPrice = $('#orderPrice').text();
+      var totPrice = orderPrice-usePoint;
+      if(totPoint-usePoint <= 0){
+         if(orderPrice-totPoint>0){
+            $('#ordernameCss2').val(totPoint);
+            $('#totalPrice').text(orderPrice-totPoint);
+            $('#orderPoint').text(totPoint);
+            $('#paymentstrong1').text(orderPrice-totPoint);
+         }else{
+            $('#ordernameCss2').val(orderPrice);
+            $('#orderPoint').text(orderPrice);
+               $('#totalPrice').text(0);
+            $('#paymentstrong1').text(0);
+         }
+      }
+      else{
+         $('#orderPoint').text(usePoint);
+            $('#totalPrice').text(totPrice);
+         $('#paymentstrong1').text(orderPrice-usePoint);
+      }
+      
    });
    
    /** 온라인 주문 페이지 주문 취소 */
@@ -167,7 +181,6 @@ $(document).ready(function() {
       $('#afterproduct'+num).css('display','none');
       $('#afterproduct'+num).css('opacity','0');
    });
-
    $(document).on('click', '#tableid td #ordercarticon', function() {
       var row = $(this).closest('tr');
       var td = row.children();
@@ -184,13 +197,25 @@ $(document).ready(function() {
          success: function(data) {
             row.remove();
             totprice = totprice - proprice;
-            $('#totprice').text("주문금액 : "+totprice);
+            $('#totprice').text(totprice);
             alert("주문이 취소되었습니다.");
          },
          error: function(xhr, status, error) {
             alert('ajax error : ' + xhr.status + error);
          }
       });
+   })
+   $('#detailcheckbox').on('click',function(){
+      $('.mypagedetailtable1').css('display','none');
+      $('.mypagedetailtable2').css('display','block');
+   });
+   $('#checkednew').on('click',function(){
+      $('.mypagedetailtable2').css('display','none');
+      $('.mypagedetailtable3').css('display','block');
+   })
+   $('#detailcheckbox2').on('click',function(){
+      $('.mypagedetailtable3').css('display','none');
+      $('.mypagedetailtable2').css('display','block');
    })
 
 })

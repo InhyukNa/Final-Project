@@ -1,45 +1,45 @@
 .myInfo{
-   position:relative;
-   margin-bottom:20px;
-   padding: 24px 33px;
+	position:relative;
+	margin-bottom:20px;
+	padding: 24px 33px;
 }
 .myInfo_inside1{
-   float: left;
+	float: left;
     width: 550px;
     height: 169px;
     padding: 24px 33px;
     background-color: #f8f8f8;
 }
 .myInfo_inside3{
-   float:left;
-   margin-bottom: 29px;
+	float:left;
+	margin-bottom: 29px;
     padding-left: 118px;
     background-size: 85px 97px;
 }
 .myInfo_inside4{
-   float:left;
-   margin-top:20px;
+	float:left;
+	margin-top:20px;
     padding: 24px 33px;
     background-color: #f8f8f8;
 }
 
 .myInfo_text{
-   padding:10px 0 10px;
-   color:#111;
-   font-family: "µ¸¿ò";
+	padding:10px 0 10px;
+	color:#111;
+	font-family: "µ¸¿ò";
     font-size: 20px;
     margin:10px 0 0 0 !important;
 }
 .myInfo_text2{
-   margin-bottom:10px;
+	margin-bottom:10px;
     color: #666;
     font-size: 16px;
     font-family: 'µ¸¿ò';
     white-space: nowrap;
-   
+	
 }
 .btn{
-   position: relative;
+	position: relative;
     display: inline-block;
     text-align: center;
     white-space: nowrap;
@@ -49,108 +49,108 @@
 }
 
 #memberlevelimage{
-   float:left;
-   width:40px;
-   
+	float:left;
+	width:40px;
+	
 }
 .box{
-   float:left;
-   width: 115px;
-   margin: 0 30px;
-   position: relative;
-   
+	float:left;
+	width: 115px;
+	margin: 0 30px;
+	position: relative;
+	
 }
 .back{
-   position:absolute;
-   top:0;
-   left:0;
+	position:absolute;
+	top:0;
+	left:0;
 }
 .front{
-   position:absolute;
-   top:47px;
-   left:20px;
-   height:60px; 
-   width:60px;
-   
+	position:absolute;
+	top:47px;
+	left:20px;
+	height:60px; 
+	width:60px;
+	
 }
 .front2{
-   position:absolute;
-   top:47px;
-   left:80px;
-   height:60px; 
-   width:60px;
-   
-   
+	position:absolute;
+	top:47px;
+	left:80px;
+	height:60px; 
+	width:60px;
+	
+	
 }
 .front3{
-   position:absolute;
-   top:47px;
-   left:140px;
-   height:60px; 
-   width:63px;
-   
+	position:absolute;
+	top:47px;
+	left:140px;
+	height:60px; 
+	width:63px;
+	
 }
 .front4{
-   position:absolute;
-   top:47px;
-   left:200px;
-   height:60px; 
-   width:60px;
+	position:absolute;
+	top:47px;
+	left:200px;
+	height:60px; 
+	width:60px;
 }
 .front5{
-   position:absolute;
-   top:47px;
-   left:260px;
-   height:60px; 
-   width:60px;
+	position:absolute;
+	top:47px;
+	left:260px;
+	height:60px; 
+	width:60px;
 }
 .front6{
-   position:absolute;
-   top:110px;
-   left:20px;;
-   height:60px; 
-   width:60px;
+	position:absolute;
+	top:110px;
+	left:20px;;
+	height:60px; 
+	width:60px;
 }
 .front7{
-   position:absolute;
-   top:110px;
-   left:80px;
-   height:60px; 
-   width:60px;
+	position:absolute;
+	top:110px;
+	left:80px;
+	height:60px; 
+	width:60px;
 }
 .front8{
-   position:absolute;
-   top:110px;
-   left:140px;
-   height:60px; 
-   width:60px;
+	position:absolute;
+	top:110px;
+	left:140px;
+	height:60px; 
+	width:60px;
 }
 .front9{
-   position:absolute;
-   top:110px;
-   left:200px;
-   height:60px; 
-   width:60px;
+	position:absolute;
+	top:110px;
+	left:200px;
+	height:60px; 
+	width:60px;
 }
 .front10{
-   position:absolute;
-   top:110px;
-   left:260px;
-   height:60px; 
-   width:60px;
+	position:absolute;
+	top:110px;
+	left:260px;
+	height:60px; 
+	width:60px;
 }
 
 
 .btnmargin{
-   margin-left:160px !important;
+	margin-left:160px !important;
 }
 .btnblack{
-   color: #ffffff !important;
+	color: #ffffff !important;
     border: 1px solid #333333;
     background-color: #333333;
 }
 .btnstyle{
-   height: 36px;
+	height: 36px;
     padding: 0 22px;
     font-family: "NanumSquareOTFR";
     font-size: 14px;
@@ -167,13 +167,13 @@
 
 
 .listbtnmargin{
-   margin-top:5px !important;
-   margin-right:5px !important;
-   
+	margin-top:5px !important;
+	margin-right:5px !important;
+	
 }
 
 .listbtn{
-   position: relative;
+	position: relative;
     display: inline-block;
     text-align: center;
     white-space: nowrap;
@@ -182,12 +182,12 @@
     opacity: 1;
 }
 .listbtnblack{
-   color: #ffffff !important;
+	color: #ffffff !important;
     border: 1px solid #333333;
     background-color: #333333;
 }
 .lsitbtnstyle{
-   height: 36px;
+	height: 36px;
     padding: 0 22px;
     font-family: "NanumSquareOTFR";
     font-size: 14px;
@@ -196,28 +196,28 @@
 }
 
 #memberlevel {
-   width:40px;
+	width:40px;
 }
 
 #successmsg{
-   display:none;
-   width:200px;
-   margin:0 auto;
+	display:none;
+	width:200px;
+	margin:0 auto;
 }
 div {
     display: block;
 }
 #pointimage{
-   padding-top: 65px;
+	padding-top: 65px;
 }
 
 #pointText{
-   font-family: "NanumSquareOTFR";
+	font-family: "NanumSquareOTFR";
     font-size: 26px;
 }
 
 .myInfo_inside2{
-   float: left;
+	float: left;
     width: 205px;
     height: 169px;
     margin-left: 10px;
@@ -229,222 +229,31 @@ div {
 }
 
 #dtid{
-   margin-bottom: 10px;
+	margin-bottom: 10px;
     font-family: "NanumSquareOTFR";
     font-size: 20px;
-   
+	
 }
 #viewdetails{
-   background-color:#73BC2D;
+	background-color:#73BC2D;
 }
 #buttonorder{
-   padding-left:30px;
+	padding-left:30px;
 }
 .myInfo_inside6{
-   float: left;
+	float: left;
 }
 
 #memberfind{
-   padding:8px 4px 0 78%;
+	padding:8px 4px 0 78%;
 }
 
 
 #tlqkffjadk{
-   max-width:50px;
-   text-overflow:ellipsis;
-   white-space:nowrap;
-   
-}
-
-#orlist{
-    font-family: "NanumSquareOTFR";
-    color: #333;
-    font-size: 35px;
-}
-
-table{width: 100%;
-    border: 0px;
-    border-spacing: 0px;
-    border-collapse: collapse;
-}
-
-colgroup{
-	display: table-column-group;
-}
-    
-    
-caption {
-    display: table-caption;
-    text-align: -webkit-center;
-}
-#ordertable{
-	border-top:2px solid #111;
-	margin-top:10px;
-	border-width:100%;
-	
-
-}
-#orderbody>tr>#tdborder{
-	border-right:3mm solid #ffffff;
-}
-
-#orderhead{
-	font-size:16px;
-	border-bottom:2px solid #111;
-}
-#orderhead>tr>#thborder{
-	border-right:3mm solid #ffffff;
-}
-#orderhead>tr>th{
-	height:50px;
-	font-family: 'NanumSquareOTFR';
-}
-#orderbody{
-	font-size:14.5px;
-	text-align:center;
-}
-
-
-#modalorderbody>tr>#modaltdborder{
-	border-right:0.3mm solid #111;
-	border-right-style: dashed;
-	width:3px;
+	max-width:50px;
+	text-overflow:ellipsis;
+	white-space:nowrap;
 	
 }
-
-#modalorderhead{
-	font-size:16px;
-	border-bottom:2px solid #111;
-	color:#111;
-}
-
-#modalorderhead>tr>th{
-	height:50px;
-	font-family: 'NanumSquareOTFR';
-	vertical-align: middle;
-}
-#modalorderbody{
-	font-size:14.5px;
-	text-align:center;
-	color:#111;
-}
-
-.myInfo_inside5{
-	float:left;
-	margin-top:20px;
-    background-color: #ffffff;
-    display:none;
-    text-align:center;
-}
-
-
-#modalorlist{
-	font-family: "NanumSquareOTFR";
-    color: #333;
-    font-size: 35px;
-	
-}
-
-#modalordertable{
-	margin-top:10px;
-	border-width:100%;
-}
-
-#modalordertablehide{
-	cursor:pointer;
-}
-#ordermemo>tr{
-	text-align:left;
-	font-size: 11.8px;
-	color: #353535;
-	font-family: 'NanumSquareOTFR';
-	
-	
-}
-#ordermemo>tr>td{
-	border-bottom: 1px solid #e9e9e9;
-	font-size: 11.8px;
-	width: 88%;
-	padding: 9px 0 8px 10px;
-}
-
-#ordermemo{
-	border: 1px solid #d7d5d5
-}
-
-#tdordunf{
-	width: auto;
-}
-#ordermemo>tr>th{
-	font-size:0.97em;
-	width:120px;
-	height:30px;
-	border-bottom: 1px solid #d7d5d5;
-	border-right : 1px solid #d7d5d5;
-	padding: 11px 0 10px 19px;
-	background-color:#fbfafa;
-	
-
-	
-}
-
-#mypagedetailtable{
-	border:0;
-}
-.mypagetetailtitle>h3{
-	font-size : 18px;
-	text-align:left;
-	border-bottom: 1px solid #d7d5d5;
-	
-}
-.mypagetetailtitle{
-	width:1200px;
-	margin: 0 auto;
-	
-}
-#titleWord2{
-	margin: 0 0 20px 100px;
-    padding: 2 0 15px;
-    border-bottom: 1px solid #e8e8e8;
-    font-size: 30px;
-    font-family: 'NanumSquareOTFR';
-    
-}
-#ordermemo2>tbody>tr>td{
-	font-size:0.97em;
-	height:30px;
-	border-bottom: 1px solid #d7d5d5;
-	border-right : 1px solid #d7d5d5;
-	padding: 11px 0 10px 19px;
-	
-}
-#ordermemo2>thead>tr>th{
-	font-size:0.97em;
-	height:30px;
-	border-bottom: 1px solid #d7d5d5;
-	border-right : 1px solid #d7d5d5;
-	padding: 11px 0 10px 19px;
-	background-color:#fbfafa;
-}
-
-#ordermemo2{
-	border: 1px solid #d7d5d5;
-}
-.ordertot>td{
-	border: 1px solid #d7d5d5;
-	font-size:15px;
-	padding: 15px 10px 17px;
-}
-#totfinal{
-	font-size:20px;
-	text-align:right;
-	color:#008bcc;
-}
-
-#detailmypage{
-	padding: 15px 0px 10px 1050px;
-}
-	
-
 
 

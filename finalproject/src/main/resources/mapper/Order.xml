@@ -3,8 +3,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.project.selsal.dao.OrdersDao">
-	
-	<insert id="insertRow">
+   
+   <insert id="insertRow">
       insert orderdetail(
       ordernum,seq,procode,proname,proprice,qty
       )values(
@@ -19,126 +19,134 @@
       qty = qty+#{qty}
       
    </insert>
-	
-	<select id="selectAddress" resultType="com.project.selsal.entities.Member">
-		select zipcode,address,detailaddress from member where email = #{email};
-	</select>
-	
-	<insert id="orderInsert">
-		insert orders(
-		ordernum,email,orderadd,date,totprice,name
-		)values(
-		#{ordernum},#{email},#{address},now(),
-		(select sum(proprice) from orderdetail A where ordernum = #{ordernum}),
-		(select name from member B where email = #{email})
-		)
-	</insert>
-	<delete id="orderDelete">
-		delete from orderdetail where ordernum=#{ordernum}
-	</delete>
-	
-	<select id="maxOrderNum" resultType="Integer">
-		select ifnull(max(ordernum)+1,1) from orderdetail;
-	</select>
-	
-	<select id="currentOrderNum" resultType="Integer">
-		select ifnull(max(ordernum),1) from orderdetail;
-	</select>
-	
-	<insert id="insertRow2">
-		insert productdetail(
-		seq,code,name,transdate
-		)values(
-		1,(select MAX(code) from product),
-		#{name},now()
-		)
-	</insert>
-		
-	<select id="selectdetailAll" resultType="com.project.selsal.entities.ProductDetail">
-		select * from productdetail where code =#{code} order by transdate desc
-	</select>
-	
-	<select id="productChartData" resultType="com.project.selsal.entities.Product">
-		select name,stock from product
-	</select>
-	
-	<select id="noConfirmCount" resultType="Integer">
-		select count(*) from orders where orderconfirm = 0;
-	</select>
-	
-	<select id="noConfirmList" resultType="com.project.selsal.entities.Orders">
-		select * from orders where orderconfirm = 0  order by ordernum desc;
-	</select>
-	
-	<select id="selectAll" resultType="com.project.selsal.entities.Orders">
-		select ordernum,email,orderadd,date,totprice,orderconfirm,name,completedate from orders order by ordernum desc;
-	</select>
-	
-	<delete id="deleteOrderDetail">
-		delete from orderdetail where ordernum=#{ordernum}
-	</delete>
-	
-	<update id="updateOrderConfirm">
-		update orders set orderconfirm=2 where ordernum=#{ordernum}
-	</update>
-	
-	<update id="changeConfirm">
-		update orders set orderconfirm=1 where ordernum=#{ordernum} 
-	</update>
-	
-	<update id="completedateUpdate">
-		update orders set completedate=now() where ordernum=#{ordernum}
-	</update>
-	
-	<select id="selectSaleProduct" resultType="com.project.selsal.entities.Orderdetail">
-		select procode,qty from orderdetail where ordernum=#{ordernum}
-	</select>
-	
-	<select id="selectNowStock" resultType="com.project.selsal.entities.Product">
-		select stock,(select qty from orderdetail B where ordernum = #{ordernum} and B.procode = A.code) as orderstock 
-		from product A group by code
-	</select>
-	
-	<insert id="insertSaleProduct">
-		insert productdetail (seq,code,name,salestock,stock,transdate
-		)values(
-		(SELECT ifnull(MAX(seq)+1,1 ) FROM productdetail A where code=#{code}),
-		#{code},(select name from product B where code =#{code}),
-		#{saleqty},
-		(select stock from product C where code=#{code})-#{saleqty},now() 
-		)
-		
-	</insert>
-	
-	<select id="OrderTotalPrice" resultType="Integer">
-		select totprice from orders where ordernum = #{ordernum}
-	 </select>
-	 
-	<update id="updateTotalOrderPrice">
-		update member set totalorder=totalorder+#{totprice} where email=(select email from orders A where ordernum=#{ordernum})
-	</update>
-	
-	<select id="selectTotalOrder" resultType="Integer">
-		select totalorder from member where email=(select email from orders A where ordernum=#{ordernum})
-	</select>
-	<select id="AdminselectTotalOrder" resultType="Integer">
-		select totalorder from member where email=#{email}
-	</select>
-	
-	<update id="updateOrderPoint">
-		update member set point=point+#{point} where email=(select email from orders A where ordernum=#{ordernum})
-	</update>
-	
-	<select id="selectMemLevel" resultType="Integer">
-		select level from member where email=(select email from orders A where ordernum=#{ordernum})
-	</select>
-	
-	<update id="updateMemlevel">
-		update member set level=#{level} where email=(select email from orders A where ordernum=#{ordernum})
-	</update>
-	
-	<update id="AdminupdateMemlevel">
-		update member set level=#{level} where email=#{email}
-	</update>
-	
+   
+   <select id="currentOrderNum" resultType="Integer">
+      select ifnull(max(ordernum),1) from orderdetail;
+   </select>
+   
+   <select id="selectAddress" resultType="com.project.selsal.entities.Member">
+      select zipcode,address,detailaddress from member where email = #{email};
+   </select>
+   
+   <insert id="orderInsert">
+      insert orders(
+      ordernum,email,orderadd,date,totprice,name
+      )values(
+      #{ordernum},#{email},#{address},now(),
+      (select sum(proprice) from orderdetail A where ordernum = #{ordernum}),
+      (select name from member B where email = #{email})
+      )
+   </insert>
+   <delete id="orderDelete">
+      delete from orderdetail where ordernum=#{ordernum}
+   </delete>
+   
+   <select id="maxOrderNum" resultType="Integer">
+      select ifnull(max(ordernum)+1,1) from orders;
+   </select>
+   
+   <insert id="insertRow2">
+      insert productdetail(
+      seq,code,name,transdate
+      )values(
+      1,(select MAX(code) from product),
+      #{name},now()
+      )
+   </insert>
+
+   <select id="selectdetailAll" resultType="com.project.selsal.entities.ProductDetail">
+      select * from productdetail where code =#{code} order by transdate desc
+   </select>
+   
+   <select id="productChartData" resultType="com.project.selsal.entities.Product">
+      select name,stock from product
+   </select>
+   
+   <select id="noConfirmCount" resultType="Integer">
+      select count(*) from orders where orderconfirm = 0;
+   </select>
+   
+   <select id="noConfirmList" resultType="com.project.selsal.entities.Orders">
+      select * from orders where orderconfirm = 0  order by ordernum desc;
+   </select>
+   
+   <select id="selectAll" resultType="com.project.selsal.entities.Orders">
+      select ordernum,email,orderadd,date,totprice,orderconfirm,name,completedate from orders order by ordernum desc;
+   </select>
+   
+   <delete id="deleteOrderDetail">
+      delete from orderdetail where ordernum=#{ordernum}
+   </delete>
+   
+   <update id="updateOrderConfirm">
+      update orders set orderconfirm=2 where ordernum=#{ordernum}
+   </update>
+   
+   <update id="changeConfirm">
+      update orders set orderconfirm=1 where ordernum=#{ordernum} 
+   </update>
+   
+   <update id="completedateUpdate">
+      update orders set completedate=now() where ordernum=#{ordernum}
+   </update>
+   
+   <select id="selectSaleProduct" resultType="com.project.selsal.entities.Orderdetail">
+      select procode,qty from orderdetail where ordernum=#{ordernum}
+   </select>
+   
+   <select id="selectNowStock" resultType="com.project.selsal.entities.Product">
+      select stock,(select qty from orderdetail B where ordernum = #{ordernum} and B.procode = A.code) as orderstock 
+      from product A group by code
+   </select>
+   
+   <insert id="insertSaleProduct">
+      insert productdetail (seq,code,name,salestock,stock,transdate
+      )values(
+      (SELECT ifnull(MAX(seq)+1,1 ) FROM productdetail A where code=#{code}),
+      #{code},(select name from product B where code =#{code}),
+      #{saleqty},
+      (select stock from product C where code=#{code})-#{saleqty},now() 
+      )
+      
+   </insert>
+   
+   <select id="OrderTotalPrice" resultType="Integer">
+      	select totprice from orders where ordernum = #{ordernum}
+    </select>
+    
+   <update id="updateTotalOrderPrice">
+      	update member set totalorder=totalorder+#{totprice} where email=(select email from orders A where ordernum=#{ordernum})
+   </update>
+   
+   <select id="selectTotalOrder" resultType="Integer">
+      	select totalorder from member where email=(select email from orders A where ordernum=#{ordernum})
+   </select>
+   <select id="AdminselectTotalOrder" resultType="Integer">
+      	select totalorder from member where email=#{email}
+   </select>
+   
+   <update id="updateOrderPoint">
+      	update member set point=point+#{point} where email=(select email from orders A where ordernum=#{ordernum})
+   </update>
+   
+   <select id="selectMemLevel" resultType="Integer">
+      	select level from member where email=(select email from orders A where ordernum=#{ordernum})
+   </select>
+   
+   <update id="updateMemlevel">
+      	update member set level=#{level} where email=(select email from orders A where ordernum=#{ordernum})
+   </update>
+   
+   <update id="AdminupdateMemlevel">
+      	update member set level=#{level} where email=#{email}
+   </update>
+   
+   <select id="orderTotPrice" resultType="Integer">
+   		select sum(proprice*qty) from orderdetail where ordernum = #{ordernum}
+   </select>
+   
+   <update id="usePoint">
+   		update member set point = point-#{point}
+   </update>
+   
 </mapper>

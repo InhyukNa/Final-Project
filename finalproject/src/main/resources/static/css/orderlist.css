@@ -1,0 +1,319 @@
+#orlist{
+    font-family: "NanumSquareOTFR";
+    color: #333;
+    font-size: 35px;
+}
+
+table{width: 100%;
+    border: 0px;
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+
+colgroup{
+	display: table-column-group;
+}
+    
+    
+caption {
+    display: table-caption;
+    text-align: -webkit-center;
+}
+#ordertable{
+	border-top:2px solid #111;
+	margin-top:10px;
+	border-width:100%;
+	
+
+}
+#orderbody>tr>#tdborder{
+	border-right:3mm solid #ffffff;
+}
+
+#orderhead{
+	font-size:16px;
+	border-bottom:2px solid #111;
+}
+#orderhead>tr>#thborder{
+	border-right:3mm solid #ffffff;
+}
+#orderhead>tr>th{
+	height:50px;
+	font-family: 'NanumSquareOTFR';
+}
+#orderbody{
+	font-size:14.5px;
+	text-align:center;
+}
+
+
+#modalorderbody>tr>#modaltdborder{
+	border-right:0.3mm solid #111;
+	border-right-style: dashed;
+	width:3px;
+	
+}
+
+#modalorderhead{
+	font-size:16px;
+	border-bottom:2px solid #111;
+	color:#111;
+}
+
+#modalorderhead>tr>th{
+	height:50px;
+	font-family: 'NanumSquareOTFR';
+	vertical-align: middle;
+}
+#modalorderbody{
+	font-size:14.5px;
+	text-align:center;
+	color:#111;
+}
+
+.myInfo_inside5{
+	float:left;
+	margin-top:20px;
+    background-color: #ffffff;
+    display:none;
+    text-align:center;
+}
+
+
+#modalorlist{
+	font-family: "NanumSquareOTFR";
+    color: #333;
+    font-size: 35px;
+	
+}
+
+#modalordertable{
+	margin-top:10px;
+	border-width:100%;
+}
+
+#modalordertablehide{
+	cursor:pointer;
+}
+#ordermemo>tr{
+	text-align:left;
+	font-size: 11.8px;
+	color: #353535;
+	font-family: 'NanumSquareOTFR';
+	
+	
+}
+#ordermemo>tr>td{
+	border-bottom: 1px solid #e9e9e9;
+	font-size: 11.8px;
+	width: 88%;
+	padding: 9px 0 8px 10px;
+}
+
+#ordermemo{
+	border: 1px solid #d7d5d5
+}
+
+#tdordunf{
+	width: auto;
+}
+#ordermemo>tr>th{
+	font-size:0.97em;
+	width:120px;
+	height:30px;
+	border-bottom: 1px solid #d7d5d5;
+	border-right : 1px solid #d7d5d5;
+	padding: 11px 0 10px 19px;
+	background-color:#fbfafa;
+	
+
+	
+}
+
+#mypagedetailtable{
+	border:0;
+}
+.mypagetetailtitle>h3{
+	font-size : 18px;
+	text-align:left;
+	border-bottom: 1px solid #d7d5d5;
+	
+}
+.mypagetetailtitle{
+	width:1200px;
+	margin: 0 auto;
+	
+}
+#titleWord2{
+	margin: 0 0 20px 100px;
+    padding: 2 0 15px;
+    border-bottom: 1px solid #e8e8e8;
+    font-size: 30px;
+    font-family: 'NanumSquareOTFR';
+    
+}
+#ordermemo2>tbody>tr>td{
+	font-size:0.97em;
+	height:30px;
+	border-bottom: 1px solid #d7d5d5;
+	border-right : 1px solid #d7d5d5;
+	padding: 11px 0 10px 19px;
+	
+}
+#ordermemo2>thead>tr>th{
+	font-size:0.97em;
+	height:30px;
+	border-bottom: 1px solid #d7d5d5;
+	border-right : 1px solid #d7d5d5;
+	padding: 11px 0 10px 19px;
+	background-color:#fbfafa;
+}
+
+#ordermemo2{
+	border: 1px solid #d7d5d5;
+}
+.ordertot>td{
+	border: 1px solid #d7d5d5;
+	font-size:15px;
+	padding: 15px 10px 17px;
+}
+#totfinal{
+	font-size:20px;
+	text-align:right;
+	color:#008bcc;
+}
+
+#detailmypage{
+	padding: 15px 0px 10px 1050px;
+}
+
+#ordernameCss{
+	width:180px;
+}
+
+#order_confirmID input{
+	height: 22px;
+    padding: 0 0 0 9px;
+    border: 1px solid #d5d5d5;
+    line-height: 22px;
+    color: #676d74;
+    text-decoration: none;
+    outline: medium none;
+}
+
+
+#orderaddressCss{
+	width: 60px;
+    padding: 0;
+    text-align: center;
+}
+#orderaddressCss2{
+	width: 450px;
+    margin: 5px 0 0;
+}
+#orderaddressCss3{
+	width: 450px;
+    margin: 5px 0 0;
+}
+#orderphoneCss{
+	width: 60px;
+    margin: 0 4px;
+}
+#orderphoneCss2{
+	width: 60px;
+    margin: 0 4px;
+}
+#orderphoneCss3{
+	width: 60px;
+    margin: 0 4px;
+}
+
+#orderemailCss{
+	width: 330px;
+    margin: 0 4px;
+}
+#ordermassegeCss{
+	width: 750px;
+    height: 100px;
+}
+#ordernameCss2{
+	width:230px;
+}
+#ordermemoINmemo{
+	padding:5px 5px 25px 10px;
+	border-bottom: 1px solid #d5d5d5;
+}
+#mypagedetailtable1th{
+	padding:5px 5px 10px 10px;
+}
+
+
+/* ------------- */
+#ordermemo3>tr{
+	text-align:left;
+	font-size: 11.8px;
+	color: #353535;
+	font-family: 'NanumSquareOTFR';
+	
+	
+}
+#ordermemo3>tr>td{
+	border-bottom: 1px solid #e9e9e9;
+	font-size: 11.8px;
+	width: 72%;
+	padding: 9px 0 8px 20px;
+}
+
+#ordermemo3{
+	border: 1px solid #d7d5d5;
+}
+
+
+#ordermemo3>tr>th{
+	font-size:0.97em;
+	width:120px;
+	height:30px;
+	border-bottom: 1px solid #d7d5d5;
+	border-right : 1px solid #d7d5d5;
+	padding: 11px 0 10px 19px;
+	background-color:#fbfafa;
+}
+#paymentbutton{
+	border: 0;
+    background: #4e4e4e;
+    color: #fff;
+    width: 250px;
+    height:50px;
+    padding: 15px 0;
+    margin: 0 0 0 20px;
+    font-size:15px;
+}
+#paymentdiv{
+	text-align:right;
+	margin:10px 30px 10px 0;
+}
+#paymentstrong{
+	font-size: 13.5px;
+}
+#paymentstrong1{
+	width: 190px;
+    height: auto;
+    padding: 0;
+    border: 0;
+    color: #008bcc;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: normal;
+}
+#paymentstrong2{
+	font-size:12px;
+}
+#ordernameing{
+	width: 100px;
+    
+}
+#orderbank{
+	width: 180px;
+   
+   }

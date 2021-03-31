@@ -10,7 +10,7 @@
 	
 	<select id="saleChartData" resultType="com.project.selsal.entities.ChartData">
 		select name as salename, sum(salestock) as salestock from productdetail 
-		where MONTH(transdate) = (select MONTH(now()) from dual) group by name 
+		where MONTH(transdate) = (select MONTH(now()) from dual) group by name order by sum(salestock) desc limit 5
 	</select>
 	
 	<select id="malesaleChartData" resultType="com.project.selsal.entities.ChartData">

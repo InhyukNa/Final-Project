@@ -35,7 +35,7 @@ public interface MemberDao {
 	
 	public Orders orderselectOne(int ordernum);
 	
-	ArrayList<Orderdetail> ordernumselect(int ordernum);
+	public ArrayList<Orderdetail> ordernumselect(int ordernum);
 
 	public int levelUpdate(Member member);
 	

@@ -124,7 +124,7 @@ public class AdminController {
 	public String productInsertSave(Model model,@ModelAttribute Product product, 
 			@RequestParam("imagefile") MultipartFile imagefile) throws Exception {
 		ProductDao productDao = sqlSession.getMapper(ProductDao.class);
-		String path = "C:/Users/IT-5C/git/Final-Project/finalproject/src/main/resources/static/uploadproductimg/";
+		String path = "/home/team2/uploadproductimg/";
 		String imgname = imagefile.getOriginalFilename();
 		String realpath = "/uploadproductimg/";
 		if (imgname.equals("")) {
