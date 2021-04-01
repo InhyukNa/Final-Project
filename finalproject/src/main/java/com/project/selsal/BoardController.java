@@ -160,7 +160,8 @@ public class BoardController {
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
 		freeboard = dao.selectOneFreeBoard(f_seq);
 		String f_attach = freeboard.getF_attach(); 
-		freeboard.setF_attach("home/team2"+f_attach);
+		freeboard.setF_attach("/home/team2"+f_attach);
+		System.out.println(freeboard.getF_attach());
 		String cursession = (String) session.getAttribute("sessionemail");
 		if (cursession == null || !cursession.equals(freeboard.getF_email())) {
 			dao.addHitFreeBoard(f_seq);

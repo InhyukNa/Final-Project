@@ -132,8 +132,8 @@ public class OrderController {
       String address = "우편번호:"+ member.getZipcode()+" / "+member.getAddress()+" , "+member.getDetailaddress(); 
       int usePoint = member.getPoint();
       orderDao.orderInsert(ordernum, email,address);
-      orderDao.usePoint(usePoint);
-      return "redirect:membermypage";
+      orderDao.usePoint(usePoint,email);
+      return "redirect:membermypage"; 
    }
    @RequestMapping(value = "/orderConfirm", method = RequestMethod.GET)
    public String orderConfirm(Model model,HttpSession session,@RequestParam int ordernum) throws Exception {

@@ -146,7 +146,7 @@
    </select>
    
    <update id="usePoint">
-   		update member set point = point-#{point}
+   		update member set point = point-#{point} where email = #{email}
    </update>
    
 </mapper>

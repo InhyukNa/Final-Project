@@ -90,5 +90,5 @@ public interface OrdersDao {
 	
 	public int orderTotPrice(int ordernum);
 	
-	public int usePoint(int point);
+	public int usePoint(int point,String email);
 }
