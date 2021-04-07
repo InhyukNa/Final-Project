@@ -109,8 +109,8 @@
                          <input type = "text" name="zipcode" class = "orderaddressCss"  id = "zipcode" required></input><br>
                          <input type = "text" name="address"  class = "orderaddressCss2" id = "addr1" required>주소<br>
                          <input type = "text" name="detailaddress"  class = "orderaddressCss3" id = "addr2" required>상세주소
-                         <button type="button" name="" class="ui gray button adrrconfirm" onclick="zipcodeFind()">
-                        <i class="search icon"></i></button>
+                         <button type="button" name="" class="ui gray button adrrconfirm" id = "adrrconfirmcss" onclick="zipcodeFind()">
+                        <i class="search icon" id = "adrrconfirmiconcss"></i></button>
                       </td>
                    </tr>
                    <tr>
@@ -160,10 +160,27 @@
                    </tr>
                    <tr>
                       <th>포인트</th>
-                      <td>
+                      <td id = "couponbtntd">
+                      	<input type = "hidden" value = "0" id = "couponyn" name="couponyn">
                          <input type="hidden"  id="maxPoint" th:value="${members.point}">
-                         <input type = "text" id = "ordernameCss2" name="point" value = "0">포인트<span th:text="|(사용가능 포인트 : ${members.point}포인트)|"></span><br><br>
+                         <input type = "text" id = "ordernameCss2" name="point" value = "0" >포인트<span id = "blockpoint"  th:text="|(사용가능 포인트 : ${members.point}포인트)|"></span><br><br>
+                         <button type = "button" id = "couponbtn" style= "display:block">쿠폰 사용하기</button>
+                         <input type = "hidden" id = "couponvalue" th:value ="${members.coupon}" >
+                         <span style = "color:red" id = "coupontext" th:text = "|보유중인 쿠폰수[${members.coupon}] 개|">
+                         </span><br>
                          <span>
+                         -쿠폰은 하나만 적용하실수 있습니다.<br>
+                         -포인트는 최소 1000 포인트 이상일 때 결제가 가능합니다.<br>
+                         -최대 사용금액은 제한이 없습니다.<br>
+                         -1회 구매시 적립금 최대 사용금액은 0원입니다.<br>
+                         -적립금으로만 결제할 경우,결제금액이 0으로 보여지는 것은 정상이며[결제하기]버튼을 누르면 주문이 완료됩니다.
+                         </span>
+                      </td>
+                      <td id = "couponcancelbtntd" style = "display:none">
+                         <span id = "nonepoint" >쿠폰결제시 포인트 결제를 하실수 없습니다</span><br><br>
+                         <button type = "button" id = "couponcancelbtn" >쿠폰 취소</button>
+                         <span>
+                         -쿠폰은 하나만 적용하실수 있습니다.<br>
                          -포인트는 최소 1000 포인트 이상일 때 결제가 가능합니다.<br>
                          -최대 사용금액은 제한이 없습니다.<br>
                          -1회 구매시 적립금 최대 사용금액은 0원입니다.<br>

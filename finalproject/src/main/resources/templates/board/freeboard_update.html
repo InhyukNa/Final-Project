@@ -45,9 +45,6 @@
 				<div class = "fluid ui labeled input">
 					<textarea name="f_content" id="f_content" placeholder="본문을 입력하시오" th:text="${freeboard.f_content}" style="width:100%; height:100px"></textarea>
 				</div>
-				<div class = "fluid ui labeled input">
-					<img name="f_attach" id="f_attach" th:src="${freeboard.f_attach}"></img>
-				</div>
 				<div>
 					<span th:if="${session.sessionemail==freeboard.f_email}">
 						<button type="submit" class="ui inverted green button">완료</button>

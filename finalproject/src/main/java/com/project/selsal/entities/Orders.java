@@ -12,7 +12,14 @@ public class Orders {
 	private int totprice;
 	private int orderconfirm;
 	private String completedate;
+	private int couponconfirm;
 	
+	public int getCouponconfirm() {
+		return couponconfirm;
+	}
+	public void setCouponconfirm(int couponconfirm) {
+		this.couponconfirm = couponconfirm;
+	}
 	public int getOrdernum() {
 		return ordernum;
 	}

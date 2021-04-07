@@ -108,11 +108,18 @@ public class OrderController {
    @ResponseBody
    public String orderInsert(Model model,@RequestParam int procode,@RequestParam int qty,@RequestParam int ordernum) {
       OrdersDao orderDao = sqlSession.getMapper(OrdersDao.class);
+      int productStock = orderDao.checkStock(procode);
       orderdetail.setOrdernum(ordernum);
       orderdetail.setQty(qty);
       orderdetail.setProcode(procode);
       orderDao.insertRow(orderdetail);
-      return "";
+      int orderProductStock = orderDao.checkQty(ordernum, procode);
+      if(productStock < orderProductStock) {
+    	  return "n";
+      } else {
+    	  return "y";
+      }
+      
    }
    
    //온라인주문하기 위한 재고 매진 여부 ajax
@@ -124,16 +131,20 @@ public class OrderController {
       return result;
    }
    
-   //온라인주문 내역 최종 저장 ajax
+   //온라인주문 내역 최종 저장
    @RequestMapping(value = "/orderConfirmSave", method = RequestMethod.POST)
-   public String orderConfirmSave(@ModelAttribute Member member,@RequestParam int ordernum, HttpSession session) {
+   public String orderConfirmSave(@ModelAttribute Member member,@RequestParam int ordernum,@RequestParam int couponyn, HttpSession session) {
       OrdersDao orderDao = sqlSession.getMapper(OrdersDao.class);
+      MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
       String email = (String) session.getAttribute("sessionemail");
       String address = "우편번호:"+ member.getZipcode()+" / "+member.getAddress()+" , "+member.getDetailaddress(); 
       int usePoint = member.getPoint();
       orderDao.orderInsert(ordernum, email,address);
       orderDao.usePoint(usePoint,email);
-      return "redirect:membermypage"; 
+      if(couponyn == 1){
+    	  memberDao.couponUpdate3(email);
+      }
+      return "redirect:membermypage";
    }
    @RequestMapping(value = "/orderConfirm", method = RequestMethod.GET)
    public String orderConfirm(Model model,HttpSession session,@RequestParam int ordernum) throws Exception {
@@ -190,9 +201,21 @@ public class OrderController {
    // 주문 재고와 판매 가능한 남은 재고 비교하기 
    @RequestMapping(value = "/NowStockChk", method = RequestMethod.POST)
    @ResponseBody
-   public String NowStockChk(@RequestParam int ordernum) {
+   public String NowStockChk(@RequestParam int ordernum,@RequestParam String email) {
       OrdersDao orderdao = sqlSession.getMapper(OrdersDao.class);
+      MemberDao memberdao = sqlSession.getMapper(MemberDao.class);
+      
       ArrayList<Product> stockchk = orderdao.selectNowStock(ordernum);
+      memberdao.couponUPdate1(ordernum);
+      int couponcount = memberdao.couponcount2(ordernum);
+      int couponpoint = memberdao.couponaccumulation(ordernum, email);
+      if(couponpoint > 6000) {
+    	  couponcount = couponcount + 1;
+    	  if(couponcount == 12) {
+        	  memberdao.couponUpdate2(email);
+        	  memberdao.couponconfirmUpdate(email);
+          }
+      }
       String result = "";
       for(Product chk : stockchk) {
          if(chk.getOrderstock()==chk.getStock()) {
@@ -211,8 +234,10 @@ public class OrderController {
    public String QuickorderConfirm(@RequestParam int ordernum,HttpSession session) throws Exception {
       OrdersDao orderDao = sqlSession.getMapper(OrdersDao.class);
       ProductDao productDao = sqlSession.getMapper(ProductDao.class);
+      MemberDao memberdao = sqlSession.getMapper(MemberDao.class);
       orderDao.changeConfirm(ordernum);
       orderDao.completedateUpdate(ordernum);
+      
       ArrayList<Orderdetail> saleproduct = orderDao.selectSaleProduct(ordernum);
       for(Orderdetail salepro:saleproduct) {
          String code = String.valueOf(salepro.getProcode());
@@ -246,7 +271,6 @@ public class OrderController {
          changelevel = 2;
       }
       orderDao.updateMemlevel(ordernum,changelevel);
-      
       
       return "redirect:OrderList";
    }

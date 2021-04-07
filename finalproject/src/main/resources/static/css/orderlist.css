@@ -1,4 +1,9 @@
+.myInfo_order{
+	height:350px; 
+	overflow:auto;
+}
 #orlist{
+	margin-top: 5px;
     font-family: "NanumSquareOTFR";
     color: #333;
     font-size: 35px;

@@ -91,4 +91,8 @@ public interface OrdersDao {
 	public int orderTotPrice(int ordernum);
 	
 	public int usePoint(int point,String email);
+	
+	public int checkStock(int code);
+	
+	public int checkQty(int ordernum, int procode);
 }

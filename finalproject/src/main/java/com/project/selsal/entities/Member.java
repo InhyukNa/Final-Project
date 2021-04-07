@@ -20,7 +20,14 @@ public class Member {
 	private int point;
 	private int birth;
 	private String oldpassword;
+	private int coupon;
 	
+	public int getCoupon() {
+		return coupon;
+	}
+	public void setCoupon(int coupon) {
+		this.coupon = coupon;
+	}
 	public String getDetailaddress() {
 		return detailaddress;
 	}

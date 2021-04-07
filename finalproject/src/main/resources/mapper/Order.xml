@@ -95,7 +95,7 @@
    </select>
    
    <select id="selectNowStock" resultType="com.project.selsal.entities.Product">
-      select stock,(select qty from orderdetail B where ordernum = #{ordernum} and B.procode = A.code) as orderstock 
+      select stock,(select sum(qty) from orderdetail B where ordernum = #{ordernum} and B.procode = A.code  group by proname,proprice) as orderstock 
       from product A group by code
    </select>
    
@@ -148,5 +148,13 @@
    <update id="usePoint">
    		update member set point = point-#{point} where email = #{email}
    </update>
+   
+   <select id="checkStock" resultType="Integer">
+   		select stock from product where code = #{procode}
+   </select>
+   
+   <select id="checkQty" resultType="Integer">
+   		select qty from orderdetail where ordernum = #{ordernum} and procode = #{procode}
+   </select>
    
 </mapper>

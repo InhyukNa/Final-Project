@@ -103,9 +103,13 @@ $(document).ready(function() {
 			data: { procode: procode, qty: qty, ordernum: ordernum },
 			url: 'orderInsert',
 			success: function(data) {
-				alert("담기가 완료되었습니다.");
-				checkUnload = false;
-				document.location.href = "orderReloading?ordernum=" + ordernum;
+				if(data == "y"){
+					alert("담기가 완료되었습니다.");
+					checkUnload = false;
+					document.location.href = "orderReloading?ordernum=" + ordernum;
+				} else if(data == "n"){
+					alert("재고가 부족합니다")
+				}
 			},
 			error: function(xhr, status, error) {
 				alert('ajax error : ' + xhr.status + error);
@@ -116,13 +120,15 @@ $(document).ready(function() {
 	/** 온라인 주문 페이지 주문 접수 */
 	$('#orderconfirm').on('click', function() {
 		var ordernum = $('#ordernum').val();
-		var cartqty = $('#cartqty').text();
+		var totprice = $('#totprice').text();
 		checkUnload = false;
-		if (cartqty > 0) {
+		if (totprice >= 6000) {
 			document.location.href = "orderConfirm?ordernum=" + ordernum;
 		}
-		else {
+		else if (totprice == 0) {
 			alert('재료를 담아주세요');
+		} else {
+			alert('6000원 이상 주문 가능합니다')
 		}
 	});
 
