@@ -60,13 +60,18 @@ public class OrderController {
       model.addAttribute("products",products);
       OrdersDao orderDao = sqlSession.getMapper(OrdersDao.class);
       int orderNum = 0;
-      int emptyNum = orderDao.emptyOrderNum();
+      int emptyNum = 0;
       int maxNum = orderDao.maxOrderNum();
-      if(emptyNum < maxNum) {
-    	  orderNum = emptyNum;
-      }
-      else {
+      if(maxNum == 1) {
     	  orderNum = maxNum;
+      }else {
+    	  emptyNum = orderDao.emptyOrderNum();
+	      if(emptyNum < maxNum) {
+	    	  orderNum = emptyNum;
+	      }
+	      else {
+	    	  orderNum = maxNum;
+	      }
       }
       model.addAttribute("ordernum",orderNum);
       ArrayList<Orderdetail> cart = memberDao.orderCart(orderNum);

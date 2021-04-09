@@ -329,13 +329,13 @@ $(document).ready(function() {
 		var birth = $('#birth').val();
 		var gender = $('#gender').val();
 		if(!email && !name && !phone1 && !phone2 && !phone3 && !birth && !gender){
+			alert('필수 입력 사항이 남아있습니다');
+		}else{
 			if(password==passwordchk){
 				$('#memberinsertform').attr('action','memberInsertSave').submit();
 			} else{
 				alert('비밀번호가 일치하지 않습니다');
 			}
-		}else{
-			alert('필수 입력 사항이 남아있습니다');
 		}
 	});
 });
