@@ -64,13 +64,13 @@
 				</div>
 				<div>
 					<div class = "pagination" style="text-align: center;">
-						<span th:each="page:${pages}"> 
-							<a th:href="@{freeBoardPageSelect(page=${page})}"><span th:text="${page}+'&nbsp&nbsp&nbsp&nbsp'" tabindex="0"></span></a>
+						<span th:each="page:${pages}">
+							<a th:href="@{freeBoardPageSelect(page=${page},find=${find})}"><span th:text="${page}+'&nbsp&nbsp&nbsp&nbsp'" tabindex="0"></span></a>
 						</span>
 					</div>
 					<br>
 					<div class="ui input">
-						<input type="text" name="find" placeholder="글 제목" th:value="${find}"> 
+						<input type="text" name="find" placeholder="글 제목" th:value="${find}" id="find"> 
 						<button class="ui inverted blue button" onclick="findListformname.submit()">검색</button>
 					</div>
 					<button class="ui inverted green button" type ="button" th:if="${session.sessionemail}!=null"

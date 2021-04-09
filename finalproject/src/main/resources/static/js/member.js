@@ -321,10 +321,21 @@ $(document).ready(function() {
 	$('#memberInsert').on('click',function(){
 		var password = $('#password').val();
 		var passwordchk = $('#passwordchk').val();
-		if(password==passwordchk){
-			$('#memberinsertform').attr('action','memberInsertSave').submit();
-		} else{
-			alert('비밀번호가 일치하지 않습니다');
+		var email = $('#email').val();
+		var name = $('#name').val();
+		var phone1 = $('#phone1').val();
+		var phone2 = $('#phone2').val();
+		var phone3 = $('#phone3').val();
+		var birth = $('#birth').val();
+		var gender = $('#gender').val();
+		if(!email && !name && !phone1 && !phone2 && !phone3 && !birth && !gender){
+			if(password==passwordchk){
+				$('#memberinsertform').attr('action','memberInsertSave').submit();
+			} else{
+				alert('비밀번호가 일치하지 않습니다');
+			}
+		}else{
+			alert('필수 입력 사항이 남아있습니다');
 		}
 	});
 });

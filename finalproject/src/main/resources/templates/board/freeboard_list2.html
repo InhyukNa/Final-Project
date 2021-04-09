@@ -65,7 +65,7 @@
 				<div>
 					<div class = "pagination" style="text-align: center;">
 						<span th:each="page:${pages}"> 
-							<a th:href="@{freeBoardPageSelect(page=${page})}"><span th:text="${page}+'&nbsp&nbsp&nbsp&nbsp'" tabindex="0"></span></a>
+							<a th:href="@{freeBoardPageSelect(page=${page},find=${find})}"><span th:text="${page}+'&nbsp&nbsp&nbsp&nbsp'" tabindex="0"></span></a>
 						</span>
 					</div>
 					<br>

@@ -57,7 +57,7 @@
 	
 	<select id="selectCountFreeBoard" resultType="Integer">
 		select count(*) from freeboard where f_title like CONCAT('%',#{find},'%')
-		or f_name like CONCAT('%',#{find},'%') or f_content like CONCAT('%',#{find},'%');
+		or f_name like CONCAT('%',#{find},'%') or f_content like CONCAT('%',#{find},'%')
 	</select>
 	
 	<update id="freeBoardLike">

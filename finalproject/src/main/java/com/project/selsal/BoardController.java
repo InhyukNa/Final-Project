@@ -342,7 +342,6 @@ public class BoardController {
 	@RequestMapping(value = "/findListFreeBoard", method = RequestMethod.POST)
 	public String findListFreeBoard(Locale locale, Model model, @RequestParam String find) throws Exception {
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
-
 		int pagesize = 10;
 		int page = 1;
 		int startrow = (page - 1) * pagesize;
@@ -369,15 +368,15 @@ public class BoardController {
 		model.addAttribute("boards", boards);
 		model.addAttribute("pages", pages);
 		model.addAttribute("find", find);
+		model.addAttribute("rowcount", rowcount);
 
 		return "board/freeboard_list";
 	}
 	
 	//게시판 페이징
 	@RequestMapping(value = "/freeBoardPageSelect", method = RequestMethod.GET)
-	public String freeBoardPageSelect(Locale locale, Model model, @RequestParam int page) throws Exception {
+	public String freeBoardPageSelect(Locale locale, Model model, @RequestParam int page, @RequestParam String find) throws Exception {
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
-
 		int pagesize = 10;
 		int startrow = (page - 1) * pagesize;
 		int endrow = 10;
@@ -387,6 +386,7 @@ public class BoardController {
 		}
 		boardpaging.setStartrow(startrow);
 		boardpaging.setEndrow(endrow);
+		
 		int rowcount = dao.selectCountFreeBoard(boardpaging);
 		int absPage = 1;
 		if (rowcount % pagesize == 0) {
@@ -403,6 +403,7 @@ public class BoardController {
 		model.addAttribute("boards", boards);
 		model.addAttribute("pages", pages);
 		model.addAttribute("find", find);
+		model.addAttribute("rowcount", rowcount);
 
 		return "board/freeboard_list";
 	}
