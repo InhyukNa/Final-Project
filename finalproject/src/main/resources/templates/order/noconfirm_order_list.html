@@ -34,7 +34,10 @@
 					<tbody>
 						<tr th:each="item : ${noconfirmlist}">
 							<td th:text="${item.ordernum}" th:value="${item.ordernum}"></td>
-							<td th:value="${item.email}" th:text="${item.name}"></td>
+							<td><input type = "hidden" id = "email"  th:value = "${item.email}">
+							<span  th:value="${item.email}" th:text="${item.name}">
+							</span>
+							</td>
 							<td th:text="${item.date}"></td>
 							<td th:text="${item.orderadd}"></td>
 							<td th:text="|${item.totprice}원|"></td>

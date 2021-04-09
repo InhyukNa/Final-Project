@@ -12,11 +12,12 @@
 	<form id="memberpageform" name="formname" action="memberpage"
 		method="POST">
 		<div class="ui grid main">
-			<div class = "ui grid sixteen wide column">
-				<p style = "text-align:center; font-size:35px; font-family:'돋움'; font-weight:bold">마이 페이지
+			<div class = "ui grid sixteen wide column" >
+				<p style = "text-align:center; font-size:30px; font-family:'돋움'; font-weight:bold;border:1px double #d9d9d9;"
+				>마이 페이지
 			</div>
 			<div class ="ui grid two wide column"></div>
-			<div class ="ui grid twelve wide column">
+			<div class ="ui grid twelve wide column" >
 				<div class = "myInfo">
 					<div class = "myInfo_inside1">
 						<div id = "memberlevelimage">
@@ -60,13 +61,13 @@
 					<img th:if ="${couponcount}%12 == 10" class = "back" src="images/stampcoupon10.png" >
 					<img th:if ="${couponcount}%12 == 11" class = "back" src="images/stampcoupon11.png" >
 				</div>
+				<div class = "aobox">
 				<div class = "myInfo_inside4">
 					<div class = "myInfo_order">
 						<div id="orlist">주문내역</div>
 							<table id = "ordertable" style = "width:100%;">
 							<thead id="orderhead">
 								<tr>
-									
 									<th id = "thborder">주문날짜</th>
 									<th id = "thborder">금액</th>
 									<th id = "thborder">주문상태</th>
@@ -88,13 +89,23 @@
 									<td id = "tdborder" th:if="${order.orderconfirm == 0}" style = "width:150px;">주문처리전</td>
 									<td id = "tdborder" th:if="${order.orderconfirm == 1}" style = "width:150px;">주문확인</td>
 									<td id = "tdborder" th:if="${order.orderconfirm == 2}" style = "width:150px; height:40px;">주문거절</td>
-									<td th:if = "${order.orderconfirm == 0}" id = "buttonorder"><button class="ui yellow button" type="button" id = "viewdetails">주문취소</button></td>
+									<td th:if = "${order.orderconfirm == 0}" id = "buttonorder"><button class="button" type="button" id = "viewdetails">주문취소</button></td>
 								</tr>
 							</tbody>
 							</table>
 						</div>
 					</div>
-				
+					</div>
+				<div class = "myInfo_inside7">
+					<dl class = "myInfo_pointtext">
+						<dt id = "dtid">사용가능 쿠폰</dt>
+						<dd id = "pointimage">
+						<div id ="pointText">
+							<span th:text = "|${data.coupon}개|"></span>
+						</div>
+					</dl>
+				</div>
+			
 				
 				</div>
 			</div>

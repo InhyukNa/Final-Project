@@ -281,6 +281,9 @@ $(document).ready(function() {
 	$('#findPWcancel').on('click', function() {
 		self.close();
 	});
+	$('#passwordChangeCancel').on('click', function() {
+		self.close();
+	});
 	$('#couponcancelbtn').on('click', function() {
 		$('#couponyn').val(0);
 		$('#couponcancelbtntd').css('display', 'none');
@@ -312,6 +315,16 @@ $(document).ready(function() {
 				$('#totalPrice').text();
 				$('#paymentstrong1').text(totalPrice1);
 			}
+		}
+	});
+	
+	$('#memberInsert').on('click',function(){
+		var password = $('#password').val();
+		var passwordchk = $('#passwordchk').val();
+		if(password==passwordchk){
+			$('#memberinsertform').attr('action','memberInsertSave').submit();
+		} else{
+			alert('비밀번호가 일치하지 않습니다');
 		}
 	});
 });

@@ -26,6 +26,9 @@ public interface OrdersDao {
 	// 온라인 주문 마지막 주문번호 +1 Dao
 	public int maxOrderNum();
 	
+	// 온라인 주문 삭제되어 빈 주문번호 Dao
+	public int emptyOrderNum();
+	
 	// 온라인 주문 내역 최종 저장 Dao
 	public int orderInsert(int ordernum,String email,String address);
 	
